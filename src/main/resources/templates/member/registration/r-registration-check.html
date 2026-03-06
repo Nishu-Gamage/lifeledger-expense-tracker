@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LifeLedger Expense Tracker</title>
+
+    <link rel="stylesheet" th:href="@{/css/style-registration.css}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- Body -->
+<div class="full-page">
+    <div class="row vh-100">
+    	<!-- Left Side Column (hidden on small screens) -->
+        <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+        	<div class="px-5">
+        		<h3 class="text-center mb-4">登録内容確認</h3>
+
+            <ul class="list-group mb-4">
+                <li class="list-group-item">
+                    <strong>Full Name:　</strong>
+                    <span th:text="${registrationDto.fullName}"></span>
+                </li>
+                <li class="list-group-item">
+                    <strong>Email :　</strong>
+                    <span th:text="${registrationDto.email}"></span>
+                </li>
+            </ul>
+
+            <!-- Final submit -->
+            <form th:action="@{/registration/confirm}" th:object="${registrationDto}" method="post">
+
+                <!-- hidden fields to keep data -->
+                <input type="hidden" th:field="*{fullName}">
+                <input type="hidden" th:field="*{email}">
+                <input type="hidden" th:field="*{password}">
+
+                <button type="submit" class="btn btn-primary btn-block mt-5">登録する</button>
+            </form>
+
+            <!-- Back button -->
+            <a th:href="@{/registration}" class="btn btn-secondary btn-block mt-2">戻る</a>
+        	
+           	</div>
+        </div>
+        
+        <!-- Right Side Column (hidden on small screens) -->
+        <div class="col-lg-6 regis-img d-none d-lg-flex text-white">
+        	<div class="text-center px-5">
+            	<h4>日々の生活費を追跡し、<br>予算を簡単に管理しましょう。</h4>
+            	<h4 class="mt-2">今すぐ登録して支出のモニタリングを開始し、<br>家計をコントロールしましょう。</h4>
+           	</div>
+        </div>
+	</div>
+</div>
+
+</body>
+</html>

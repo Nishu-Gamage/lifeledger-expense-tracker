@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LifeLedger Expense Tracker</title>
+	
+    <link rel="stylesheet" th:href="@{/css/style-registration.css}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+	
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<!-- Body -->
+<div class="full-page">
+    <div class="row vh-100">
+
+        <!-- Registration Form -->
+        <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+
+            <h3 class="card-title mt-3 text-center">新規会員登録</h3>
+
+            <form th:action="@{/registration}" th:object="${registrationDto}" method="post">
+
+                <!-- Full Name -->
+                <div class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+                <div class="form-group input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input th:field="*{fullName}" class="form-control" placeholder="Full name"/>
+                </div>
+
+                <!-- Email -->
+                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>				
+				<div class="text-danger" th:if="${emailError}" th:text="${emailError}"></div>
+                <div class="form-group input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    </div>
+                    <input th:field="*{email}" class="form-control" placeholder="Email address"/>
+                </div>
+
+                <!-- Password -->
+               	<p class="text-primary">※パスワードは6文字以上でなければなりません</p>
+                <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                <div class="form-group input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input id="password1" th:field="*{password}" type="password" class="form-control" placeholder="Create password"/>
+                </div>                
+
+                <!-- Reconfirmation Password -->
+                <div class="form-group input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input id="password2"  th:field="*{passwordConfirm}" type="password" class="form-control" placeholder="Reconfirmation password"/>
+                </div>
+
+                <!-- Password Error -->
+                <div class="text-danger mb-3" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"> </div>
+
+                <!-- Submit -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block w-100">会員登録</button>
+                </div>
+
+                <p class="text-center mt-3">アカウントをお持ちの場合  <a th:href="@{/login}">ログイン</a></p>
+
+            </form>
+        </div>
+
+        <!-- Right Side Column (hidden on small screens) -->
+        <div class="col-lg-6 regis-img d-none d-lg-flex text-white">
+        	<div class="text-center px-5">
+            	<h4>日々の生活費を追跡し、<br>予算を簡単に管理しましょう。</h4>
+            	<h4 class="mt-2">今すぐ登録して支出のモニタリングを開始し、<br>家計をコントロールしましょう。</h4>
+           	</div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

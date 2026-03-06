@@ -1,0 +1,21 @@
+.full-page{
+   	min-height:100vh;
+    display:flex;
+}
+
+.full-page .row{
+    width:100%;
+}
+	
+.regis-img {
+    background-image: url("/images/registration.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    min-height: 100vh; /* full screen height */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
