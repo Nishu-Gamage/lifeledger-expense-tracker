@@ -67,7 +67,7 @@ public class RegistrationController {
             return "member/registration/r-registration";
         }
 
-        return "member/login";
+        return "portal";
     }
      
 }
