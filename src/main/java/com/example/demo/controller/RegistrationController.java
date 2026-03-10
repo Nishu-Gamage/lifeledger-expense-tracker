@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.example.demo.dto.RegistrationDto;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
@@ -55,7 +54,7 @@ public class RegistrationController {
     }
 
     // Final Confirm - Save to DB
-    @PostMapping("/registration/confirm")
+    @PostMapping("/confirm")
     public String registrationConfirm(
             @ModelAttribute("registrationDto") RegistrationDto registrationDto,
             Model model) {
@@ -67,7 +66,7 @@ public class RegistrationController {
             return "member/registration/r-registration";
         }
 
-        return "portal";
+        return "redirect:/?login";
     }
      
 }

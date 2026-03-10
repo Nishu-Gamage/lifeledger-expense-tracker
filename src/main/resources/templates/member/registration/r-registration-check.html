@@ -29,7 +29,7 @@
             </ul>
 
             <!-- Final submit -->
-            <form th:action="@{/registration/confirm}" th:object="${registrationDto}" method="post">
+            <form th:action="@{/confirm}" th:object="${registrationDto}" method="post">
 
                 <!-- hidden fields to keep data -->
                 <input type="hidden" th:field="*{fullName}">

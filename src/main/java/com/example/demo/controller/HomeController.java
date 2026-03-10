@@ -11,16 +11,16 @@ public class HomeController {
     public String index() {
         return "portal";
     }
-
+	
 	// Login Form
     @GetMapping("/login")
     public String login(Authentication authentication) {
-
+    	
         if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:/";
         }
-
-        return "member/login";
+        // Redirect to portal and open modal
+        return "redirect:/?login";
     }
     
 }
