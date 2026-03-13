@@ -1,12 +1,10 @@
 package com.example.demo.controller;
 
 import java.util.Optional;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
@@ -18,7 +16,7 @@ public class HomeController {
     public HomeController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    
     @GetMapping("/")
     public String index(Model model, Authentication authentication) {
 
@@ -27,10 +25,9 @@ public class HomeController {
             Optional<User> user = userRepository.findByEmail(email);
             user.ifPresent(value -> model.addAttribute("fullName", value.getFullName()));
         }
-
         return "portal";
     }
-
+    
     // Login Form
     @GetMapping("/login")
     public String login(Authentication authentication) {
@@ -40,4 +37,10 @@ public class HomeController {
         }
         return "redirect:/?login";
     }
+    
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "member/loged/dashboard";
+    }
+    
 }
