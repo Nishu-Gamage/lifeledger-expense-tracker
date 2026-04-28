@@ -26,7 +26,7 @@
 					     <!-- DATE -->				    	
 						<div class="date-box mb-3">					
 						    <input type="date"
-						           name="date"
+						           name="expenseDate"
 						           class="form-control form-control-lg shadow-sm"
 						           th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}"
 						           required>
@@ -61,85 +61,85 @@
                 <div class="category-grid">
                 
                     <label class="category-card">
-                        <input type="radio" name="item" value="General">
+                        <input type="radio" name="mainCategory" value="General">
                         <img src="/images/expense-icon/general-icon.png" class="expense-icon">
                         <br>General
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Housing">
+                        <input type="radio" name="mainCategory" value="Housing">
                         <img src="/images/expense-icon/home-icon.png" class="expense-icon">
                         <br>Housing
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Fixed">
+                        <input type="radio" name="mainCategory" value="Fixed">
                         <img src="/images/expense-icon/fixed-expense-icon.png" class="expense-icon">
                         <br>Fixed
                     </label>
                                         
                     <label class="category-card">
-                        <input type="radio" name="item" value="Personal">
+                        <input type="radio" name="mainCategory" value="Personal">
                         <img src="/images/expense-icon/personal-icon.png" class="expense-icon">
                         <br>Personal
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="FamilyKids">
+                        <input type="radio" name="mainCategory" value="FamilyKids">
                         <img src="/images/expense-icon/family-Kids-icon.png" class="expense-icon">
                         <br>Family/Kids
                     </label>
                                         
                     <label class="category-card">
-                        <input type="radio" name="item" value="Education">
+                        <input type="radio" name="mainCategory" value="Education">
                         <img src="/images/expense-icon/education-icon.png" class="expense-icon">
                         <br>Education
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Pet">
+                        <input type="radio" name="mainCategory" value="Pet">
                         <img src="/images/expense-icon/pet-icon.png" class="expense-icon">
                         <br>Pet
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Medical">
+                        <input type="radio" name="mainCategory" value="Medical">
                         <img src="/images/expense-icon/medical-icon.png" class="expense-icon">
                         <br>Medical	
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Shopping">
+                        <input type="radio" name="mainCategory" value="Shopping">
                         <img src="/images/expense-icon/shopping-icon.png" class="expense-icon">
                         <br>Shopping
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Food">
+                        <input type="radio" name="mainCategory" value="Food">
                         <img src="/images/expense-icon/food-icon.png" class="expense-icon">
                         <br>Food
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Gift">
+                        <input type="radio" name="mainCategory" value="Gift">
                         <img src="/images/expense-icon/gifts-icon.png" class="expense-icon">
                         <br>Gift
                     </label>
 
                     <label class="category-card">
-                        <input type="radio" name="item" value="Transportation">
+                        <input type="radio" name="mainCategory" value="Transportation">
                         <img src="/images/expense-icon/transport.png" class="expense-icon">
                         <br>Transportation
                     </label>
                     
                     <label class="category-card">
-                        <input type="radio" name="item" value="Travel">
+                        <input type="radio" name="mainCategory" value="Travel">
                         <img src="/images/expense-icon/travel-icon.png" class="expense-icon">
                         <br>Travel
                     </label>
                             
                     <label class="category-card">
-                        <input type="radio" name="item" value="Other">
+                        <input type="radio" name="mainCategory" value="Other">
                         <img src="/images/expense-icon/other-icon.png" class="expense-icon">
                         <br>Other	
                     </label>
@@ -151,9 +151,9 @@
 					<div class="row">
 						<div class="col">
 
-						<label id="subcategoryLabel" class="form-label fw-semibold">Subcategory</label>
+						<label id="subcategoryLabel" class="form-label fw-semibold">SubCategory</label>
 						
-						<select id="subcategory" name="subcategory" class="form-select">
+						<select id="subCategory" name="subCategory" class="form-select">
 							<option value="">Select a subcategory</option>
 						</select>
 						<div id="subNoteError" class="text-danger fw-bold mt-1" style="display:none;">

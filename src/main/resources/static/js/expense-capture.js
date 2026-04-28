@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ---------------------------
-       SUBCATEGORY DATA
+       		SUBCATEGORY DATA
     --------------------------- */
 
     const subcategories = {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!expenseModal) return;
 
-	const subcatSelect = expenseModal.querySelector("#subcategory");
+	const subcatSelect = expenseModal.querySelector("#subCategory");
 	const subcategoryLabel = expenseModal.querySelector("#subcategoryLabel");
 	const categoryError = expenseModal.querySelector("#categoryError");
 	const subNoteError = expenseModal.querySelector("#subNoteError");
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (category === "Other") {
 
-			    subcategoryLabel.textContent = "Subcategory";
+			    subcategoryLabel.textContent = "SubCategory";
 			    subcategoryLabel.classList.remove("text-primary");
 			    subcategoryLabel.classList.add("text-dark");
 
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (subcategories[category].includes(selectedSub)) {
 
                 const radio = expenseModal.querySelector(
-                    `input[name="item"][value="${category}"]`
+					`input[name="mainCategory"][value="${category}"]`
                 );
 
                 if (radio) {
@@ -180,46 +180,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	form.addEventListener("submit", function(e) {
 
-	    const category = expenseModal.querySelector('input[name="item"]:checked');
-	    const subcategory = subcatSelect.value;
+	    const category = expenseModal.querySelector('input[name="mainCategory"]:checked');
+	    const subCategory = subcatSelect.value;
 	    const note = noteInput.value.trim();
 
 	    if (!category) {
-
 	        e.preventDefault();
 	        categoryError.style.display = "block";
 	        return;
-
 	    }
 
 	    categoryError.style.display = "none";
 
-	    /* OTHER CATEGORY VALIDATION */
-
 	    if (category.value === "Other") {
-
 	        if (note === "") {
-
 	            e.preventDefault();
 	            alert("Please add a note for 'Other' expenses.");
-
+	            return;
 	        }
+	    }
 
+	    if (subCategory === "" && note === "") {
+	        e.preventDefault();
+	        subNoteError.style.display = "block";
 	        return;
 	    }
 
-	    /* NORMAL CATEGORY VALIDATION */
+	    subNoteError.style.display = "none";
 
-		if (subcategory === "" && note === "") {
-
-		    e.preventDefault();
-		    subNoteError.style.display = "block";
-
-		} else {
-
-		    subNoteError.style.display = "none";
-
-		}
+	    // IMPORTANT: remove commas before sending to backend
+	    const amountInput = document.getElementById("amount");
+	    if (amountInput && amountInput.value) {
+	        amountInput.value = amountInput.value.replace(/,/g, "");
+	    }
 
 	});
 

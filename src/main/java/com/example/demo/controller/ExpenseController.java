@@ -1,27 +1,37 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.demo.dto.ExpenseDto;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.ExpenseService;
 
 @Controller
 public class ExpenseController {
-		
-	@PostMapping("/addExpense")
-	public String addExpense(
-	        @RequestParam String item,
-	        @RequestParam(required = false) String subcategory,
-	        @RequestParam(required = false) String note,
-	        @RequestParam String amount,
-	        @RequestParam String date) {
 
-	    System.out.println("Item: " + item);
-	    System.out.println("Subcategory: " + subcategory);
-	    System.out.println("Note: " + note);
-	    System.out.println("Amount: " + amount);
-	    System.out.println("Date: " + date);
+    private final ExpenseService expenseService;
+    private final UserRepository userRepository;
 
-	    return "redirect:/dashboard";
-	}
-	
+    public ExpenseController(ExpenseService expenseService,
+                             UserRepository userRepository) {
+        this.expenseService = expenseService;
+        this.userRepository = userRepository;
+    }
+
+    @PostMapping("/addExpense")
+    public String addExpense(@ModelAttribute ExpenseDto expenseDto,
+                             Principal principal) {
+
+        String email = principal.getName();
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        expenseService.saveExpense(expenseDto, user);
+
+        return "redirect:/dashboard";
+    }
 }
