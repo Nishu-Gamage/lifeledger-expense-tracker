@@ -25,6 +25,10 @@ public class ExpenseController {
     public String addExpense(@ModelAttribute ExpenseDto expenseDto,
                              Principal principal) {
 
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
         String email = principal.getName();
 
         User user = userRepository.findByEmail(email)
@@ -32,6 +36,6 @@ public class ExpenseController {
 
         expenseService.saveExpense(expenseDto, user);
 
-        return "redirect:/dashboard";
+        return "redirect:/expense";
     }
 }

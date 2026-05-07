@@ -1,0 +1,115 @@
+/* =========================
+   HEADER STYLE
+========================= */
+
+.app-header {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+    margin-bottom: 20px;
+    background-color:#DCDCDC;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+/* Nav container */
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+/* Nav links */
+.nav-link-custom {
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.nav-link-custom:hover {
+    color: #0d6efd;
+}
+
+/* Underline animation */
+.nav-link-custom::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #0d6efd;
+    transition: width 0.3s ease;
+}
+
+/* Hover underline */
+.nav-link-custom:hover::after {
+    width: 100%;
+}
+
+/* Active menu */
+.nav-link-custom.active {
+    color: #000080;
+    font-weight: 600;
+}
+
+/* Active underline */
+.nav-link-custom.active::after {
+    width: 100%;
+}
+
+
+/* =========================
+   DASHBOARD TABS
+========================= */
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+/* Tabs wrapper */
+.dashboard-tabs {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+/* Tabs */
+.dashboard-tabs .nav-link {
+    color: #000080;
+    background-color: transparent;
+    border: none !important;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.dashboard-tabs .nav-link:hover {
+    background-color: #e9ecef;
+}
+
+/* Active */
+.dashboard-tabs .nav-link.active {
+    color: #444;
+    background-color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* Content */
+.dashboard-tab-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}

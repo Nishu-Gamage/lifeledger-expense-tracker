@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.Optional;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,30 +18,70 @@ public class HomeController {
         this.userRepository = userRepository;
     }
     
+    // HOME
     @GetMapping("/")
     public String index(Model model, Authentication authentication) {
 
+        model.addAttribute("currentPage", "home");
+
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
+
             Optional<User> user = userRepository.findByEmail(email);
-            user.ifPresent(value -> model.addAttribute("fullName", value.getFullName()));
+
+            user.ifPresent(value ->
+                model.addAttribute("fullName", value.getFullName())
+            );
         }
+
         return "portal";
     }
     
-    // Login Form
+    // LOGIN
     @GetMapping("/login")
     public String login(Authentication authentication) {
 
         if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect:/";
+            return "redirect:/dashboard";
         }
+
         return "redirect:/?login";
     }
     
+    // DASHBOARD
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model, Authentication authentication) {
+
+        model.addAttribute("currentPage", "dashboard");
+
+        if (authentication != null) {
+
+            String email = authentication.getName();
+
+            userRepository.findByEmail(email)
+                    .ifPresent(user ->
+                        model.addAttribute("fullName", user.getFullName())
+                    );
+        }
+
         return "member/loged/dashboard";
     }
     
+    // EXPENSE PAGE
+    @GetMapping("/expense")
+    public String expense(Model model) {
+
+        model.addAttribute("currentPage", "expense");
+
+        return "member/loged/expense/expense";
+    }
+
+    // INCOME PAGE
+    @GetMapping("/income")
+    public String income(Model model) {
+
+        model.addAttribute("currentPage", "income");
+
+        return "member/loged/income/income";
+    }
 }
