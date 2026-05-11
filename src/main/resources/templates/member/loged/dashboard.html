@@ -1,52 +1,115 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-<meta charset="UTF-8">
-<title>Life Ledger</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Life Ledger</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" th:href="@{/css/style-header.css}">
     <link rel="stylesheet" th:href="@{/css/style-dashboard-tabs.css}">
+    <link rel="stylesheet" th:href="@{/css/style-expense.css}">
 </head>
 
 <body>
+
 <!-- HEADER -->
 <div th:replace="~{includes/header :: header}"></div>
 
-<!-- PAGE CONTENT -->	
+<!-- PAGE CONTENT -->
 <div class="container mt-3">
+
     <h2 class="mb-2 text-center">ダッシュボード画面</h2>
+
     <!-- NAV TABS -->
     <ul class="nav nav-tabs nav-fill border-0 shadow-sm dashboard-tabs" role="tablist">
-	    <li class="nav-item">
-	        <button class="nav-link active fw-semibold"
-	                data-bs-toggle="tab" data-bs-target="#dashboard-home" type="button">
-	            今月の収入と支出の概要
-	        </button>
-	    </li>	
-	    <li class="nav-item">
-	        <button class="nav-link fw-semibold"
-	                data-bs-toggle="tab" data-bs-target="#dashboard-menu1" type="button">
-	            収入と支出の月間比較
-	        </button>
-	    </li>	
-	</ul>
 
-	<div class="tab-content mt-3 dashboard-tab-content">	
-	    <div id="dashboard-home" class="tab-pane fade show active">
-	        <h5 class="fw-bold text-primary">今月の収入と支出の概要</h5>
-	    </div>	
-	    <div id="dashboard-menu1" class="tab-pane fade">
-	        <h5 class="fw-bold text-primary">収入と支出の月間比較</h5>
-	    </div>	
-	</div>
-  </div>
-    
-<!-- LOAD MODAL -->
-<div th:replace="~{member/loged/dataCapture/expense-capture :: search-condition}"></div>
+        <li class="nav-item">
+            <button class="nav-link active fw-semibold"
+                    data-bs-toggle="tab"
+                    data-bs-target="#dashboard-home"
+                    type="button">
+                今月の収入と支出の概要
+            </button>
+        </li>
 
-<!-- LOAD JS -->
+        <li class="nav-item">
+            <button class="nav-link fw-semibold"
+                    data-bs-toggle="tab"
+                    data-bs-target="#dashboard-menu1"
+                    type="button">
+                収入と支出の月間比較
+            </button>
+        </li>
+
+    </ul>
+
+    <!-- TAB CONTENT -->
+    <div class="tab-content mt-3 dashboard-tab-content">
+
+        <div id="dashboard-home" class="tab-pane fade show active">
+            <h4 class="fw-bold text-primary text-center">
+                収入と支出の管理を始めましょう。
+            </h4>
+        </div>
+
+        <div id="dashboard-menu1" class="tab-pane fade">
+            <h5 class="fw-bold text-primary">
+                収入と支出の月間比較
+            </h5>
+        </div>
+
+    </div>
+</div>
+
+<!-- BUTTONS -->
+<div class="d-flex justify-content-center align-items-center gap-3 py-3">
+
+    <button type="button"
+            class="btn btn-success btn-lg px-4 py-2">
+        収入を個別登録
+    </button>
+
+    <!-- INDIVIDUAL EXPENSE -->
+    <div sec:authorize="hasRole('USER')">
+
+        <button type="button"
+                class="btn btn-primary btn-lg px-4 py-2"
+                data-bs-toggle="modal"
+                data-bs-target="#searchaddExModal">
+
+            経費を個別登録
+
+        </button>
+
+    </div>
+
+    <!-- LIST EXPENSE -->
+    <div sec:authorize="hasRole('USER')">
+
+        <button type="button"
+                class="btn btn-outline-primary btn-lg px-4 py-2"
+                data-bs-toggle="modal"
+                data-bs-target="#searchAddListExModal"
+                style="background-color:#ADD8E6; color:black;">
+
+            経費を一覧登録
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- LOAD MODALS -->
+<div th:replace="~{member/loged/expense/expense-capture-individually :: addExpenseModal}"></div>
+<div th:replace="~{member/loged/expense/expense-capture-list :: addExpenseListModal}"></div>
+
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/expense-categories.js}"></script>
 <script th:src="@{/js/expense-capture.js}"></script>
 
 </body>
