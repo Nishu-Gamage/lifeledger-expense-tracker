@@ -1,4 +1,4 @@
-const subcategories = {
+window.subcategories = {
 
 	/* ---------------------------
 	      CATEGORY DATA
@@ -74,8 +74,6 @@ const subcategories = {
     Shopping: [
         "Electronics",
         "Household Items",
-        "Accessories",
-        "Online Shopping",
         "Clothing",
         "Cosmetics"
     ],
@@ -98,24 +96,16 @@ const subcategories = {
         "Train / Bus",
         "Fuel",
         "Taxi",
-        "Car Loan",
-        "Car Insurance",
-        "Rent Car",
-        "Parking",
-        "Maintenance",
-        "Vehicle Maintenance / Repair"
+        "Parking"
     ],
 
     Travel: [
         "Flights",
         "Hotels",
         "Visa",
-        "Travel Insurance",
-        "Local Transport"
+        "Travel Insurance"
     ],
 
-    Other: [
-        "Other"
-    ]
+    Other: ["Other"]
 
 };

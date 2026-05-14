@@ -41,3 +41,71 @@
     padding:3px;
     background-color:#e7f1ff;
 }
+
+/* =========================
+   MODAL HEIGHT FIX
+========================= */
+
+#searchAddListExModal .modal-content{
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* form should stretch */
+#searchAddListExModal form{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+/* scroll only table area */
+.expense-table-wrapper{
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+/* sticky table header */
+.expense-table-wrapper thead th{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: #cfe2ff !important;
+    background-clip: padding-box;
+    border-bottom: 2px solid #b6d4fe;
+    /* prevents row bleed-through */
+    box-shadow: 0 2px 0 #b6d4fe;
+}
+
+.table{
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* sticky footer buttons */
+.modal-buttons-sticky{
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+/* table row spacing */
+.table tbody tr td{
+    vertical-align: middle;
+    padding: 12px;
+}
+
+/* action column width */
+.table th:last-child,
+.table td:last-child{
+    width: 100px;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* prevent delete button text wrap */
+.delete-row{
+    white-space: nowrap;
+    min-width: 70px;
+}

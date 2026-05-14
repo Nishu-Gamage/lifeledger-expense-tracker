@@ -36,8 +36,6 @@ public class ExpenseController {
 
         expenseService.saveExpense(expenseDto, user);
 
-//        return "redirect:/expense";
-		/* return "redirect:/expense"; */
-        return "member/loged/expense/expense";
+        return "redirect:/expense";
     }
 }
