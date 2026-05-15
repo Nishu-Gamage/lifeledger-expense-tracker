@@ -227,21 +227,46 @@ document.addEventListener("DOMContentLoaded", function () {
         const mainCategorySelect =
             row.querySelector(".main-category");
 
-        Object.keys(window.subcategories)
-            .forEach(category => {
+			const noteInput =
+			    row.querySelector(
+			        'input[name="note"]'
+			    );
 
-                if (
-                    window.subcategories[category]
-                        .includes(selectedSubCategory)
-                ) {
+			Object.keys(window.subcategories)
+			    .forEach(category => {
 
-                    mainCategorySelect.value =
-                        category;
+			        if (
+			            window.subcategories[category]
+			                .includes(selectedSubCategory)
+			        ) {
 
-                }
+			            mainCategorySelect.value =
+			                category;
 
-            });
+			            /* =========================
+			               OTHER CATEGORY LOGIC
+			            ========================= */
 
+			            if (category === "Other") {
+
+			                noteInput.required = true;
+
+			                noteInput.placeholder =
+			                    "Add a note for the future";
+
+			            }
+			            else {
+
+			                noteInput.required = false;
+
+			                noteInput.placeholder =
+			                    "Add note here";
+
+			            }
+
+			        }
+
+			    });
     });
 
     /* =========================================

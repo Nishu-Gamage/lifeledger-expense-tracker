@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<!-- CONFIRM MODAL -->
+<div th:fragment="confirmExpenseModal"
+     class="modal fade"
+     id="searchConfirmListExModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content p-4">
+
+            <h2 class="text-center mb-4">
+                Confirm Expense List
+            </h2>
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-primary">
+
+                <tr class="text-center">
+
+                    <th>Date</th>
+                    <th>Cost</th>
+                    <th>Main Category</th>
+                    <th>Sub Category</th>
+                    <th>Note</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="confirmExpenseTableBody">
+
+                </tbody>
+
+            </table>
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="button"
+				        class="btn btn-secondary"
+				        id="backToCaptureModalBtn">
+				    Back
+				</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
