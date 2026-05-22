@@ -1,9 +1,14 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.demo.dto.ExpenseDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -21,6 +26,9 @@ public class ExpenseController {
         this.userRepository = userRepository;
     }
 
+    /* =====================================
+	    	SINGLE EXPENSE SAVE
+	 ===================================== */
     @PostMapping("/addExpense")
     public String addExpense(@ModelAttribute ExpenseDto expenseDto,
                              Principal principal) {
@@ -38,4 +46,38 @@ public class ExpenseController {
 
         return "redirect:/expense";
     }
+    
+
+    /* =====================================
+		    EXPENSE LIST SAVE
+	 ===================================== */
+    @PostMapping("/saveExpenseList")
+    @ResponseBody
+    public String saveExpenseList(
+            @RequestBody
+            List<ExpenseDto> expenseList,
+            Principal principal) {
+
+        if (principal == null) {
+            return "LOGIN_REQUIRED";
+        }
+
+        String email =
+                principal.getName();
+
+        User user =
+                userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "User not found"
+                        ));
+
+        expenseService.saveExpenseList(
+                expenseList,
+                user
+        );
+
+        return "SUCCESS";
+    }
+    
 }

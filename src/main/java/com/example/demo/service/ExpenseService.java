@@ -56,6 +56,16 @@ public class ExpenseService {
         }).collect(Collectors.toList());
     }
 
+    // SAVE EXPENSE LIST
+    public void saveExpenseList(
+            List<ExpenseDto> expenseList,
+            User user) {
+
+        for (ExpenseDto dto : expenseList) {
+            saveExpense(dto, user);
+        }
+    }
+    
     // DELETE EXPENSE
     public void deleteExpense(Long id){
         expenseRepository.deleteById(id);

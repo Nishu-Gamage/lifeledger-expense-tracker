@@ -121,28 +121,30 @@ document.addEventListener("DOMContentLoaded", function () {
             const confirmRow =
                 document.createElement("tr");
 
-            confirmRow.innerHTML = `
+				confirmRow.innerHTML = `
 
-                <td>${expenseDate}</td>
+				    <td class="text-center align-middle border">
+				        ${expenseDate}
+				    </td>
 
-                <td class="text-end">
-                    ${amount}
-                </td>
+				    <td class="text-end align-middle fw-bold text-primary border">
+				        ¥ ${amount}
+				    </td>
 
-                <td>
-                    ${mainCategory}
-                </td>
+				    <td class="align-middle text-center border">
+			            ${mainCategory}
+				    </td>
 
-                <td>
-                    ${subCategory}
-                </td>
+				    <td class="align-middle text-center border">
+			            ${subCategory}
+				    </td>
 
-                <td>
-                    ${note}
-                </td>
+				    <td class="align-middle text-break border">
+				        ${note || "-"}
+				    </td>
 
-            `;
-
+				`;
+				
             confirmTableBody.appendChild(
                 confirmRow
             );
@@ -192,6 +194,163 @@ document.addEventListener("DOMContentLoaded", function () {
 	            captureModal.show();
 
 	        });
+	}
+	
+	/* =========================================
+	   SAVE BUTTON EVENT
+	========================================= */
+
+	const saveButton =
+	    document.getElementById(
+	        "saveExpenseListBtn"
+	    );
+
+	if (saveButton) {
+
+	    saveButton.addEventListener(
+	        "click",
+	        function () {
+
+	            saveExpenseList();
+
+	        });
 
 	}
+	
+	/*==============================
+	    SAVE EXPENSE LIST
+	================================*/
+
+	function saveExpenseList() {
+
+	    /* =========================
+	       GET ORIGINAL ROWS
+	    ========================= */
+
+	    const rows =
+	        document.querySelectorAll(
+	            "#searchAddListExModal tbody tr"
+	        );
+
+	    /* =========================
+	       CREATE ARRAY
+	    ========================= */
+
+	    const expenseList = [];
+
+	    /* =========================
+	       LOOP ALL ROWS
+	    ========================= */
+
+	    rows.forEach(row => {
+
+	        const expense = {
+
+				mainCategory:
+	               row.querySelector(
+	                   ".main-category"
+	               )?.value || "",
+
+	           subCategory:
+	               row.querySelector(
+	                   ".sub-category"
+	               )?.value || "",
+
+			   amount: parseFloat(
+			       row.querySelector(
+			           'input[name="amount"]'
+			       )?.value || 0
+			   ),
+
+	           note:
+	               row.querySelector(
+	                   'input[name="note"]'
+	               )?.value || "",
+
+	           expenseDate:
+	               row.querySelector(
+	                   'input[name="expenseDate"]'
+	               )?.value || ""
+
+	        };
+
+	        expenseList.push(expense);
+
+	    });
+
+	    /* =========================
+	       CHECK DATA
+	    ========================= */
+
+	    console.log(expenseList);
+
+	    /* =========================
+	       SEND TO BACKEND
+	    ========================= */
+		
+		const token =
+		    document.querySelector(
+		        'meta[name="_csrf"]'
+		    ).content;
+
+		const header =
+		    document.querySelector(
+		        'meta[name="_csrf_header"]'
+		    ).content;
+
+		fetch("/saveExpenseList", {
+
+	        method: "POST",
+
+	        headers: {
+	            "Content-Type":
+	                "application/json",
+				[header]: token
+	        },
+
+	        body: JSON.stringify(
+	            expenseList
+	        )
+
+	    })
+
+		.then(response => {
+
+		    if (!response.ok) {
+
+		        throw new Error(
+		            "Server Error"
+		        );
+
+		    }
+
+		    return response.text();
+
+		})
+
+	    .then(data => {
+
+	        console.log(data);
+
+			window.location.href =
+			        "/expense";
+
+	    })
+
+	    .catch(error => {
+
+	        console.error(error);
+
+	        alert("Save Failed");
+
+	    });
+
+	}
+	
+	
+	
+	
+	
+	
+	
 });
