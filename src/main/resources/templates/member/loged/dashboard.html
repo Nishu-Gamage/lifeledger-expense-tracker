@@ -70,10 +70,15 @@
 <!-- BUTTONS -->
 <div class="d-flex justify-content-center align-items-center gap-3 py-3">
 
-    <button type="button"
-            class="btn btn-success btn-lg px-4 py-2">
-        収入を個別登録
-    </button>
+    <!-- ADD INCOME -->
+    <div sec:authorize="hasRole('USER')">
+        <button type="button"
+                class="btn btn-success btn-lg px-4 py-2"
+                data-bs-toggle="modal"
+                data-bs-target="#searchaddIncomeModal">
+            収入を個別登録
+        </button>
+    </div>
 
     <!-- INDIVIDUAL EXPENSE -->
     <div sec:authorize="hasRole('USER')">
@@ -107,6 +112,7 @@
 </div>
 
 <!-- LOAD MODALS -->
+<div th:replace="~{member/loged/income/income-capture :: addIncomeModal}"></div>
 <div th:replace="~{member/loged/expense/expense-capture-individually :: addExpenseModal}"></div>
 <div th:replace="~{member/loged/expense/expense-capture-list :: addExpenseListModal}"></div>
 <div th:replace="~{member/loged/expense/expense-confirm-list :: confirmExpenseModal}"></div>
