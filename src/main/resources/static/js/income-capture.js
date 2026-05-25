@@ -1,13 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
 	
-	/* ---------------------------
-	       CLEAR BTN
-	--------------------------- */
-    document.getElementById("clearExpenseFormBtn").addEventListener("click", function () {
+	const form = document.querySelector("#searchaddIncomeModal form");
 
-        // Reset form to default values
-        document.querySelector("#searchaddIncomeModal form").reset();
+    // Bootstrap modal object
+    const modalElement = document.getElementById("searchaddIncomeModal");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
 
-    });
+	/* =========================================
+	   　		CLEAR button
+	========================================= */
+    document.getElementById("clearExpenseFormBtn")
+        .addEventListener("click", function () {
 
+            form.reset();
+
+        });
+
+		
+	/* =========================================
+	   　		CANCEL button
+	========================================= */
+    document.getElementById("cancelBtn")
+        .addEventListener("click", function () {
+
+            // Clear form
+            form.reset();
+
+            // Close popup
+            modal.hide();
+
+			// Remove frozen backdrop
+			document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+			document.body.classList.remove('modal-open');
+			document.body.style = "";
+        });
 });
