@@ -21,12 +21,12 @@
                 	<h2 class="fw-bold text-primary">収入を追加</h2>
                 </div>
                 
-                <div class="container text-center mb-4"></div>
+                <div class="container text-center mb-4">
                     <div class="form-group row ms-3">
                         <label for="incomedate" class="col-4">日付</label> 
                         <div class="col-8">
                         	<div class="input-group">
-                                <input type="date" name="expenseDate" class="form-control"
+                                <input type="date" id="incomedate" name="expenseDate" class="form-control"
                                        th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" required>
                         	</div>
                         </div>
@@ -34,8 +34,8 @@
                     <div class="form-group row align-items-center mt-4 ms-3">
                         <label for="incomeCategory" class="col-4">収入カテゴリー</label> 
                         <div class="col-8">
-                          <div class="input-group"> 
-                            <select id="position" class="form-select form-control-sm" required>
+                          <div class="input-group">
+                            <select id="position" name="category" class="form-select form-control-sm" required>
   								<option value="" disabled="disabled" selected="selected">カテゴリーを選択</option>
                                 <option value="給与">給与</option>
                                 <option value="ボーナス">ボーナス</option>
@@ -51,8 +51,14 @@
                         <label for="income" class="col-4">収入額</label> 
                         <div class="col-8">
                           <div class="input-group">
-                          	<input id="amount" name="amount" class="form-control text-end" placeholder="0" required>
-                          	
+					      	<input type="tel"
+						       id="amount"
+						       name="amount"
+						       class="form-control text-end"
+						       placeholder="0"
+						       inputmode="numeric"
+						       autocomplete="off"
+						       required>
                           </div>
                         </div>
                     </div>
@@ -64,7 +70,7 @@
                           </div>
                         </div>
                     </div>
-                
+                </div>
 				<div class="d-flex justify-content-center gap-3 mt-5">
 				    <!-- CLEAR -->
 				    <button type="button" id="clearExpenseFormBtn" class="btn btn-danger ">Clear</button>				
