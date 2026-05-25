@@ -26,7 +26,8 @@
                         <label for="incomedate" class="col-4">日付</label> 
                         <div class="col-8">
                         	<div class="input-group">
-                                <input id="firstName" name="text" type="text" class="form-control form-control-sm" required>
+                                <input type="date" name="expenseDate" class="form-control"
+                                       th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}" required>
                         	</div>
                         </div>
                     </div>
@@ -35,12 +36,12 @@
                         <div class="col-8">
                           <div class="input-group"> 
                             <select id="position" class="form-select form-control-sm" required>
-                                <option></option>
-                                <option>給与</option>
-                                <option>ボーナス</option>
-                                <option>事業収入</option>
-                                <option>贈与</option>
-                                <option>パートタイムの仕事</option>
+  								<option value="" disabled="disabled" selected="selected">カテゴリーを選択</option>
+                                <option value="給与">給与</option>
+                                <option value="ボーナス">ボーナス</option>
+                                <option value="事業収入">事業収入</option>
+                                <option value="贈与">贈与</option>
+                                <option value="パートタイムの仕事">パートタイムの仕事</option>
                             </select>
                             
                           </div>
@@ -50,7 +51,8 @@
                         <label for="income" class="col-4">収入額</label> 
                         <div class="col-8">
                           <div class="input-group">
-                          	<input id="firstName" name="text" type="text" class="form-control form-control-sm" required>
+                          	<input id="amount" name="amount" class="form-control text-end" placeholder="0" required>
+                          	
                           </div>
                         </div>
                     </div>
@@ -58,7 +60,7 @@
                         <label for="incomeNote" class="col-4">ノート</label> 
                         <div class="col-8">
                           <div class="input-group">
-                            <input id="cell" name="text" type="text" class="form-control form-control-sm">
+                            <input id="cell" name="text" type="text" class="form-control form-control-sm" placeholder="ノートを入力">
                           </div>
                         </div>
                     </div>
