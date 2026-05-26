@@ -25,22 +25,22 @@
                 <table class="table">
 	                <tr>
 	                    <th class="w-25">日付</th>
-	                    <td class="w-75" th:text="${income.incomeDate}"></td>
+	                    <td id="confirmIncomeDate" class="w-75" th:text="${income.incomeDate}"></td>
 	                </tr>
 	
 	                <tr>
 	                    <th class="w-25">収入カテゴリー</th>
-	                    <td class="w-75" th:text="${income.category}"></td>
+	                    <td id="confirmCategory" class="w-75" th:text="${income.category}"></td>
 	                </tr>
 	
 	                <tr>
 	                    <th class="w-25">収入額</th>
-	                    <td class="w-75" th:text="${income.amount}"></td>
+	                    <td id="confirmAmount" class="w-75" th:text="${income.amount}"></td>
 	                </tr>
 	
 	                <tr>
 	                    <th class="w-25">ノート</th>
-	                    <td class="w-75" th:text="${income.noteText}"></td>
+	                    <td id="confirmNote" class="w-75" th:text="${income.noteText}"></td>
 	                </tr>
 
             	</table>
@@ -53,7 +53,7 @@
 			    <!-- SAVE -->
 			    <button type="button" class="btn btn-primary" id="saveIncomeBtn">経費登録　</button>	
 			    <!-- CANCEL -->
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>	
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">キャンセル</button>	
             </div>
             
                 

@@ -61,4 +61,41 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.body.classList.remove('modal-open');
 			document.body.style = "";
         });
+		
+	/* =========================================
+	        BACK button
+	========================================= */
+
+	const backBtn = document.getElementById("backToCaptureModalBtn");
+
+	if (backBtn) {
+
+	    backBtn.addEventListener("click", function () {
+
+			// get confirm values
+			const incomeDate = document.getElementById("confirmIncomeDate").innerText;
+			const category = document.getElementById("confirmCategory").innerText;
+			const amount = document.getElementById("confirmAmount").innerText;
+			const note = document.getElementById("confirmNote").innerText;
+			   
+			// set capture modal values
+	        document.getElementById("incomedate").value = incomeDate;
+	        document.getElementById("position").value = category;
+	        document.getElementById("amountDisplay").value = Number(amount).toLocaleString();
+	        document.getElementById("amount").value = amount.replace(/,/g, '');
+	        document.getElementById("cell").value = note;
+						
+	        // close confirm modal
+	        const confirmModalElement =  document.getElementById("confirmIncomeModal");
+	        const confirmModal = bootstrap.Modal.getInstance(confirmModalElement);
+
+	        confirmModal.hide();
+
+	        // reopen capture modal
+	        const captureModalElement = document.getElementById("searchaddIncomeModal");
+	        const captureModal = new bootstrap.Modal(captureModalElement);
+
+	        captureModal.show();
+	    });
+	}
 });
