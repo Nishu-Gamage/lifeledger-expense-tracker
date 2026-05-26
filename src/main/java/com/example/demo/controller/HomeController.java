@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
@@ -50,9 +52,22 @@ public class HomeController {
     
     // DASHBOARD
     @GetMapping("/dashboard")
-    public String dashboard(Model model, Authentication authentication) {
+    public String dashboard(Model model,
+                            Authentication authentication) {
 
         model.addAttribute("currentPage", "dashboard");
+
+        model.addAttribute("incomeDto", new IncomeDto());
+
+        if (!model.containsAttribute("showIncomeConfirm")) {
+
+            model.addAttribute("showIncomeConfirm", false);
+        }
+
+        if (!model.containsAttribute("income")) {
+
+            model.addAttribute("income", new IncomeDto());
+        }
 
         if (authentication != null) {
 
@@ -60,7 +75,9 @@ public class HomeController {
 
             userRepository.findByEmail(email)
                     .ifPresent(user ->
-                        model.addAttribute("fullName", user.getFullName())
+                            model.addAttribute(
+                                    "fullName",
+                                    user.getFullName())
                     );
         }
 

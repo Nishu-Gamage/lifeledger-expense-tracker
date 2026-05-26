@@ -7,6 +7,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
 
 	/* =========================================
+	            AMOUNT FORMAT
+	    ========================================= */
+
+	    const amountDisplay = document.getElementById("amountDisplay");
+
+	    const hiddenAmount = document.getElementById("amount");
+
+	    amountDisplay.addEventListener("input", function () {
+
+	        // remove commas
+	        let value = this.value.replace(/,/g, "");
+
+	        // numbers only
+	        value = value.replace(/\D/g, "");
+
+	        // hidden clean value
+	        hiddenAmount.value = value;
+
+	        // display with commas
+	        if (value !== "") {
+	            this.value = Number(value).toLocaleString();
+	        } else {
+	            this.value = "";
+	        }
+	    });
+		
+	/* =========================================
 	   　		CLEAR button
 	========================================= */
     document.getElementById("clearExpenseFormBtn")
