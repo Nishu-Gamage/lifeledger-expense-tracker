@@ -70,5 +70,10 @@ public class ExpenseService {
     public void deleteExpense(Long id){
         expenseRepository.deleteById(id);
     }
+    
+    // TOTAL EXPENSE
+    public Double getTotalExpense(User user){
+        return expenseRepository.getTotalExpenseByUser(user);
+    }
 
 }

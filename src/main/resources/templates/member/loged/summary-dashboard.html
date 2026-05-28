@@ -21,8 +21,10 @@
 	            </thead>	
 	            <tbody>
 	                <tr>
-	                    <td class="fs-5 py-1">￥ 000</td>
-	                    <td class="fs-5 py-1">￥ 000</td>
+	                    <td class="fs-4 py-2">￥ 000</td>
+						<td class="fs-4 py-2"
+						    th:text="'¥ ' + ${#numbers.formatDecimal(totalExpense,1,'COMMA',0,'POINT')}">
+						</td>
 	                    <td name="balance" class="fs-5 py-1">￥ 000</td>
 	                </tr>
 	            </tbody>	
@@ -31,7 +33,7 @@
 	</div>
 
     <!-- TITLE -->
-    <h4 class="fw-bold text-primary mt-2 mx-5">
+    <h4 class="fw-bold text-primary mt-1 mx-5">
         今月の支出
     </h4>
 

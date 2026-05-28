@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.ExpenseService;
 
 @Controller
 public class HomeController {
 
     private final UserRepository userRepository;
+    private final ExpenseService expenseService;
 
-    public HomeController(UserRepository userRepository) {
+    public HomeController(UserRepository userRepository, ExpenseService expenseService) {
         this.userRepository = userRepository;
+        this.expenseService = expenseService;
     }
     
     // HOME
@@ -74,11 +77,17 @@ public class HomeController {
             String email = authentication.getName();
 
             userRepository.findByEmail(email)
-                    .ifPresent(user ->
-                            model.addAttribute(
-                                    "fullName",
-                                    user.getFullName())
-                    );
+	            	.ifPresent(user -> {
+		                	model.addAttribute(
+		                        "fullName",
+		                        user.getFullName());
+
+	                		Double totalExpense = expenseService.getTotalExpense(user);
+	
+			                model.addAttribute(
+			                        "totalExpense",
+			                        totalExpense);
+            });
         }
 
         return "member/loged/dashboard";
