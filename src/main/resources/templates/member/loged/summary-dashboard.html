@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div th:fragment="content">
+   <!-- TOP SUMMARY TABLE -->
+	<div class="row justify-content-center">	
+	    <div class="col-10">
+	        <table class="table table-striped table-bordered text-center">
+	            <thead class="table-success">
+	                <tr>
+	                    <th class="py-1 w-25">総収入</th>
+	                    <th class="py-1 w-25">総支出額</th>
+	                    <th class="py-1 w-25">バランス</th>
+	                </tr>
+	            </thead>	
+	            <tbody>
+	                <tr>
+	                    <td class="fs-5 py-1">￥ 000</td>
+	                    <td class="fs-5 py-1">￥ 000</td>
+	                    <td name="balance" class="fs-5 py-1">￥ 000</td>
+	                </tr>
+	            </tbody>	
+	        </table>	
+	    </div>	
+	</div>
+
+    <!-- TITLE -->
+    <h4 class="fw-bold text-primary mt-2 mx-5">
+        今月の支出
+    </h4>
+
+    <!-- SINGLE TABLE CENTER -->
+	<div class="row justify-content-center">
+	    <div class="col-8">
+            <!-- SCROLL AREA -->
+			<div style="max-height: 255px; overflow-y: auto;">
+		        <table class="table table-bordered table-striped text-center">		
+		            <thead class="table-warning">
+		                <tr>
+		                    <th class="w-50 py-1">メインカテゴリー</th>
+		                    <th class="w-50 py-1">支出</th>
+		                </tr>
+		            </thead>	
+		            
+	             	<tbody id="categoryTableBody">
+	             	</tbody>	
+	             	
+		        </table>
+			</div>
+	    </div>
+	</div>
+
+   <!--  <h4 class="fw-bold text-primary text-center mt-5">
+        収入支出の管理を始めましょう。
+    </h4> -->
+
+</div>
+
+</body>
+</html>
