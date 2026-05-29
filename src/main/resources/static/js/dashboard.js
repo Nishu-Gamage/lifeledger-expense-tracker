@@ -19,34 +19,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	if (tableBody && window.subcategories && Array.isArray(categoryTotals)) {
 		
-		// DB data array
-	    // categoryTotals from thymeleaf
-	    // example:
-	    // [{mainCategory:"Food", totalAmount:3000}]
+		// ALL categories from JS
+	    const allCategories = Object.keys(window.subcategories);
+	
+	    // Merge categories with DB totals
+	    const mergedCategories = allCategories.map(category => {
 
-        Object.keys(window.subcategories).forEach(category => {
-
-			// find matching category from DB
-			const found = categoryTotals.find(item =>
+            const found = categoryTotals.find(item =>
 		                    item.mainCategory
 		                        .trim()
 		                        .toLowerCase()
-								===
-			                    category
-			                        .trim()
-			                        .toLowerCase()
-			                );
-			// if found -> amount
-	        // else -> 0
-			const total = found ? found.totalAmount : 0;
-			
-            tableBody.innerHTML += `
-                <tr>
-                    <td class="p-1">${category}</td>
-                    <td class="p-1"> ¥ ${total.toLocaleString()}</td>
-                </tr>
-            `;
-			
-        });
+		                    ===
+		                    category
+		                        .trim()
+		                        .toLowerCase()
+		                );
+
+	            return {
+	
+	                mainCategory: category,
+	
+	                totalAmount:
+	                    found
+	                    ? found.totalAmount
+	                    : 0
+	            };
+        	});
+
+		    // SORT highest -> lowest
+		    mergedCategories.sort((a, b) =>
+		        b.totalAmount - a.totalAmount
+		    );
+		
+		    // CLEAR OLD ROWS
+		    tableBody.innerHTML = "";
+		
+		    // DISPLAY
+		    mergedCategories.forEach(item => {
+		
+		        tableBody.innerHTML += `
+		            <tr>
+		                <td class="p-1">
+		                    ${item.mainCategory}
+		                </td>
+		
+		                <td class="p-1">
+		                    ¥ ${item.totalAmount.toLocaleString()}
+		                </td>
+		            </tr>
+		        `;
+		    });
     }
 });

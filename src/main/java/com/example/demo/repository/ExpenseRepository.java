@@ -24,6 +24,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     	    FROM Expense e
     	    WHERE e.user = :user
     	    GROUP BY e.mainCategory
+    		ORDER BY SUM(e.amount) DESC
     	""")
 	List<ExpenseCategoryDto> getCategoryTotals(User user);
     
