@@ -16,7 +16,7 @@
 	                <tr>
 	                    <th class="py-1 w-25">総収入</th>
 	                    <th class="py-1 w-25">総支出額</th>
-	                    <th class="py-1 w-25">バランス</th>
+	                    <th class="py-1 w-25">残高</th>
 	                </tr>
 	            </thead>	
 	            <tbody>
@@ -27,7 +27,10 @@
 						<td class="fs-4 py-2 fw-bold text-primary"
 						    th:text="'¥ ' + ${#numbers.formatDecimal(totalExpense,1,'COMMA',0,'POINT')}">
 						</td>
-	                    <td class="fs-4 py-2 fw-bold text-primary">￥ 000</td>
+	                    <td class="fs-4 py-2 fw-bold"
+	                     	th:classappend="${(totalIncome - totalExpense) <= 0} ? ' text-danger' : ' text-primary'"
+	                    	th:text="'¥ ' + ${#numbers.formatDecimal((totalIncome - totalExpense),1,'COMMA',0,'POINT')}">
+	                    </td>
 	                </tr>
 	            </tbody>	
 	        </table>	
