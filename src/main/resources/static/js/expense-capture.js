@@ -27,24 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
            CREATE DEFAULT SUBCATEGORY LIST
     --------------------------- */
 
-    const allSubcategories = [
+	const allSubcategories = [
 
-        ...subcategories.General,
-        ...subcategories.Housing,
-        ...subcategories.Fixed,
-        ...subcategories.Personal,
-        ...subcategories.FamilyKids,
-        ...subcategories.Education,
-        ...subcategories.Pet,
-        ...subcategories.Medical,
-        ...subcategories.Shopping,
-        ...subcategories.Food,
-        ...subcategories.Gift,
-        ...subcategories.Transportation,
-        ...subcategories.Travel,
-        ...subcategories.Other
+	    ...window.subcategories["一般事項"],
+	    ...window.subcategories["住宅"],
+	    ...window.subcategories["修正済み"],
+	    ...window.subcategories["個人"],
+	    ...window.subcategories["家族・子供"],
+	    ...window.subcategories["教育"],
+	    ...window.subcategories["ペット"],
+	    ...window.subcategories["医療"],
+	    ...window.subcategories["買い物"],
+	    ...window.subcategories["食費"],
+	    ...window.subcategories["ギフト"],
+	    ...window.subcategories["交通費"],
+	    ...window.subcategories["旅行"],
+	    ...window.subcategories["その他"]
 
-    ];
+	];
 
     /* ---------------------------
            POPULATE SUBCATEGORY
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function populateSubcategories(list) {
 
         subcatSelect.innerHTML =
-            '<option value="">Select a subcategory</option>';
+			'<option value="">サブカテゴリーを選択</option>';
 
         list.forEach(sub => {
 
@@ -96,17 +96,17 @@ document.addEventListener("DOMContentLoaded", function () {
                        OTHER CATEGORY
                 --------------------------- */
 
-                if (category === "Other") {
+                if (category === "その他") {
 
                     subcategoryLabel.textContent =
-                        "SubCategory";
+						"サブカテゴリー";
 
                     subcategoryLabel.classList.remove("text-dark");
                     subcategoryLabel.classList.add("text-primary");
 
-                    populateSubcategories(["Other"]);
+                    populateSubcategories(["その他"]);
 
-                    subcatSelect.value = "Other";
+                    subcatSelect.value = "その他";
 
                     if (noteLabel) {
 
@@ -129,18 +129,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 else {
 
                     subcategoryLabel.textContent =
-                        "Now you can select a subcategory";
+						"サブカテゴリーを選択してください";
 
                     subcategoryLabel.classList.remove("text-dark");
                     subcategoryLabel.classList.add("text-primary");
 
                     populateSubcategories(
-                        subcategories[category]
+						window.subcategories[category]
                     );
 
                     if (noteLabel) {
 
-                        noteLabel.textContent = "Note";
+                        noteLabel.textContent = "メモ";
 
                         noteLabel.classList.remove("text-primary");
                         noteLabel.classList.add("text-dark");
@@ -163,10 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const selectedSub = this.value;
 
-        for (const category in subcategories) {
+		for (const category in window.subcategories){
 
             if (
-                subcategories[category]
+                window.subcategories[category]
                     .includes(selectedSub)
             ) {
 
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
 
                 alert(
-                    "Please add a note for 'Other' expenses."
+                    "「その他」の場合はメモを入力してください。"
                 );
 
                 return;

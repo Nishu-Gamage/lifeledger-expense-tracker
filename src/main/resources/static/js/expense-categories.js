@@ -4,108 +4,108 @@ window.subcategories = {
 	      CATEGORY DATA
 	--------------------------- */
 	
-    General: [
-        "Repairs",
-        "Services",
-        "Unexpected Expenses"
+    一般事項: [
+        "修理",
+        "サービス",
+        "予期せぬ費用"
     ],
 
-    Housing: [
-        "Rent",
-        "Mortgage",
-        "Maintenance / Repair",
-        "Property Tax",
-        "Home Insurance",
-        "Furniture"
+    住宅: [
+        "住宅",
+        "住宅ローン",
+        "維持費／修繕費",
+        "固定資産税",
+        "住宅保険",
+        "家具"
     ],
 
-    Fixed: [
-        "Electricity Bill",
-        "Gas Bill",
-        "Water Bill",
-        "Internet Bill",
-        "Phone Bill",
-        "Streaming Services",
-        "Loan Payments",
-        "Credit Card Payments",
-        "Taxes"
+    修正済み: [
+        "電気料金",
+        "ガス料金",
+        "水道料金",
+        "インターネット料金",
+        "電話料金",
+        "ストリーミングサービス料金",
+        "ローン返済額",
+        "クレジットカード返済額",
+        "税金"
     ],
 
-    Personal: [
-        "Hair Salon",
-        "Gym",
-        "Hobbies",
-        "Entertainment"
-    ],
+	個人: [
+	    "ヘアサロン",
+	    "ジム",
+	    "趣味",
+	    "エンターテイメント"
+	],
 
-    FamilyKids: [
-        "Baby Supplies",
-        "Toys",
-        "School Activities",
-        "Allowance",
-        "Childcare"
-    ],
+	家族・子供: [
+	    "ベビー用品",
+	    "おもちゃ",
+	    "学校活動",
+	    "お小遣い",
+	    "育児"
+	],
 
-    Education: [
-        "School Fees",
-        "Books",
-        "Online Courses",
-        "Exam Fees",
-        "School Supplies"
-    ],
+	教育: [
+	    "学費",
+	    "本",
+	    "オンライン講座",
+	    "試験料",
+	    "学用品"
+	],
 
-    Pet: [
-        "Pet Food",
-        "Vet",
-        "Grooming",
-        "Pet Accessories"
-    ],
+	ペット: [
+	    "ペットフード",
+	    "動物病院",
+	    "グルーミング",
+	    "ペット用品"
+	],
 
-    Medical: [
-        "Doctor visit",
-        "Hospital",
-        "Medicine / Pharmacy",
-        "Health Insurance",
-        "Therapy / Check-ups",
-        "Dental",
-        "Glasses / Contact Lenses"
-    ],
+	医療: [
+	    "診察",
+	    "病院",
+	    "薬・薬局",
+	    "健康保険",
+	    "治療・健康診断",
+	    "歯科",
+	    "メガネ・コンタクト"
+	],
 
-    Shopping: [
-        "Electronics",
-        "Household Items",
-        "Clothing",
-        "Cosmetics"
-    ],
+	買い物: [
+	    "家電",
+	    "生活用品",
+	    "衣類",
+	    "化粧品"
+	],
 
-    Food: [
-        "Groceries",
-        "Eating Out",
-        "Coffee / Snacks",
-        "Delivery"
-    ],
+	食費: [
+	    "食料品",
+	    "外食",
+	    "コーヒー・軽食",
+	    "デリバリー"
+	],
 
-    Gift: [
-        "Birthday Gifts",
-        "Holiday Gifts",
-        "Donations",
-        "Charity"
-    ],
+	ギフト: [
+	    "誕生日プレゼント",
+	    "祝日プレゼント",
+	    "寄付",
+	    "チャリティー"
+	],
 
-    Transportation: [
-        "Train / Bus",
-        "Fuel",
-        "Taxi",
-        "Parking"
-    ],
+	交通費: [
+	    "電車・バス",
+	    "ガソリン",
+	    "タクシー",
+	    "駐車場"
+	],
 
-    Travel: [
-        "Flights",
-        "Hotels",
-        "Visa",
-        "Travel Insurance"
-    ],
+	旅行: [
+	    "航空券",
+	    "ホテル",
+	    "ビザ",
+	    "旅行保険"
+	],
 
-    Other: ["Other"]
+	その他: ["その他"]
 
 };
