@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.ExpenseDto;
 import com.example.demo.entity.Expense;
 import com.example.demo.entity.User;
@@ -74,6 +75,11 @@ public class ExpenseService {
     // TOTAL EXPENSE
     public Double getTotalExpense(User user){
         return expenseRepository.getTotalExpenseByUser(user);
+    }
+
+    // TOTAL EXPENSE BY CATEGORY
+    public List<ExpenseCategoryDto> getCategoryTotals(User user){
+        return expenseRepository.getCategoryTotals(user);
     }
 
 }

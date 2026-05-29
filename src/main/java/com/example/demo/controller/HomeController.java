@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -96,6 +98,13 @@ public class HomeController {
 			                model.addAttribute(
 			                		"totalIncome",
 			                		totalIncome);
+			                
+			                // TOTAL EXPENSE BY CATEGORY
+			                List<ExpenseCategoryDto> categoryTotals = expenseService.getCategoryTotals(user);
+
+			                model.addAttribute(
+			                        "categoryTotals",
+			                        categoryTotals);
             });
         }
 

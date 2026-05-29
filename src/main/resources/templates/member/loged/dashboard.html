@@ -126,7 +126,13 @@
 
 
 <script th:inline="javascript">
+	
 	window.showIncomeConfirm = /*[[${showIncomeConfirm}]]*/ false;
+	
+	/*------ TOTAL EXPENSE BY CATEGORY ------*/
+	const categoryTotals = /*[[${categoryTotals}]]*/ [];
+    console.log(categoryTotals);
+    
 </script>
 
 </body>
