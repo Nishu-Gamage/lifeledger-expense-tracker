@@ -11,16 +11,19 @@ import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ExpenseService;
+import com.example.demo.service.IncomeService;
 
 @Controller
 public class HomeController {
 
     private final UserRepository userRepository;
     private final ExpenseService expenseService;
+    private final IncomeService incomeService;
 
-    public HomeController(UserRepository userRepository, ExpenseService expenseService) {
+    public HomeController(UserRepository userRepository, ExpenseService expenseService, IncomeService incomeService) {
         this.userRepository = userRepository;
         this.expenseService = expenseService;
+        this.incomeService = incomeService;
     }
     
     // HOME
@@ -87,6 +90,12 @@ public class HomeController {
 			                model.addAttribute(
 			                        "totalExpense",
 			                        totalExpense);
+			                
+			                Double totalIncome = incomeService.getTotalIncome(user);
+			                
+			                model.addAttribute(
+			                		"totalIncome",
+			                		totalIncome);
             });
         }
 

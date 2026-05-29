@@ -1,9 +1,13 @@
 package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.entity.Income;
+import com.example.demo.entity.User;
 
 public interface IncomeRepository extends JpaRepository<Income, Long>{
 
+	@Query("SELECT COALESCE(SUM(e.amount),0) FROM Income e WHERE e.user = :user")
+	Double getTotalIncomeByUser(User user);
 }

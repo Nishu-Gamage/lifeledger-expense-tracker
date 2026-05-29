@@ -29,8 +29,16 @@ public class IncomeService {
         
         income.setUser(user);        
 
-        incomeRepository.save(income);
-		
+        incomeRepository.save(income);		
 	}
+	
+	//	TOTAL INCOME
+	public Double getTotalIncome(User user) {
+		return incomeRepository.getTotalIncomeByUser(user);
+	}
+	
+	
+	
+	
 
 }
