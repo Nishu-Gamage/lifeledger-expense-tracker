@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -76,6 +78,17 @@ public class HomeController {
 
             model.addAttribute("income", new IncomeDto());
         }
+        
+        // Select the year for the displayed results
+        int currentYear = Year.now().getValue();
+
+        model.addAttribute("currentYear", currentYear);
+
+        model.addAttribute("years",
+                IntStream.rangeClosed(currentYear - 5, currentYear)
+                        .boxed()
+                        .toList()
+        );
 
         if (authentication != null) {
 

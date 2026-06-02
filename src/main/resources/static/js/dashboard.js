@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	/* ------------------------------------
 		DASHBOARD TABLE CATEGORY DISPLAY
 	---------------------------------------*/
-    const tableBody = document.getElementById("categoryTableBody");
+	const tableBody = document.getElementById("categoryTableBody");
 
 	if (tableBody && window.subcategories && Array.isArray(categoryTotals)) {
 		
@@ -69,5 +69,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		            </tr>
 		        `;
 		    });
-    }
+	}
 });
