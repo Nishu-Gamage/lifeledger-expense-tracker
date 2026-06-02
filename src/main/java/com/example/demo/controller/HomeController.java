@@ -90,6 +90,12 @@ public class HomeController {
                         .toList()
         );
 
+        model.addAttribute("months",
+        	    IntStream.rangeClosed(1, 12)
+        	             .boxed()
+        	             .toList()
+    	);
+        
         if (authentication != null) {
 
             String email = authentication.getName();

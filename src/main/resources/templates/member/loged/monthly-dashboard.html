@@ -11,112 +11,36 @@
 	<div class="row justify-content-center">
 	    <div class="col-8">
 	        <table class="table table-striped custab">
-		    <thead>
-		        <tr>
-		            <th colspan="5">	
-			            <select class="py-0 bg-primary text-white form-select text-center" name="year">
-					
-						    <option th:each="y : ${years}"
-						            th:value="${y}"
-						            th:text="${y + '年'}"
-						            th:selected="${y == currentYear}">
-						    </option>
+			    <thead>
+			        <tr>
+			            <th colspan="5">	
+				            <select class="py-0 bg-primary text-white form-select text-center" name="year">
 						
-						</select>
-		            </th>
-		        </tr>
-		        <tr>
-		            <th class="py-0">月</th>
-		            <th class="w-25 py-0 text-end">総収入</th>
-		            <th class="w-25 py-0 text-end">総支出額</th>
-		            <th class="w-25 py-0 text-end">貯金</th>
-		            <th class="w-25 py-0 text-end">バランス</th>
-		        </tr>
-		    </thead>
-		            <tr>
-		                <td class="py-0">1</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">2</td>
-		                <td class="py-0 text-end">632　円</td>
-		                <td class="py-0 text-end">234　円</td>
-		                <td class="py-0 text-end">23232　円</td>
-		                <td class="py-0 text-end">23　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">3</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">4</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>	
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">16200　円</td>
-		            </tr>
-		            <tr>
-		                <td class="py-0">5</td>
-		                <td class="py-0 text-end">100　円</td>
-		                <td class="py-0 text-end">1020　円</td>
-		                <td class="py-0 text-end">2600　円</td>
-		                <td class="py-0 text-end">224　円</td>
-		            </tr>
+							    <option th:each="y : ${years}"
+							            th:value="${y}"
+							            th:text="${y + '年'}"
+							            th:selected="${y == currentYear}">
+							    </option>
+							
+							</select>
+			            </th>
+			        </tr>
+			        <tr>
+			            <th class="w-25 py-0">月</th>
+			            <th class="w-25 py-0 text-end">総収入</th>
+			            <th class="w-25 py-0 text-end">総支出額</th>
+			            <th class="w-25 py-0 text-end">バランス</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+					<tr th:each="month : ${months}">
+					    <td class="py-0" th:text="${month}"></td>
+					    <td class="py-0 text-end">0 円</td>
+					    <td class="py-0 text-end">0 円</td>
+					    <td class="py-0 text-end">0 円</td>
+					    <td class="py-0 text-end">0 円</td>
+					</tr>
+				</tbody>
 		    </table>
 		</div>
     </div>
