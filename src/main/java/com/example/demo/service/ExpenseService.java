@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,7 +75,14 @@ public class ExpenseService {
     
     // TOTAL EXPENSE
     public Double getTotalExpense(User user){
-        return expenseRepository.getTotalExpenseByUser(user);
+    	
+    	LocalDate now = LocalDate.now();
+    	
+        return expenseRepository.getTotalIncomeByMonth(
+	            user,
+	            now.getMonthValue(),
+	            now.getYear()
+	    );
     }
 
     // TOTAL EXPENSE BY CATEGORY
