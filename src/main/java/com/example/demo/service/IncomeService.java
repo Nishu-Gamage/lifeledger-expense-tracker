@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.IncomeDto;
@@ -31,9 +33,16 @@ public class IncomeService {
         incomeRepository.save(income);		
 	}
 	
-	//	TOTAL INCOME
+	//	TOTAL INCOME	
 	public Double getTotalIncome(User user) {
-		return incomeRepository.getTotalIncomeByUser(user);
+		
+		LocalDate now = LocalDate.now();
+
+	    return incomeRepository.getTotalIncomeByMonth(
+	            user,
+	            now.getMonthValue(),
+	            now.getYear()
+	    );
 	}
 	
 	//	TOTAL INCOME BY YEAR & MONTH
