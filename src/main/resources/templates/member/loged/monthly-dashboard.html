@@ -32,13 +32,16 @@
 			            <th class="w-25 py-0 text-end">バランス</th>
 			        </tr>
 			    </thead>
-			    <tbody>
-					<tr th:each="month : ${months}">
-					    <td class="py-0" th:text="${month}"></td>
-					    <td class="py-0 text-end">0 円</td>
-					    <td class="py-0 text-end">0 円</td>
-					    <td class="py-0 text-end">0 円</td>
-					    <td class="py-0 text-end">0 円</td>
+			    <tbody>					
+					<tr th:each="item : ${monthlySummaries}">
+					    <td class="py-0" th:text="${item.month}"></td>
+					
+					    <td class="py-0 text-end"
+					        th:text="${item.totalIncome} + ' 円'">
+					    </td>
+					
+        				<td class="py-0 text-end">0 円</td>
+        				<td class="py-0 text-end">0 円</td>					
 					</tr>
 				</tbody>
 		    </table>

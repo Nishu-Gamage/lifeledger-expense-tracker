@@ -18,7 +18,6 @@ public class IncomeService {
         this.incomeRepository = incomeRepository;
     }
 	
-
 	public void saveIncome(IncomeDto incomeDto, User user) {
 		Income income = new Income();
 
@@ -37,8 +36,15 @@ public class IncomeService {
 		return incomeRepository.getTotalIncomeByUser(user);
 	}
 	
-	
-	
-	
+	//	TOTAL INCOME BY YEAR & MONTH
+	public Integer getTotalIncomeByYearAndMonth(
+	        User user,
+	        int year,
+	        int month) {
 
+	    return incomeRepository.getTotalIncomeByYearAndMonth(
+	            user,
+	            year,
+	            month);
+	}
 }

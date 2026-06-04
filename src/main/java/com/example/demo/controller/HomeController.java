@@ -14,6 +14,7 @@ import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.DashboardService;
 import com.example.demo.service.ExpenseService;
 import com.example.demo.service.IncomeService;
 
@@ -22,12 +23,14 @@ public class HomeController {
 
     private final UserRepository userRepository;
     private final ExpenseService expenseService;
-    private final IncomeService incomeService;
+    private final IncomeService incomeService;    
+    private final DashboardService dashboardService;
 
-    public HomeController(UserRepository userRepository, ExpenseService expenseService, IncomeService incomeService) {
+    public HomeController(UserRepository userRepository, ExpenseService expenseService, IncomeService incomeService, DashboardService dashboardService) {
         this.userRepository = userRepository;
         this.expenseService = expenseService;
         this.incomeService = incomeService;
+        this.dashboardService = dashboardService;
     }
     
     // HOME
@@ -89,12 +92,6 @@ public class HomeController {
                         .boxed()
                         .toList()
         );
-
-        model.addAttribute("months",
-        	    IntStream.rangeClosed(1, 12)
-        	             .boxed()
-        	             .toList()
-    	);
         
         if (authentication != null) {
 
@@ -124,6 +121,15 @@ public class HomeController {
 			                model.addAttribute(
 			                        "categoryTotals",
 			                        categoryTotals);
+			                
+			                // MONTHLY SUMMARY
+			                model.addAttribute(
+			                        "monthlySummaries",
+			                        dashboardService.getMonthlySummaries(
+			                                user,
+			                                currentYear)
+			                );
+
             });
         }
 
