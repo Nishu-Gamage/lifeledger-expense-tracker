@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class MonthlySummaryDto {
 
     private Integer month;
-    private Integer  totalIncome;
+    private Integer totalIncome;
+    private Integer totalExpense;
     
 }

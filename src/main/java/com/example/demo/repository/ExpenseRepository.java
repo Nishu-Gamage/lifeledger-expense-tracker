@@ -27,5 +27,17 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     		ORDER BY SUM(e.amount) DESC
     	""")
 	List<ExpenseCategoryDto> getCategoryTotals(User user);
+ 
+    // Get total monthly expense
+    @Query(value = """
+            SELECT COALESCE(SUM(amount),0)
+            FROM expenses
+            WHERE user_id = :#{#user.id}
+              AND YEAR(expense_date) = :year
+              AND MONTH(expense_date) = :month
+            """,
+            nativeQuery = true)
+    Integer getTotalExpenseByYearAndMonth(User user, int year, int month);
+    
     
 }

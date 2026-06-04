@@ -82,4 +82,16 @@ public class ExpenseService {
         return expenseRepository.getCategoryTotals(user);
     }
 
+	// TOTAL EXPENSE BY YEAR & MONTH
+    public Integer getTotalExpenseByYearAndMonth(
+            User user,
+            int year,
+            int month) {
+
+        return expenseRepository.getTotalExpenseByYearAndMonth(
+                user,
+                year,
+                month);
+    }
+    
 }

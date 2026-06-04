@@ -37,11 +37,19 @@
 					    <td class="py-0" th:text="${item.month}"></td>
 					
 					    <td class="py-0 text-end"
-					        th:text="${item.totalIncome} + ' 円'">
+    						th:text="${#numbers.formatInteger(item.totalIncome, 1, 'COMMA')} + ' 円'">
+					        
 					    </td>
 					
-        				<td class="py-0 text-end">0 円</td>
-        				<td class="py-0 text-end">0 円</td>					
+					    <td class="py-0 text-end"
+   							th:text="${#numbers.formatInteger(item.totalExpense, 1, 'COMMA')} + ' 円'">
+					    </td>
+					    					    
+					    <td class="py-0 text-end"
+						    th:classappend="${(item.totalIncome - item.totalExpense) <= 0} ? ' text-danger' : ' text-dark'"
+   							th:text="${#numbers.formatInteger(item.totalIncome - item.totalExpense, 1, 'COMMA')} + ' 円'">
+						</td>
+					    										
 					</tr>
 				</tbody>
 		    </table>

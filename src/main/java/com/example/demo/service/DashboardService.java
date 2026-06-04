@@ -12,11 +12,14 @@ import com.example.demo.entity.User;
 public class DashboardService {
 
     private final IncomeService incomeService;
+    private final ExpenseService expenseService;
     
     public DashboardService(
-            IncomeService incomeService) {
+            IncomeService incomeService,
+            ExpenseService expenseService) {
 
         this.incomeService = incomeService;
+        this.expenseService = expenseService;
     }
     
     public List<MonthlySummaryDto> getMonthlySummaries(
@@ -33,12 +36,20 @@ public class DashboardService {
                             year,
                             month);
 
+            Integer expense =
+                    expenseService.getTotalExpenseByYearAndMonth(
+                            user,
+                            year,
+                            month);
+            
             list.add(
                     new MonthlySummaryDto(
                             month,
-                            income
+                            income,
+                            expense
                     )
             );
+            
         }
 
         return list;
