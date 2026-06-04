@@ -30,37 +30,45 @@
     <ul class="nav nav-tabs nav-fill border-0 shadow-sm dashboard-tabs" role="tablist">
 
         <li class="nav-item">
-            <button class="nav-link active fw-semibold"
-                    data-bs-toggle="tab"
-                    data-bs-target="#dashboard-home"
-                    type="button">
-                今月の収入と支出の概要
-            </button>
-        </li>
-
-        <li class="nav-item">
-            <button class="nav-link fw-semibold"
-                    data-bs-toggle="tab"
-                    data-bs-target="#dashboard-menu1"
-                    type="button">
-                収入と支出の月間比較
-            </button>
-        </li>
-
+	        <button class="nav-link fw-semibold"
+	                th:classappend="${activeTab != 'monthly'} ? ' active' : ''"
+	                data-bs-toggle="tab"
+	                data-bs-target="#dashboard-home"
+	                type="button">
+	            今月の収入と支出の概要
+	        </button>
+	    </li>
+        
+		<li class="nav-item">
+	        <button class="nav-link fw-semibold"
+	                th:classappend="${activeTab == 'monthly'} ? ' active' : ''"
+	                data-bs-toggle="tab"
+	                data-bs-target="#dashboard-menu1"
+	                type="button">
+	            収入と支出の月間比較
+	        </button>
+	    </li>
     </ul>
 
-    <!-- TAB CONTENT -->
+    <!-- TAB CONTENT --> 
     <div class="tab-content mt-2 dashboard-tab-content">
 
-        <div id="dashboard-home" class="tab-pane fade show active">
-        	<div th:replace="member/loged/summary-dashboard :: content"></div>
-        </div>
-
-        <div id="dashboard-menu1" class="tab-pane fade">
-        	<div th:replace="member/loged/monthly-dashboard :: content"></div>
-        </div>
-
-    </div>
+	    <div id="dashboard-home"
+	         class="tab-pane fade"
+	         th:classappend="${activeTab != 'monthly'} ? ' show active' : ''">
+	
+	        <div th:replace="member/loged/summary-dashboard :: content"></div>	
+	    </div>
+	
+	    <div id="dashboard-menu1"
+	         class="tab-pane fade"
+	         th:classappend="${activeTab == 'monthly'} ? ' show active' : ''">
+	
+	        <div th:replace="member/loged/monthly-dashboard :: content"></div>	
+	    </div>
+	    
+	</div> 
+	
 </div>
 
 <!-- BUTTONS -->
@@ -130,9 +138,8 @@
 	window.showIncomeConfirm = /*[[${showIncomeConfirm}]]*/ false;
 	
 	/*------ TOTAL EXPENSE BY CATEGORY ------*/
-	const categoryTotals = /*[[${categoryTotals}]]*/ [];
-    console.log(categoryTotals);
-    
+	window.categoryTotals = /*[[${categoryTotals}]]*/ [];
+	
 </script>
 
 </body>

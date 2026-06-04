@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.IncomeDto;
@@ -65,12 +66,15 @@ public class HomeController {
     
     // DASHBOARD
     @GetMapping("/dashboard")
-    public String dashboard(Model model,
+    public String dashboard(
+    						@RequestParam(required = false) Integer year,
+    				        @RequestParam(required = false) String tab,
+    						Model model,
                             Authentication authentication) {
 
         model.addAttribute("currentPage", "dashboard");
-
         model.addAttribute("incomeDto", new IncomeDto());
+        model.addAttribute("activeTab", tab);
 
         if (!model.containsAttribute("showIncomeConfirm")) {
 
@@ -84,8 +88,14 @@ public class HomeController {
         
         // Select the year for the displayed results
         int currentYear = Year.now().getValue();
+        
+        if (year == null) {
+        	year = currentYear;
+        }
 
-        model.addAttribute("currentYear", currentYear);
+        final int selectedYear = year;
+
+        model.addAttribute("currentYear", year);
 
         model.addAttribute("years",
                 IntStream.rangeClosed(currentYear - 5, currentYear)
@@ -127,7 +137,7 @@ public class HomeController {
 			                        "monthlySummaries",
 			                        dashboardService.getMonthlySummaries(
 			                                user,
-			                                currentYear)
+			                                selectedYear)
 			                );
 
             });

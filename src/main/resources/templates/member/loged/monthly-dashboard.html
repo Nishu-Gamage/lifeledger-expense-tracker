@@ -14,15 +14,21 @@
 			    <thead>
 			        <tr>
 			            <th colspan="5">	
-				            <select class="py-0 bg-primary text-white form-select text-center" name="year">
-						
-							    <option th:each="y : ${years}"
-							            th:value="${y}"
-							            th:text="${y + '年'}"
-							            th:selected="${y == currentYear}">
-							    </option>
+			           		<form th:action="@{/dashboard}" method="get">		           		
+    							<input type="hidden" name="tab" value="monthly">
+    							
+    							<select class="py-0 bg-primary text-white form-select text-center"
+							            name="year"
+							            onchange="this.form.submit()">
 							
-							</select>
+								    <option th:each="y : ${years}"
+								            th:value="${y}"
+								            th:text="${y + '年'}"
+								            th:selected="${y == currentYear}">
+								    </option>
+								
+								</select>
+							</form>
 			            </th>
 			        </tr>
 			        <tr>

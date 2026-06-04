@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	---------------------------------------*/
 	const tableBody = document.getElementById("categoryTableBody");
 
-	if (tableBody && window.subcategories && Array.isArray(categoryTotals)) {
+	if (tableBody && window.subcategories && Array.isArray(window.categoryTotals)) {
 		
 		// ALL categories from JS
 	    const allCategories = Object.keys(window.subcategories);
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	    // Merge categories with DB totals
 	    const mergedCategories = allCategories.map(category => {
 
-            const found = categoryTotals.find(item =>
+            const found = window.categoryTotals.find(item =>
 		                    item.mainCategory
 		                        .trim()
 		                        .toLowerCase()
@@ -70,4 +70,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		        `;
 		    });
 	}
+	
 });
