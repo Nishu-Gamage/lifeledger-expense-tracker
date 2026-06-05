@@ -17,37 +17,71 @@
 <!-- PAGE CONTENT -->
 <div class="container mt-3">
     <h2 class="mb-2 text-center">収入ダッシュボード画面</h2>
-    <!-- NAV TABS -->
+	
+	<!-- NAV TABS -->
     <ul class="nav nav-tabs nav-fill border-0 shadow-sm dashboard-tabs" role="tablist">
-	    <li class="nav-item">
-	        <button class="nav-link active fw-semibold"
-	                data-bs-toggle="tab" data-bs-target="#incom-home" type="button">
+
+        <li class="nav-item">
+	        <button class="nav-link fw-semibold"
+	                th:classappend="${activeTab != 'monthly'} ? ' active' : ''"
+	                data-bs-toggle="tab"
+	                data-bs-target="#income-home"
+	                type="button">
 	            今月の収入概要
 	        </button>
-	    </li>	
-	    <li class="nav-item">
+	    </li>
+        
+		<li class="nav-item">
 	        <button class="nav-link fw-semibold"
-	                data-bs-toggle="tab" data-bs-target="#incom-menu1" type="button">
+	                th:classappend="${activeTab == 'monthly'} ? ' active' : ''"
+	                data-bs-toggle="tab"
+	                data-bs-target="#income-menu1"
+	                type="button">
 	            収入の月間比較
 	        </button>
-	    </li>	
-	</ul>
+	    </li>
+    </ul>
 	
-	<div class="tab-content mt-3 dashboard-tab-content">	
-	    <div id="incom-home" class="tab-pane fade show active">
-	        <h5 class="fw-bold text-primary">今月の収入概要</h5>
-	    </div>	
-	    <div id="incom-menu1" class="tab-pane fade">
-	        <h5 class="fw-bold text-primary">収入の月間比較</h5>
-	    </div>
-	</div>
-  </div>
+	<!-- TAB CONTENT --> 
+    <div class="tab-content mt-2 dashboard-tab-content">
 
+	    <div id="income-home"
+	         class="tab-pane fade"
+	         th:classappend="${activeTab != 'monthly'} ? ' show active' : ''">
+	
+	        <div th:replace="member/loged/income/summary-income :: content"></div>	
+	    </div>
+	
+	    <div id="income-menu1"
+	         class="tab-pane fade"
+	         th:classappend="${activeTab == 'monthly'} ? ' show active' : ''">
+	
+	        <div th:replace="member/loged/income/monthly-income :: content"></div>	
+	    </div>
+	    
+	</div>
+	
+ </div>
+ 
+ 
+<!-- BUTTONS -->
+<div class="d-flex justify-content-center align-items-center gap-3 py-3">
+
+    <!-- ADD INCOME -->
+    <div sec:authorize="hasRole('USER')">
+        <button type="button"
+                class="btn btn-success btn-lg px-4 py-2"
+                data-bs-toggle="modal"
+                data-bs-target="#searchaddIncomeModal">
+            収入を個別登録
+        </button>
+    </div>
+
+
+</div>
+ 
 <!-- Bootstrap 5 JS (IMPORTANT for tabs) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Your JS -->
-<script th:src="@{/js/expense-capture.js}"></script>
 
 </body>
 </html>
