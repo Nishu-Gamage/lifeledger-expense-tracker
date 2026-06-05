@@ -86,8 +86,15 @@ public class ExpenseService {
     }
 
     // TOTAL EXPENSE BY CATEGORY
-    public List<ExpenseCategoryDto> getCategoryTotals(User user){
-        return expenseRepository.getCategoryTotals(user);
+    public List<ExpenseCategoryDto> getCategoryTotals(User user) {
+    	
+        LocalDate now = LocalDate.now();
+
+        return expenseRepository.getCategoryTotals(
+                user,
+                now.getMonthValue(),
+                now.getYear());
+    	
     }
 
 	// TOTAL EXPENSE BY YEAR & MONTH

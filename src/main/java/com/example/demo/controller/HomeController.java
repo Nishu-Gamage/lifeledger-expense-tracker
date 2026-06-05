@@ -126,7 +126,7 @@ public class HomeController {
 			                		totalIncome);
 			                
 			                // TOTAL EXPENSE BY CATEGORY
-			                List<ExpenseCategoryDto> categoryTotals = expenseService.getCategoryTotals(user);
+			                List<ExpenseCategoryDto> categoryTotals =  expenseService.getCategoryTotals(user);
 
 			                model.addAttribute(
 			                        "categoryTotals",
