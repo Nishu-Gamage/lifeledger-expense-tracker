@@ -16,6 +16,7 @@
 	</h4>
 	
 	<!-- TOP SUMMARY TABLE -->
+  	<div th:if="${totalIncome > 0 or totalExpense > 0}">
 	<div class="row justify-content-center">
 		
 	    <div class="col-10">
@@ -70,10 +71,12 @@
 			</div>
 	    </div>
 	</div>
-
-   <!--  <h4 class="fw-bold text-primary text-center mt-5">
-        収入支出の管理を始めましょう。
-    </h4> -->
+  	</div>
+  	
+    <h4 class="fw-bold text-primary text-center mt-1"
+	    th:if="${totalIncome == 0 and totalExpense == 0}">
+	    収入支出の管理を始めましょう。
+	</h4>
 
 </div>
 
