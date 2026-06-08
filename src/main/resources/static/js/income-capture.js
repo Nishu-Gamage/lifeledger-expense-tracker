@@ -98,4 +98,25 @@ document.addEventListener("DOMContentLoaded", function () {
 	        captureModal.show();
 	    });
 	}
+	
+	console.log(
+	    document.getElementById("confirmIncomeModal")
+	);
+
+	/* =========================================
+			AUTO OPEN CONFIRM MODAL
+	========================================= */
+    if (window.showIncomeConfirm) {
+
+        const modalElement =
+            document.getElementById("confirmIncomeModal");
+
+        if (modalElement) {
+
+            const confirmModal =
+                new bootstrap.Modal(modalElement);
+
+            confirmModal.show();
+        }
+    }
 });

@@ -44,12 +44,19 @@
 	                </tr>
 
             	</table>
-                
-                <input type="hidden" name="incomeDate" th:value="${income.incomeDate}">
-				<input type="hidden" name="category" th:value="${income.category}">				
-				<input type="hidden" name="amount" th:value="${income.amount}">				
-				<input type="hidden" name="noteText" th:value="${income.noteText}">
-                
+                				
+				<input type="hidden" name="incomeDate"
+				       th:value="${income != null ? income.incomeDate : ''}">
+				
+				<input type="hidden" name="category"
+				       th:value="${income != null ? income.category : ''}">
+				
+				<input type="hidden" name="amount"
+				       th:value="${income != null ? income.amount : ''}">
+				
+				<input type="hidden" name="noteText"
+				       th:value="${income != null ? income.noteText : ''}">
+				       
 				<div class="text-center">
 				    <!-- BACK -->
 	                <button type="button" class="btn btn-secondary" id="backToCaptureModalBtn">戻る</button>								

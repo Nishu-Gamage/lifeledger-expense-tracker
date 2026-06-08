@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dto.IncomeDto;
@@ -28,6 +29,7 @@ public class IncomeController {
 	@PostMapping("/addIncome")
 	public String incomeConfirm(
 			@ModelAttribute IncomeDto incomeDto,
+	        @RequestParam String sourcePage,
             RedirectAttributes redirectAttributes) {
 
         // popup data
@@ -37,6 +39,12 @@ public class IncomeController {
         redirectAttributes.addFlashAttribute(
                 "showIncomeConfirm",
                 true);
+
+        redirectAttributes.addFlashAttribute("sourcePage", sourcePage);
+        
+        if ("income".equals(sourcePage)) {
+            return "redirect:/income";
+        }
 
         return "redirect:/dashboard";
 

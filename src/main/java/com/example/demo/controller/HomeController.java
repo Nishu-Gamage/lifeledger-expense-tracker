@@ -73,6 +73,7 @@ public class HomeController {
                             Authentication authentication) {
 
         model.addAttribute("currentPage", "dashboard");
+        model.addAttribute("sourcePage", "dashboard");
         model.addAttribute("incomeDto", new IncomeDto());
         model.addAttribute("activeTab", tab);
 
@@ -160,6 +161,15 @@ public class HomeController {
     public String income(Model model) {
 
         model.addAttribute("currentPage", "income");
+        model.addAttribute("sourcePage", "income");
+    	
+    	if (!model.containsAttribute("showIncomeConfirm")) {
+            model.addAttribute("showIncomeConfirm", false);
+        }
+    	
+    	if (!model.containsAttribute("income")) {
+            model.addAttribute("income", new IncomeDto());
+        }
 
         return "member/loged/income/income";
     }
