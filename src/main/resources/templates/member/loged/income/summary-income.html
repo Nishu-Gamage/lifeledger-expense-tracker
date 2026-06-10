@@ -51,7 +51,9 @@
 		                <td class="fs-4 py-2 fw-bold text-primary"
 						    th:text="${#numbers.formatInteger(totalIncome,0,'COMMA')}">
 						</td>
-	                    <td class="fs-4 py-2 fw-bold text-primary">旅行</td>
+						<td class="fs-4 py-2 fw-bold text-primary"
+						    th:text="${topCategory}">
+						</td>
 	                </tr>
 	            </tbody>	
 	        </table>	

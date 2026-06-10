@@ -208,6 +208,17 @@ public class HomeController {
                             user,
                             year,
                             month);
+            
+            String topCategory =
+                    incomeService.getTopIncomeCategory(
+                            user,
+                            year,
+                            month);
+
+            model.addAttribute(
+                    "topCategory",
+                    topCategory);
+            
 
             model.addAttribute(
                     "totalIncome",

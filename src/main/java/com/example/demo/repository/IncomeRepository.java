@@ -32,4 +32,22 @@ public interface IncomeRepository extends JpaRepository<Income, Long>{
 		        nativeQuery = true)
 	 
     Integer getTotalIncomeByYearAndMonth(User user, int year, int month);
+	 
+	 
+	 @Query(value = """
+			    SELECT category
+			    FROM income
+			    WHERE user_id = :#{#user.id}
+			      AND YEAR(income_date) = :year
+			      AND MONTH(income_date) = :month
+			    GROUP BY category
+			    ORDER BY SUM(amount) DESC
+			    LIMIT 1
+			    """,
+			    nativeQuery = true)
+	String getTopIncomeCategory(
+			        @Param("user") User user,
+			        @Param("year") int year,
+			        @Param("month") int month);
+	 
 }

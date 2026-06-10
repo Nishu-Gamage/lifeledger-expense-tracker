@@ -56,4 +56,20 @@ public class IncomeService {
 	            year,
 	            month);
 	}
+	
+	// GET TOP INCOME CATEGORY BY YEAR & MONTH
+	public String getTopIncomeCategory(
+	        User user,
+	        int year,
+	        int month) {
+
+		String category =
+	            incomeRepository.getTopIncomeCategory(
+	                    user,
+	                    year,
+	                    month);
+		
+	    return category != null ? category : "-";
+	}
+	
 }
