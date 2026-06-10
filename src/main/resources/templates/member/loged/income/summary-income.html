@@ -49,7 +49,7 @@
 	            <tbody>
 	                <tr>
 		                <td class="fs-4 py-2 fw-bold text-primary"
-						    th:text="${#numbers.formatInteger(totalIncome,0,'COMMA')}">
+						    th:text="'¥ ' + ${#numbers.formatInteger(totalIncome,0,'COMMA')}">
 						</td>
 						<td class="fs-4 py-2 fw-bold text-primary"
 						    th:text="${topCategory}">
@@ -78,19 +78,30 @@
 		                </tr>
 		            </thead>	
 		            
-	             	<tbody>
-		             	<tr>
-		                    <td class="py-1 w-25">test</td>
-		                    <td class="py-1 w-25">100</td>
-	                    </tr>
-		             	<tr>
-		                    <td class="py-1 w-25">test</td>
-		                    <td class="py-1 w-25">100</td>
-	                    </tr>
-		             	<tr>
-		                    <td class="py-1 w-25">test</td>
-		                    <td class="py-1 w-25">100</td>
-	                    </tr>
+					<tbody>
+					    <!-- DATA EXISTS -->
+					    <tr th:each="item : ${incomeCategorySummary}"
+					        th:if="${not #lists.isEmpty(incomeCategorySummary)}">
+					
+					        <td class="py-1"
+					            th:text="${item.category}">
+					        </td>
+					        					
+					        <td class="py-1"
+					            th:text="${#numbers.formatInteger(item.totalAmount,0,'COMMA')}">
+					        </td>					
+					    </tr>
+					
+					    <!-- NO DATA -->
+					    <tr th:if="${#lists.isEmpty(incomeCategorySummary)}">
+					
+					        <td colspan="2" class="text-center text-danger fw-bold">					
+					            希望のデータが見つかりません。					
+					        </td>
+					
+					    </tr>
+					
+					</tbody>					
 		        </table>
 			</div>
 	    </div>

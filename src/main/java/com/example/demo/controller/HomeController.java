@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ExpenseCategoryDto;
+import com.example.demo.dto.IncomeCategoryDto;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -214,6 +215,16 @@ public class HomeController {
                             user,
                             year,
                             month);
+            
+            List<IncomeCategoryDto> incomeCategorySummary =
+                    incomeService.getIncomeCategorySummary(
+                            user,
+                            year,
+                            month);
+
+            model.addAttribute(
+                    "incomeCategorySummary",
+                    incomeCategorySummary);
 
             model.addAttribute(
                     "topCategory",

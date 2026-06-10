@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.IncomeCategoryDto;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.entity.Income;
 import com.example.demo.entity.User;
@@ -70,6 +73,37 @@ public class IncomeService {
 	                    month);
 		
 	    return category != null ? category : "-";
+	}
+	
+	// GET ALL　TOTAL INCOME CATEGORY BY YEAR & MONTH
+	public List<IncomeCategoryDto> getIncomeCategorySummary(
+	        User user,
+	        int year,
+	        int month) {
+
+	    List<Object[]> rows =
+	            incomeRepository.getIncomeCategorySummary(
+	                    user,
+	                    year,
+	                    month);
+
+	    List<IncomeCategoryDto> result =
+	            new ArrayList<>();
+
+	    for (Object[] row : rows) {
+
+	        String category = (String) row[0];
+
+	        Double total =
+	                ((Number) row[1]).doubleValue();
+
+	        result.add(
+	                new IncomeCategoryDto(
+	                        category,
+	                        total));
+	    }
+
+	    return result;
 	}
 	
 }

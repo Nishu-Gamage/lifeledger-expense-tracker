@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.entity.Income;
 import com.example.demo.entity.User;
+import java.util.List;
 
 public interface IncomeRepository extends JpaRepository<Income, Long>{
 
@@ -50,4 +51,20 @@ public interface IncomeRepository extends JpaRepository<Income, Long>{
 			        @Param("year") int year,
 			        @Param("month") int month);
 	 
+	 
+	 @Query(value = """
+		        SELECT category,
+		               SUM(amount)
+		        FROM income
+		        WHERE user_id = :#{#user.id}
+		          AND YEAR(income_date) = :year
+		          AND MONTH(income_date) = :month
+		        GROUP BY category
+		        ORDER BY SUM(amount) DESC
+		        """,
+		        nativeQuery = true)
+		List<Object[]> getIncomeCategorySummary(
+		        @Param("user") User user,
+		        @Param("year") int year,
+		        @Param("month") int month);
 }
