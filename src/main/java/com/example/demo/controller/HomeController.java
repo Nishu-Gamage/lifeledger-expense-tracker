@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.List;
 import java.util.Optional;
@@ -158,7 +159,11 @@ public class HomeController {
 
     // INCOME PAGE
     @GetMapping("/income")
-    public String income(Model model) {
+    public String income(
+	            @RequestParam(required = false) Integer year,
+	            @RequestParam(required = false) Integer month,
+	            Model model,
+	            Authentication authentication) {
 
         model.addAttribute("currentPage", "income");
         model.addAttribute("sourcePage", "income");
@@ -171,6 +176,44 @@ public class HomeController {
             model.addAttribute("income", new IncomeDto());
         }
 
+        int currentYear = Year.now().getValue();
+        int currentMonth = LocalDate.now().getMonthValue();
+
+        if (year == null) {
+            year = currentYear;
+        }
+
+        if (month == null) {
+            month = currentMonth;
+        }
+    	
+        model.addAttribute("selectedYear", year);
+        model.addAttribute("selectedMonth", month);
+        
+        model.addAttribute(
+                "years",
+                IntStream.rangeClosed(2020, currentYear)
+                        .boxed()
+                        .toList());
+
+        if (authentication != null) {
+
+            String email = authentication.getName();
+
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow();
+
+            Integer totalIncome =
+                    incomeService.getTotalIncomeByYearAndMonth(
+                            user,
+                            year,
+                            month);
+
+            model.addAttribute(
+                    "totalIncome",
+                    totalIncome);
+        }
+        
         return "member/loged/income/income";
     }
 }

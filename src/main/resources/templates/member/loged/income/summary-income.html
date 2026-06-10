@@ -10,24 +10,31 @@
 <div th:fragment="content">
 
 	<!-- SELECT YEAR & MONTH -->
-	<div class="d-flex align-items-center gap-1 mb-1">
-	    <select class="form-select form-select-sm w-auto border-success bg-primary text-white">
-	        <option th:each="y : ${#numbers.sequence(2020, T(java.time.Year).now().value)}"
-	                th:value="${y}"
-	                th:text="${y}"
-	                th:selected="${y == T(java.time.Year).now().value}">
-	        </option>
-	    </select>
+	<form method="get" th:action="@{/income}">
+	    <div class="d-flex align-items-center gap-1 mb-1">	
+	        <select name="year"
+	                class="form-select form-select-sm w-auto border-success bg-primary text-white"
+	                onchange="this.form.submit()">
 	
-	    <select class="form-select form-select-sm w-auto border-success bg-secondary text-white">
-	        <option th:each="m : ${#numbers.sequence(1,12)}"
-	                th:value="${m}"
-	                th:text="${m + '月'}"
-	                th:selected="${m == T(java.time.LocalDate).now().monthValue}">
-	        </option>
-	    </select>	
-	</div>
-
+	            <option th:each="y : ${years}"
+	                    th:value="${y}"
+	                    th:text="${y}"
+	                    th:selected="${y == selectedYear}">
+	            </option>	
+	        </select>
+	
+	        <select name="month"
+	                class="form-select form-select-sm w-auto border-success bg-secondary text-white"
+	                onchange="this.form.submit()">
+	
+	            <option th:each="m : ${#numbers.sequence(1,12)}"
+	                    th:value="${m}"
+	                    th:text="${m + '月'}"
+	                    th:selected="${m == selectedMonth}">
+	            </option>	
+	        </select>	
+	    </div>	
+	</form>
 	
 	<!-- INCOME TOP SUMMARY TABLE -->
 	<div class="row justify-content-center">
@@ -41,7 +48,9 @@
 	            </thead>	
 	            <tbody>
 	                <tr>
-	                    <td class="fs-4 py-2 fw-bold text-primary">1000</td>
+		                <td class="fs-4 py-2 fw-bold text-primary"
+						    th:text="${#numbers.formatInteger(totalIncome,0,'COMMA')}">
+						</td>
 	                    <td class="fs-4 py-2 fw-bold text-primary">旅行</td>
 	                </tr>
 	            </tbody>	
