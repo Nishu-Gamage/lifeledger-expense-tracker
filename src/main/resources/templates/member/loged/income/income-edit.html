@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div th:fragment="incomeEditModal">
+    <div class="modal fade" id="incomeEditModal" tabindex="-1">
+	    <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content p-4">
+	         <input type="hidden" id="editIncomeId">
+	    		<!-- HEADER -->
+	            <div class="container text-center mb-3">
+	            	<h2 class="fw-bold text-primary">収入編集</h2>
+	            </div>
+	    
+	    		<div class="container text-center mb-4">
+		            <div class="form-group row ms-3">
+		                <label for="incomedate" class="col-4">日付</label> 
+		                <div class="col-8">
+		                	<div class="input-group">
+		                        <input type="date" name="incomeDate" class="form-control"
+		                               id="editIncomeDate" required>
+		                	</div>
+		                </div>
+		            </div>
+		            
+		            <div class="form-group row ms-3 mt-3">
+		                <label for="incomedate" class="col-4">カテゴリー</label> 
+		                <div class="col-8">
+		                	<div class="input-group">
+		                        <input type="text" id="editIncomeCategory" class="form-control" required>
+		                	</div>
+		                </div>
+		            </div>
+		            
+		            <div class="form-group row ms-3 mt-3">
+		                <label for="incomedate" class="col-4">収入</label> 
+		                <div class="col-8">
+		                	<div class="input-group">
+		                        <input type="text" id="editIncomeAmount" class="form-control" required>
+		                	</div>
+		                </div>
+		            </div>
+		            
+		            <div class="form-group row ms-3 mt-3">
+		                <label for="incomedate" class="col-4">ノート</label> 
+		                <div class="col-8">
+		                	<textarea
+					                id="editIncomeNote"
+					                class="form-control"
+					                rows="4"
+					                style="resize: vertical;"
+					                required>
+					        </textarea>
+		                </div>
+		            </div>		            
+	            </div>
+	            
+			    <div class="d-flex justify-content-center gap-3 mt-4">
+			    	<button type="button" class="btn btn-danger">削除　</button>
+			        <button type="button" class="btn btn-success">更新　</button>
+			        <button type="button" class="btn btn-danger"　id="cancelBtn">キャンセル　</button>
+				</div>
+				
+	    	</div>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>

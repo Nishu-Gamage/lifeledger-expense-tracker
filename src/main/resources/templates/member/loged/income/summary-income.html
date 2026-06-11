@@ -143,9 +143,22 @@
 					        <td th:text="${income.incomeDate}"></td>					
 					        <td th:text="${income.category}"></td>					
 					        <td th:text="${#numbers.formatInteger(income.amount,0,'COMMA')}"></td>					
-					        <td th:text="${income.noteText}"></td>					
-					        <td>⚙️ 🗑</td>
-					
+					        <td th:text="${income.noteText}"></td>
+					        <td class="py-1">
+							    <button type="button"
+							            class="btn btn-sm btn-outline-secondary incomeEditBtn"
+							
+							            data-bs-toggle="modal"
+							            data-bs-target="#incomeEditModal"
+							
+							            th:data-id="${income.id}"
+							            th:data-date="${income.incomeDate}"
+							            th:data-category="${income.category}"
+							            th:data-amount="${income.amount}"
+							            th:data-note="${income.noteText}">							
+							        ⚙️🗑							
+							    </button>							
+							</td>					
 					    </tr>						
 					</tbody>
 		        </table>
