@@ -86,7 +86,7 @@
 					        <td class="py-1"
 					            th:text="${item.category}">
 					        </td>
-					        					
+					        	
 					        <td class="py-1"
 					            th:text="${#numbers.formatInteger(item.totalAmount,0,'COMMA')}">
 					        </td>					
@@ -120,36 +120,34 @@
 		        <table class="table table-bordered table-striped text-center">		
 		            <thead class="table-warning sticky-top">
 		                <tr>
-		                    <th class=" py-1">日付</th>
-		                    <th class=" py-1">カテゴリー</th>
-		                    <th class=" py-1">収入</th>
-		                    <th class=" py-1">ノート</th>
-		                    <th class=" py-1">更新/削除</th>
+		                    <th class="py-1">日付</th>
+		                    <th class="py-1">カテゴリー</th>
+		                    <th class="py-1">収入</th>
+		                    <th class="py-1 w-25">ノート</th>
+		                    <th class="py-1">更新/削除</th>
 		                </tr>
 		            </thead>	
 		            
 	             	<tbody>
-		             	<tr>
-		                    <td class="py-1">2026/6/5</td>
-		                    <td class="py-1">給与</td>
-		                    <td class="py-1">100,000</td>
-		                    <td class="py-1">TOAグループ</td>
-		                    <td class="py-1">⚙️　🗑</td>
-	                    </tr>
-		             	<tr>
-		                    <td class="py-1">2026/6/5</td>
-		                    <td class="py-1">給与</td>
-		                    <td class="py-1">100,000</td>
-		                    <td class="py-1">TOAグループ</td>
-		                    <td class="py-1">⚙️　🗑</td>
-	                    </tr>
-		             	<tr>
-		                    <td class="py-1">2026/6/5</td>
-		                    <td class="py-1">給与</td>
-		                    <td class="py-1">100,000</td>
-		                    <td class="py-1">TOAグループTOAグループ</td>
-		                    <td class="py-1">⚙️　🗑</td>
-	                    </tr>
+					    <!-- NO DATA -->
+					    <tr th:if="${#lists.isEmpty(incomeList)}">
+					        <td colspan="5"
+					            class="text-center text-danger fw-bold">
+					            希望のデータが見つかりません。
+					        </td>
+					    </tr>
+					
+					    <!-- DATA -->
+					    <tr th:each="income : ${incomeList}">
+					
+					        <td th:text="${income.incomeDate}"></td>					
+					        <td th:text="${income.category}"></td>					
+					        <td th:text="${#numbers.formatInteger(income.amount,0,'COMMA')}"></td>					
+					        <td th:text="${income.noteText}"></td>					
+					        <td>⚙️ 🗑</td>
+					
+					    </tr>						
+					</tbody>
 		        </table>
 			</div>
 	    </div>

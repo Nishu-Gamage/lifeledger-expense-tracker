@@ -67,4 +67,18 @@ public interface IncomeRepository extends JpaRepository<Income, Long>{
 		        @Param("user") User user,
 		        @Param("year") int year,
 		        @Param("month") int month);
+		
+		
+	@Query("""
+		    SELECT i
+		    FROM Income i
+		    WHERE i.user = :user
+		      AND YEAR(i.incomeDate) = :year
+		      AND MONTH(i.incomeDate) = :month
+		    ORDER BY i.incomeDate DESC
+		""")
+		List<Income> findByUserAndYearAndMonth(
+		        @Param("user") User user,
+		        @Param("year") int year,
+		        @Param("month") int month);
 }

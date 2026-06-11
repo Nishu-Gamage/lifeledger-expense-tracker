@@ -106,4 +106,16 @@ public class IncomeService {
 	    return result;
 	}
 	
+	// GET ALL　INCOME DATA BY YEAR & MONTH
+	public List<Income> getIncomeList(
+	        User user,
+	        int year,
+	        int month) {
+
+	    return incomeRepository.findByUserAndYearAndMonth(
+	            user,
+	            year,
+	            month);
+	}
+	
 }

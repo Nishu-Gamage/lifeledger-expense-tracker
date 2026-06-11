@@ -225,11 +225,17 @@ public class HomeController {
             model.addAttribute(
                     "incomeCategorySummary",
                     incomeCategorySummary);
-
+            
+            model.addAttribute(
+                    "incomeList",
+                    incomeService.getIncomeList(
+                            user,
+                            year,
+                            month));
+            
             model.addAttribute(
                     "topCategory",
                     topCategory);
-            
 
             model.addAttribute(
                     "totalIncome",
