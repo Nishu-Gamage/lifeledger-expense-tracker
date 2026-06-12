@@ -69,4 +69,15 @@ public class IncomeController {
 	
 	  return "redirect:/income";
     }
+    
+    // Delete from DB
+    @PostMapping("/deleteIncome")
+    public String deleteIncome(
+            @RequestParam Long incomeId) {
+
+        incomeService.deleteIncome(
+                incomeId);
+
+        return "redirect:/income";
+    }
 }

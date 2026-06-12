@@ -118,4 +118,10 @@ public class IncomeService {
 	            month);
 	}
 	
+	// DELETE INCOME
+	public void deleteIncome(Long incomeId) {
+
+	    incomeRepository.deleteById(
+	            incomeId);
+	}
 }

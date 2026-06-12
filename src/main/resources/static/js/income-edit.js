@@ -75,6 +75,11 @@ document
             editModal.hide();
 			
 			document.getElementById(
+			    "deleteIncomeId"
+			).value =
+			    originalIncomeId;
+			
+			document.getElementById(
 			    "deleteIncomeDate"
 			).textContent =
 			    originalIncomeDate;
