@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div th:fragment="incomeUpdateConfirmModal">
+
+    <div class="modal fade"
+         id="incomeUpdateConfirmModal"
+         tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content p-4">
+
+                <form th:action="@{/updateIncome}"
+                      method="post">
+
+                    <input type="hidden"
+                           id="confirmIncomeId"
+                           name="id">
+
+                    <input type="hidden"
+                           id="confirmIncomeDateInput"
+                           name="incomeDate">
+
+                    <input type="hidden"
+                           id="confirmIncomeCategoryInput"
+                           name="category">
+
+                    <input type="hidden"
+                           id="confirmIncomeAmountInput"
+                           name="amount">
+
+                    <input type="hidden"
+                           id="confirmIncomeNoteInput"
+                           name="noteText">
+
+                    <div class="text-center mb-3">
+                        <h3 class="text-success">
+                            更新確認
+                        </h3>
+                    </div>
+
+                    <table class="table">
+
+                        <tr>
+                            <th class="w-25">日付</th>
+                            <td id="confirmIncomeDate"></td>
+                        </tr>
+
+                        <tr>
+                            <th>カテゴリー</th>
+                            <td id="confirmIncomeCategory"></td>
+                        </tr>
+
+                        <tr>
+                            <th>収入</th>
+                            <td id="confirmIncomeAmount"></td>
+                        </tr>
+
+                        <tr>
+                            <th>ノート</th>
+                            <td id="confirmIncomeNote"></td>
+                        </tr>
+
+                    </table>
+
+                    <div class="d-flex justify-content-center gap-3">
+
+                        <button type="button"
+                                class="btn btn-secondary"
+                                id="backToEditFromUpdate">
+                            戻る
+                        </button>
+
+                        <button type="submit"
+                                class="btn btn-success">
+                            更新する
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

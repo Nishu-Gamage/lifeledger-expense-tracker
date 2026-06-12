@@ -133,3 +133,112 @@ document
 
             editModal.show();
         });
+		
+		
+// ============================================
+// Open Update Confirmation Modal
+// ============================================
+
+document
+    .getElementById("openUpdateConfirmBtn")
+    .addEventListener(
+        "click",
+        function () {
+
+            const editModal =
+                bootstrap.Modal.getInstance(
+                    document.getElementById(
+                        "incomeEditModal"));
+
+            editModal.hide();
+
+            // Display values
+
+            document.getElementById(
+                "confirmIncomeDate"
+            ).textContent =
+                document.getElementById(
+                    "editIncomeDate").value;
+
+            document.getElementById(
+                "confirmIncomeCategory"
+            ).textContent =
+                document.getElementById(
+                    "editIncomeCategory").value;
+
+            document.getElementById(
+                "confirmIncomeAmount"
+            ).textContent =
+                document.getElementById(
+                    "editIncomeAmount").value;
+
+            document.getElementById(
+                "confirmIncomeNote"
+            ).textContent =
+                document.getElementById(
+                    "editIncomeNote").value || "-";
+
+            // Hidden values
+
+            document.getElementById(
+                "confirmIncomeId"
+            ).value =
+                document.getElementById(
+                    "editIncomeId").value;
+
+            document.getElementById(
+                "confirmIncomeDateInput"
+            ).value =
+                document.getElementById(
+                    "editIncomeDate").value;
+
+            document.getElementById(
+                "confirmIncomeCategoryInput"
+            ).value =
+                document.getElementById(
+                    "editIncomeCategory").value;
+
+            document.getElementById(
+                "confirmIncomeAmountInput"
+            ).value =
+                document.getElementById(
+                    "editIncomeAmount").value;
+
+            document.getElementById(
+                "confirmIncomeNoteInput"
+            ).value =
+                document.getElementById(
+                    "editIncomeNote").value;
+
+            const confirmModal =
+                new bootstrap.Modal(
+                    document.getElementById(
+                        "incomeUpdateConfirmModal"));
+
+            confirmModal.show();
+        });
+
+// ============================================
+// Return Edit Modal from Update Confirm Modal
+// ============================================
+
+document
+    .getElementById("backToEditFromUpdate")
+    .addEventListener(
+        "click",
+        function () {
+
+            const confirmModal =
+                bootstrap.Modal.getInstance(
+                    document.getElementById(
+                        "incomeUpdateConfirmModal"));
+
+            confirmModal.hide();
+
+            const editModal =
+                new bootstrap.Modal(
+                    document.getElementById(
+                        "incomeEditModal"));
+
+            editModal.show();
+        });
