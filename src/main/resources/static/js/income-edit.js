@@ -242,3 +242,5 @@ document
 
             editModal.show();
         });
+		
+		

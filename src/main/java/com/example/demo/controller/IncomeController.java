@@ -80,4 +80,23 @@ public class IncomeController {
 
         return "redirect:/income";
     }
+    
+    // Update Income
+    @PostMapping("/updateIncome")
+    public String updateIncome(
+            @RequestParam Long incomeId,
+            @RequestParam String incomeDate,
+            @RequestParam String category,
+            @RequestParam Integer amount,
+            @RequestParam(required = false) String noteText) {
+
+        incomeService.updateIncome(
+                incomeId,
+                incomeDate,
+                category,
+                amount,
+                noteText);
+
+        return "redirect:/income";
+    }
 }

@@ -124,4 +124,28 @@ public class IncomeService {
 	    incomeRepository.deleteById(
 	            incomeId);
 	}
+	
+	// UPDATE INCOME
+	public void updateIncome(
+	        Long incomeId,
+	        String incomeDate,
+	        String category,
+	        Integer amount,
+	        String noteText) {
+
+	    Income income =
+	            incomeRepository.findById(incomeId)
+	                    .orElseThrow();
+
+	    income.setIncomeDate(
+	            LocalDate.parse(incomeDate));
+
+	    income.setCategory(category);
+
+	    income.setAmount(amount);
+
+	    income.setNoteText(noteText);
+
+	    incomeRepository.save(income);
+	}
 }
