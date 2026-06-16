@@ -212,6 +212,10 @@ public class HomeController {
 
             User user = userRepository.findByEmail(email)
                     .orElseThrow();
+            
+            model.addAttribute(
+                    "hasIncomeData",
+                    incomeService.hasIncomeData(user));
 
             Integer totalIncome =
                     incomeService.getTotalIncomeByYearAndMonth(

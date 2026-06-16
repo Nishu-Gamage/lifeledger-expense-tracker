@@ -9,6 +9,8 @@ import com.example.demo.entity.User;
 import java.util.List;
 
 public interface IncomeRepository extends JpaRepository<Income, Long>{
+	
+	boolean existsByUser(User user);
 
 	@Query("""
 		    SELECT COALESCE(SUM(e.amount), 0)

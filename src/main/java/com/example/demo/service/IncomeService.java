@@ -150,8 +150,7 @@ public class IncomeService {
 	    incomeRepository.save(income);
 	}
 	
-	
-	
+	// GET THE TOTAL MONTHLY INCOME
 	public List<MonthlySummaryDto> getMonthlyIncomeSummary(
 	        User user,
 	        int year) {
@@ -183,6 +182,12 @@ public class IncomeService {
 	    }
 
 	    return list;
+	}
+	
+	// CHECK IF THE USER HAS DATA
+	public boolean hasIncomeData(User user) {
+
+	    return incomeRepository.existsByUser(user);
 	}
 	
 }
