@@ -13,51 +13,41 @@
 	        <table class="table table-striped custab">
 			    <thead>
 			        <tr>
-			            <th colspan="5">	
-			           		<form th:action="@{/monthly-income}" method="get">		           		
+			            <th colspan="5">
+			           		<form th:action="@{/income}" method="get">	           		
     							<input type="hidden" name="tab" value="monthly">
     							
     							<select class="py-0 bg-primary text-white form-select text-center"
-							            name="year"
+							            name="comparisonYear"
 							            onchange="this.form.submit()">
 							
 								    <option th:each="y : ${years}"
 								            th:value="${y}"
 								            th:text="${y + '年'}"
-								            th:selected="${y == currentYear}">
+								            th:selected="${y == comparisonYear}">
 								    </option>
 								
 								</select>
 							</form>
 			            </th>
 			        </tr>
-			        <tr>
-			            <th class="py-0">月</th>
-			            <th class="w-50 py-0 text-end">総収入</th>
-			            <th class="w-50 py-0 text-center">トップカテゴリー</th>
-			        </tr>
-			    </thead>
-			    <tbody>					
-					<tr>
-					    <td class="py-0 ">1</td>		
-					    <td class="py-0 text-end">100 円</td>					
-					    <td class="py-0 text-center">ボーナス</td>	
-					</tr>			
-					<tr>
-					    <td class="py-0 ">2</td>		
-					    <td class="py-0 text-end">100 円</td>				
-					    <td class="py-0 text-center">ボーナス</td>	
-					</tr>			
-					<tr>
-					    <td class="py-0 ">3</td>		
-					    <td class="py-0 text-end">100 円</td>				
-					    <td class="py-0 text-center">ボーナス</td>	
-					</tr>			
-					<tr>
-					    <td class="py-0 ">4</td>		
-					    <td class="py-0 text-end">1500 円</td>				
-					    <td class="py-0 text-center">ボーナス</td>	
-					</tr>
+			        <thead>
+					    <tr>
+					        <th class="py-0">月</th>
+					        <th class="py-0 text-end">総収入</th>
+					        <th class="text-center py-0">今月のトップカテゴリー</th>
+					    </tr>
+					</thead>
+					
+					<tbody>
+					    <tr th:each="row : ${monthlyIncomeSummary}">
+					        <td class="py-0" th:text="${row.month}"></td>
+					        <td class="py-0 text-end"
+							    th:text="${#numbers.formatInteger(row.totalIncome != null ? row.totalIncome : 0, 1, 'COMMA')} + ' 円'">
+							</td>
+					        <td class="w-50 py-0 text-center" th:text="${row.topCategory}"></td>
+					    </tr>
+					</tbody>
 				</tbody>
 		    </table>
 		</div>

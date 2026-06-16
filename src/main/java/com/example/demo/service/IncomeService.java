@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.IncomeCategoryDto;
 import com.example.demo.dto.IncomeDto;
+import com.example.demo.dto.MonthlySummaryDto;
 import com.example.demo.entity.Income;
 import com.example.demo.entity.User;
 import com.example.demo.repository.IncomeRepository;
@@ -148,4 +149,40 @@ public class IncomeService {
 
 	    incomeRepository.save(income);
 	}
+	
+	
+	
+	public List<MonthlySummaryDto> getMonthlyIncomeSummary(
+	        User user,
+	        int year) {
+
+	    List<MonthlySummaryDto> list = new ArrayList<>();
+
+	    for (int month = 1; month <= 12; month++) {
+
+	        Integer totalIncome =
+	                getTotalIncomeByYearAndMonth(
+	                        user,
+	                        year,
+	                        month);
+
+	        String topCategory =
+	                getTopIncomeCategory(
+	                        user,
+	                        year,
+	                        month);
+
+	        MonthlySummaryDto dto =
+	                new MonthlySummaryDto();
+
+	        dto.setMonth(month);
+	        dto.setTotalIncome(totalIncome);
+	        dto.setTopCategory(topCategory);
+
+	        list.add(dto);
+	    }
+
+	    return list;
+	}
+	
 }

@@ -161,8 +161,12 @@ public class HomeController {
     // INCOME PAGE
     @GetMapping("/income")
     public String income(
-	            @RequestParam(required = false) Integer year,
+	            @RequestParam(required = false) Integer summaryYear,
+	            @RequestParam(required = false) Integer comparisonYear,
+	            
 	            @RequestParam(required = false) Integer month,
+	            @RequestParam(required = false) String tab,
+	            
 	            Model model,
 	            Authentication authentication) {
 
@@ -180,16 +184,21 @@ public class HomeController {
         int currentYear = Year.now().getValue();
         int currentMonth = LocalDate.now().getMonthValue();
 
-        if (year == null) {
-            year = currentYear;
+        if(summaryYear == null){
+            summaryYear = currentYear;
         }
 
+        if(comparisonYear == null){
+            comparisonYear = currentYear;
+        }
+        
         if (month == null) {
             month = currentMonth;
         }
-    	
-        model.addAttribute("selectedYear", year);
+        
+        model.addAttribute("selectedYear", summaryYear);
         model.addAttribute("selectedMonth", month);
+        model.addAttribute("comparisonYear", comparisonYear);
         
         model.addAttribute(
                 "years",
@@ -207,19 +216,19 @@ public class HomeController {
             Integer totalIncome =
                     incomeService.getTotalIncomeByYearAndMonth(
                             user,
-                            year,
+                            summaryYear,
                             month);
             
             String topCategory =
                     incomeService.getTopIncomeCategory(
                             user,
-                            year,
+                            summaryYear,
                             month);
             
             List<IncomeCategoryDto> incomeCategorySummary =
                     incomeService.getIncomeCategorySummary(
                             user,
-                            year,
+                            summaryYear,
                             month);
 
             model.addAttribute(
@@ -230,9 +239,15 @@ public class HomeController {
                     "incomeList",
                     incomeService.getIncomeList(
                             user,
-                            year,
+                            summaryYear,
                             month));
-            
+
+            model.addAttribute(
+                    "monthlyIncomeSummary",
+                    incomeService.getMonthlyIncomeSummary(
+                            user,
+                            comparisonYear));
+
             model.addAttribute(
                     "topCategory",
                     topCategory);
@@ -240,7 +255,10 @@ public class HomeController {
             model.addAttribute(
                     "totalIncome",
                     totalIncome);
+
         }
+        
+        model.addAttribute("activeTab", tab);
         
         return "member/loged/income/income";
     }
