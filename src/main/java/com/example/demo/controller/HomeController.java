@@ -151,11 +151,37 @@ public class HomeController {
     
     // EXPENSE PAGE
     @GetMapping("/expense")
-    public String expense(Model model) {
+    public String expense(
+            @RequestParam(required = false) Integer summaryYear,
+            @RequestParam(required = false) Integer month,
+            
+            Model model,
+            Authentication authentication) {
 
         model.addAttribute("currentPage", "expense");
+        
+        int currentYear = Year.now().getValue();
+        int currentMonth = LocalDate.now().getMonthValue();
+        
+        if(summaryYear == null){
+            summaryYear = currentYear;
+        }
+
+        if (month == null) {
+            month = currentMonth;
+        }
+
+		model.addAttribute("selectedYear", summaryYear);
+		model.addAttribute("selectedMonth", month);
+		
+	    model.addAttribute(
+	            "years",
+	            IntStream.rangeClosed(2020, currentYear)
+	                    .boxed()
+	                    .toList());
 
         return "member/loged/expense/expense";
+        
     }
 
     // INCOME PAGE

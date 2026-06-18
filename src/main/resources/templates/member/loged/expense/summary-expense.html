@@ -9,7 +9,33 @@
 
 <div th:fragment="exp-home">
 
-	<h5 class="fw-bold text-primary">今月の経費概要test</h5>
+	<!-- SELECT YEAR & MONTH -->
+	<form method="get" th:action="@{/expense}">
+	    <div class="d-flex align-items-center gap-1 mb-1">	
+	        <select name="summaryYear"
+	                class="form-select form-select-sm w-auto border-success bg-primary text-white"
+	                onchange="this.form.submit()">
+	
+	            <option th:each="y : ${years}"
+	                    th:value="${y}"
+	                    th:text="${y}"
+	                    th:selected="${y == selectedYear}">
+	            </option>	
+	        </select>
+	
+	        <select name="month"
+	                class="form-select form-select-sm w-auto border-success bg-secondary text-white"
+	                onchange="this.form.submit()">
+	
+	            <option th:each="m : ${#numbers.sequence(1,12)}"
+	                    th:value="${m}"
+	                    th:text="${m + '月'}"
+	                    th:selected="${m == selectedMonth}">
+	            </option>
+	        </select>	
+	    </div>	
+	</form>
+
 
 </div>
 	
