@@ -78,7 +78,7 @@ public class ExpenseService {
     	
     	LocalDate now = LocalDate.now();
     	
-        return expenseRepository.getTotalIncomeByMonth(
+        return expenseRepository.getTotalExpenseByMonth(
 	            user,
 	            now.getMonthValue(),
 	            now.getYear()

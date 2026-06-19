@@ -24,7 +24,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 		      AND MONTH(e.expenseDate) = :month
 		      AND YEAR(e.expenseDate) = :year
 		""")
-		Double getTotalIncomeByMonth(
+    	Double getTotalExpenseByMonth(
 		        @Param("user") User user,
 		        @Param("month") int month,
 		        @Param("year") int year);	

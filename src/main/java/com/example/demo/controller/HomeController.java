@@ -153,6 +153,8 @@ public class HomeController {
     @GetMapping("/expense")
     public String expense(
             @RequestParam(required = false) Integer summaryYear,
+            @RequestParam(required = false) Integer comparisonYear,
+            
             @RequestParam(required = false) Integer month,
             
             Model model,
@@ -180,6 +182,25 @@ public class HomeController {
 	                    .boxed()
 	                    .toList());
 
+        if (authentication != null) {
+
+            String email = authentication.getName();
+
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow();
+            
+            Integer totalExpense =
+                    expenseService.getTotalExpenseByYearAndMonth(
+                            user,
+                            summaryYear,
+                            month);
+
+            model.addAttribute(
+                    "totalExpense",
+                    totalExpense);
+            
+        }
+        
         return "member/loged/expense/expense";
         
     }
