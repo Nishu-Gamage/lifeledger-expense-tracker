@@ -64,5 +64,25 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             nativeQuery = true)
     Integer getTotalExpenseByYearAndMonth(User user, int year, int month);
     
+
+	/* --------------------------------------------------
+	 *     	Get Top Category
+	 * --------------------------------------------------*/
+    @Query(value = """
+    	    SELECT main_category
+    	    FROM expenses
+    	    WHERE user_id = :#{#user.id}
+    	      AND YEAR(expense_date) = :year
+    	      AND MONTH(expense_date) = :month
+    	    GROUP BY main_category
+    	    ORDER BY SUM(amount) DESC
+    	    LIMIT 1
+    	    """,
+    	    nativeQuery = true)
+    
+    	String getTopExpenseCategory(
+    	        @Param("user") User user,
+    	        @Param("year") int year,
+    	        @Param("month") int month);    
     
 }

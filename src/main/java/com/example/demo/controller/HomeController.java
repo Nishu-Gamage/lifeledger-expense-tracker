@@ -188,18 +188,28 @@ public class HomeController {
 
             User user = userRepository.findByEmail(email)
                     .orElseThrow();
-            
-            Integer totalExpense =
-                    expenseService.getTotalExpenseByYearAndMonth(
-                            user,
-                            summaryYear,
-                            month);
 
-            model.addAttribute(
-                    "totalExpense",
-                    totalExpense);
-            
-        }
+	        Integer totalExpense =
+	                expenseService.getTotalExpenseByYearAndMonth(
+	                        user,
+	                        summaryYear,
+	                        month);
+
+	        String topCategory =
+	                expenseService.getTopExpenseCategory(
+	                        user,
+	                        summaryYear,
+	                        month);
+
+	        model.addAttribute(
+	                "totalExpense",
+	                totalExpense);
+
+	        model.addAttribute(
+	                "topCategory",
+	                topCategory);
+
+	    }
         
         return "member/loged/expense/expense";
         
@@ -245,7 +255,6 @@ public class HomeController {
         
         model.addAttribute("selectedYear", summaryYear);
         model.addAttribute("selectedMonth", month);
-        model.addAttribute("comparisonYear", comparisonYear);
         
         model.addAttribute(
                 "years",

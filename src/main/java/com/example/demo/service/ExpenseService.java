@@ -109,4 +109,19 @@ public class ExpenseService {
                 month);
     }
     
+    // TOP CATEGORY
+    public String getTopExpenseCategory(
+            User user,
+            int year,
+            int month) {
+
+        String category =
+                expenseRepository.getTopExpenseCategory(
+                        user,
+                        year,
+                        month);
+
+        return category != null ? category : "-";
+    }
+        
 }
