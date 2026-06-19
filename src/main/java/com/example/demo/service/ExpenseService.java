@@ -123,5 +123,17 @@ public class ExpenseService {
 
         return category != null ? category : "-";
     }
-        
+
+    // CATEGORY SUMMARY
+	public List<ExpenseCategoryDto> getExpenseCategorySummary( 
+			 User user, 
+			 int year, 
+			 int month) {
+	 
+	    return expenseRepository.getCategoryTotals(
+	            user,
+	            month,
+	            year);
+	}
+ 	
 }

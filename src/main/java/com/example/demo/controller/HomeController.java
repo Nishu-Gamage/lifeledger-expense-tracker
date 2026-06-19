@@ -201,6 +201,12 @@ public class HomeController {
 	                        summaryYear,
 	                        month);
 
+	        List<ExpenseCategoryDto> expenseCategorySummary = 
+					 expenseService.getExpenseCategorySummary( 
+							 user, 
+							 summaryYear, 
+							 month);
+			 
 	        model.addAttribute(
 	                "totalExpense",
 	                totalExpense);
@@ -209,6 +215,10 @@ public class HomeController {
 	                "topCategory",
 	                topCategory);
 
+			model.addAttribute(
+					"expenseCategorySummary", 
+					expenseCategorySummary);
+			
 	    }
         
         return "member/loged/expense/expense";
