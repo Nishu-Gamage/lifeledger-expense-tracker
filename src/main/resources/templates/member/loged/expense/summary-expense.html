@@ -36,7 +36,6 @@
 	    </div>	
 	</form>
 
-
 	<!-- EXPENSE TOP SUMMARY TABLE -->	
 	<div class="row justify-content-center">
 	    <div class="col-12">		    
@@ -80,8 +79,7 @@
 			</div>
 	    </div>	
 	</div>
-	
-	
+		
 	<div class="row justify-content-center gx-5">
 		<!-- CATEGORY SUMMARY -->
 	    <div class="col-lg-3 mt-1">
@@ -119,8 +117,58 @@
 	        </div>
 	    </div>
 	    		
-	</div>
+	   	<!-- ALL INCOME -->
+	    <div class="col-lg-8 mt-1">
+	    	<div class="p-3 rounded shadow-sm border" style="background-color:#5F9EA0;">
+	       	<h5 class="fw-bold text-white mb-3 text-center">
+	            すべての収入情報
+	        </h5>
+
+	        <div style="max-height: 200px; overflow-y: auto;">
+	            <table class="table table-bordered table-striped text-center mb-0">
+	                <thead class="table-warning sticky-top">
+	                    <tr>
+	                        <th style="width:15%">日付</th>
+	                        <th style="width:18%">カテゴリー</th>
+	                        <th style="width:15%">サブカテゴリー</th>
+	                        <th style="width:15%">金額</th>
+	                        <th style="width:25%">ノート</th>
+	                        <th style="width:15%">更新/削除</th>
+	                    </tr>
+	                </thead>
 	
+	                <tbody>
+
+		                <tr th:each="expense : ${expenseList}">
+		
+		                    <td th:text="${expense.expenseDate}"></td>		
+		                    <td th:text="${expense.mainCategory}"></td>		
+		                    <td th:text="${expense.subCategory}"></td>		
+		                    <td class="text-end"
+		                        th:text="'¥ ' + ${#numbers.formatInteger(expense.amount,0,'COMMA')}">
+		                    </td>	
+		                    <td th:text="${expense.note}"></td>	
+							<td class="py-1">
+							    <button type="button"
+							            class="btn btn-sm btn-outline-secondary">							
+							        ⚙️🗑							
+							    </button>							
+							</td>	
+		                </tr>			
+	                    
+	                   <!-- NO DATA -->
+				    	<tr th:if="${#lists.isEmpty(expenseList)}">
+				        <td colspan="6"
+				            class="text-center text-danger fw-bold">
+				            希望のデータが見つかりません。
+				        </td>
+	                </tbody>
+	
+	            </table>
+	        </div>
+		</div>	
+	</div>	
+	</div>
 </div>
 	
 </body>

@@ -136,4 +136,16 @@ public class ExpenseService {
 	            year);
 	}
  	
+	// GET EXPENSE LIST
+	public List<Expense> getExpenseList(
+	        User user,
+	        int year,
+	        int month) {
+
+	    return expenseRepository.findByUserAndYearAndMonth(
+	            user,
+	            year,
+	            month);
+	}
+	
 }

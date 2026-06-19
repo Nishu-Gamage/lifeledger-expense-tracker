@@ -85,4 +85,23 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     	        @Param("year") int year,
     	        @Param("month") int month);    
     
+
+	/* --------------------------------------------------
+	 *     	Get Top Category
+	 * --------------------------------------------------*/
+    @Query("""
+    	    SELECT e
+    	    FROM Expense e
+    	    WHERE e.user = :user
+    	      AND YEAR(e.expenseDate) = :year
+    	      AND MONTH(e.expenseDate) = :month
+    	    ORDER BY e.expenseDate DESC
+    	""")
+    
+    	List<Expense> findByUserAndYearAndMonth(
+    	        @Param("user") User user,
+    	        @Param("year") int year,
+    	        @Param("month") int month);
+    
+    
 }

@@ -219,6 +219,13 @@ public class HomeController {
 					"expenseCategorySummary", 
 					expenseCategorySummary);
 			
+			model.addAttribute(
+			        "expenseList",
+			        expenseService.getExpenseList(
+			                user,
+			                summaryYear,
+			                month));
+			
 	    }
         
         return "member/loged/expense/expense";
