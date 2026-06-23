@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ExpenseCategoryDto;
@@ -15,6 +16,7 @@ import com.example.demo.repository.ExpenseRepository;
 @Service
 public class ExpenseService {
 
+    @Autowired
     private final ExpenseRepository expenseRepository;
 
     public ExpenseService(ExpenseRepository expenseRepository) {
@@ -146,6 +148,11 @@ public class ExpenseService {
 	            user,
 	            year,
 	            month);
+	}
+
+	// DELETE EXPENSE
+	public void deleteById(Long expenseId) {
+		 expenseRepository.deleteById(expenseId);
 	}
 	
 }

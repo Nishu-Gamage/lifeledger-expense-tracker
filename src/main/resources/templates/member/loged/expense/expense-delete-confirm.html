@@ -13,6 +13,7 @@
 	
 	            <form th:action="@{/deleteExpense}" method="post">
 	
+	            	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">	
 	                <input type="hidden" id="deleteExpenseId" name="expenseId">
 	
 	                <div class="text-center mb-3">
