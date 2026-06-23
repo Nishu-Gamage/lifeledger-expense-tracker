@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div th:fragment="ExpenseEditModal">
+    <div class="modal fade" id="expenseEditModal" tabindex="-1">
+	    <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content p-4">
+	         <input type="hidden" id="editExpenseId">
+	         	<div class="form-group row ms-3 mt-3">
+				    <label class="col-4">日付</label>
+				    <div class="col-8">
+				        <input type="date"
+				               id="editExpenseDate"
+				               class="form-control"
+				               required>
+				    </div>
+				</div>
+				
+				<div class="form-group row ms-3 mt-3">
+				    <label class="col-4">メインカテゴリー</label>
+				    <div class="col-8">
+				        <select id="editExpenseMainCategory"
+				                class="form-select"
+				                required>
+				        </select>
+				    </div>
+				</div>
+				
+				<div class="form-group row ms-3 mt-3">
+				    <label class="col-4">サブカテゴリー</label>
+				    <div class="col-8">
+				        <select id="editExpenseSubCategory"
+				                class="form-select"
+				                required>
+				        </select>
+				    </div>
+				</div>
+				
+				<div class="form-group row ms-3 mt-3">
+				    <label class="col-4">金額</label>
+				    <div class="col-8">
+				        <input id="editExpenseAmount"
+				               class="form-control"
+				               required>
+				    </div>
+				</div>
+				
+				
+				
+				
+				<div class="form-group row ms-3 mt-3">
+				    <label class="col-4">ノート</label>
+				    <div class="col-8">
+				        <textarea id="editExpenseNote"
+				                  class="form-control"
+				                  rows="4"></textarea>
+				    </div>
+				</div>	            
+			    <div class="d-flex justify-content-center gap-3 mt-4">
+			    	<button type="button" class="btn btn-danger" id="">削除</button>
+			    	<button type="button" class="btn btn-success" id="">更新</button>
+			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">キャンセル　</button>
+				</div>
+				
+	    	</div>
+	    </div>
+	</div>
+</div>
+
+</body>
+</html>
