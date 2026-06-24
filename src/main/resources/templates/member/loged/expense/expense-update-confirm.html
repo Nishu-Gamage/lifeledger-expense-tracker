@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div th:fragment="expenseUpdateConfirmModal">
+    <div class="modal fade" id="expenseUpdateConfirmModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <form th:action="@{/updateExpense}" method="post">
+                    <input type="hidden" id="updateExpenseId" name="id">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                    <div class="text-center mb-3">
+                        <h3 class="text-primary">
+                            経費編集を再確認
+                        </h3>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <tr>
+                                <th class="w-25">日付</th>
+                                <td id="updateExpenseDate"></td>
+                            </tr>
+
+                            <tr>
+                                <th>メインカテゴリー</th>
+                                <td id="updateExpenseMainCategory"></td>
+                            </tr>
+
+                            <tr>
+                                <th>サブカテゴリー</th>
+                                <td id="updateExpenseSubCategory"></td>
+                            </tr>
+
+                            <tr>
+                                <th>金額</th>
+                                <td id="updateExpenseAmount"></td>
+                            </tr>
+
+                            <tr>
+                                <th>ノート</th>
+                                <td id="updateExpenseNote"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <!-- hidden values -->
+                    <input type="hidden" id="updateExpenseDateHidden" name="expenseDate">
+                    <input type="hidden" id="updateExpenseMainHidden" name="mainCategory">
+                    <input type="hidden" id="updateExpenseSubHidden" name="subCategory">
+                    <input type="hidden" id="updateExpenseAmountHidden" name="amount">
+                    <input type="hidden" id="updateExpenseNoteHidden" name="note">
+
+                    <div class="d-flex justify-content-center gap-3">
+
+                        <button type="button" class="btn btn-secondary" id="backToExpenseEditFromUpdate">
+                            戻る
+                        </button>
+
+                        <button type="submit" class="btn btn-success">
+                            保存
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

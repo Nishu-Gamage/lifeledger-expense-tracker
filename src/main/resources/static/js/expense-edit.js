@@ -43,6 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteSub = document.getElementById("deleteExpenseSubCategory");
     const deleteAmount = document.getElementById("deleteExpenseAmount");
     const deleteNote = document.getElementById("deleteExpenseNote");
+	
+	// =========================
+	// UPDATE FIELDS
+	// =========================
+	const updateModal =
+	    document.getElementById("expenseUpdateConfirmModal");
+
+	const openUpdateBtn =
+	    document.getElementById("openExpenseUpdateBtn");
+
+	const backFromUpdateBtn =
+	    document.getElementById("backToExpenseEditFromUpdate");
+	
 
     let currentMainCategory = "";
 
@@ -164,5 +177,67 @@ document.addEventListener("DOMContentLoaded", function () {
             editInstance.show();
         });
     }
+	
+	// =========================
+	// UPDATE  MODAL OPEN
+	// =========================
+	if (openUpdateBtn && updateModal) {
+
+	    openUpdateBtn.addEventListener("click", function () {
+
+	        const id = idField.value;
+	        const date = dateField.value;
+	        const mainCategory = mainSelect.value;
+	        const subCategory = subSelect.value;
+	        const amount = amountField.value;
+	        const note = noteField.value;
+
+	        document.getElementById("updateExpenseId").value = id;
+
+	        document.getElementById("updateExpenseDate").innerText = date;
+	        document.getElementById("updateExpenseMainCategory").innerText = mainCategory;
+	        document.getElementById("updateExpenseSubCategory").innerText = subCategory;
+	        document.getElementById("updateExpenseAmount").innerText = amount;
+	        document.getElementById("updateExpenseNote").innerText = note;
+
+	        document.getElementById("updateExpenseDateHidden").value = date;
+	        document.getElementById("updateExpenseMainHidden").value = mainCategory;
+	        document.getElementById("updateExpenseSubHidden").value = subCategory;
+	        document.getElementById("updateExpenseAmountHidden").value = amount;
+	        document.getElementById("updateExpenseNoteHidden").value = note;
+
+	        let editInstance = bootstrap.Modal.getInstance(expenseModal);
+	        editInstance.hide();
+
+	        new bootstrap.Modal(updateModal).show();
+	    });
+	}
+	
+	// =========================
+	// UPDATE BACK BUTTON
+	// =========================
+	if (backFromUpdateBtn && updateModal) {
+
+	    backFromUpdateBtn.addEventListener("click", function () {
+
+	        let updateInstance =
+	            bootstrap.Modal.getInstance(updateModal);
+
+	        if (!updateInstance) {
+	            updateInstance = new bootstrap.Modal(updateModal);
+	        }
+
+	        updateInstance.hide();
+
+	        let editInstance =
+	            bootstrap.Modal.getInstance(expenseModal);
+
+	        if (!editInstance) {
+	            editInstance = new bootstrap.Modal(expenseModal);
+	        }
+
+	        editInstance.show();
+	    });
+	}
 
 });

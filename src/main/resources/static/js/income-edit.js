@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					console.log("Edit button clicked");
 					console.log(this.dataset);
 					console.log(this.dataset.category);
-					document.querySelector('select[name="year"]').disabled
 					
 					// Save original values
 					originalIncomeId = this.dataset.id;
