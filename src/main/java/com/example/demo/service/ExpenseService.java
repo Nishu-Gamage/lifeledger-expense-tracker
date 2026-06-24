@@ -154,5 +154,22 @@ public class ExpenseService {
 	public void deleteById(Long expenseId) {
 		 expenseRepository.deleteById(expenseId);
 	}
+
+	// Update EXPENSE
+	public void updateExpense(ExpenseDto dto) {
+
+	    Expense expense =
+	            expenseRepository.findById(dto.getId())
+	            .orElseThrow(() ->
+	                    new RuntimeException("Expense not found"));
+
+	    expense.setExpenseDate(dto.getExpenseDate());
+	    expense.setMainCategory(dto.getMainCategory());
+	    expense.setSubCategory(dto.getSubCategory());
+	    expense.setAmount(dto.getAmount());
+	    expense.setNote(dto.getNote());
+
+	    expenseRepository.save(expense);
+	}
 	
 }

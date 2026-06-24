@@ -95,4 +95,23 @@ public class ExpenseController {
         return "redirect:/expense";
     }
     
+    
+    /* =====================================
+    		UPDATE EXPENSE
+	===================================== */
+    
+	@PostMapping("/updateExpense")
+	public String updateExpense(
+	    @ModelAttribute ExpenseDto expenseDto,
+	    Principal principal) {
+	
+		if (principal == null) {
+		    return "redirect:/login";
+		}
+		
+		expenseService.updateExpense(expenseDto);
+		
+		return "redirect:/expense";
+	}
+    
 }
