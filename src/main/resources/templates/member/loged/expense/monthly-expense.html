@@ -8,9 +8,63 @@
 <body>
 
 <div th:fragment="exp-menu1">
-
-	<h5 class="fw-bold text-primary">経費の月間比較test</h5>
-
+	<div class="row justify-content-center">
+	    <div class="col-8">
+	        <table class="table table-striped custab">
+			    <thead>
+			        <tr>
+			            <th colspan="6">
+			           		<form method="get">
+    							<input type="hidden" name="tab" value="monthly">
+    							
+    							<select class="py-0 bg-primary text-white form-select text-center"
+							            name="comparisonYear"
+							            onchange="this.form.submit()">
+							
+								    <option th:each="y : ${years}"
+								            th:value="${y}"
+								            th:text="${y + '年'}"
+								            th:selected="${y == comparisonYear}">
+								    </option>
+								
+								</select>
+							</form>
+			            </th>
+			        </tr>
+		        <thead>
+				    <tr>
+				        <th class="py-0">月</th>
+				        <th class="py-0 text-end">総収入</th>
+						<th class="py-0">
+							<select id="mainCategoryFilter"
+							        class="form-select form-select-sm">
+							    <option value="">全て</option>
+							</select>
+						</th>
+						
+						<th class="py-0">
+							<select id="subCategoryFilter"
+							        class="form-select form-select-sm">
+							    <option value="">全て</option>
+							</select>
+						</th>
+				        <th class="py-0 text-end">総出額</th>
+				        <th class="py-0 text-end">残高</th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <tr>
+				        <td class="py-0">1</td>
+				        <td class="py-0 text-center">test</td>
+				        <td class="py-0 text-center">test</td>
+				        <td class="py-0 text-end">test</td>
+				        <td class="py-0 text-end">test</td>
+				        <td class="py-0 text-center" >categoru</td>
+				    </tr>
+				</tbody>
+		    </table>
+		</div>
+    </div>
 </div>
 	
 </body>

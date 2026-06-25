@@ -167,6 +167,10 @@ public class HomeController {
         
         if(summaryYear == null){
             summaryYear = currentYear;
+        }        
+
+        if(comparisonYear == null){
+        	comparisonYear = currentYear;
         }
 
         if (month == null) {
@@ -175,6 +179,7 @@ public class HomeController {
 
 		model.addAttribute("selectedYear", summaryYear);
 		model.addAttribute("selectedMonth", month);
+        model.addAttribute("comparisonYear", comparisonYear);
 		
 	    model.addAttribute(
 	            "years",
