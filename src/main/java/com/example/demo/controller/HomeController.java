@@ -156,6 +156,7 @@ public class HomeController {
             @RequestParam(required = false) Integer comparisonYear,
             
             @RequestParam(required = false) Integer month,
+            @RequestParam(required = false) String tab,
             
             Model model,
             Authentication authentication) {
@@ -231,8 +232,15 @@ public class HomeController {
 			                summaryYear,
 			                month));
 			
+            model.addAttribute(
+                    "monthlyIncomeSummary",
+                    incomeService.getMonthlyIncomeSummary(
+                            user,
+                            comparisonYear));
+			
 	    }
         
+        model.addAttribute("activeTab", tab);
         return "member/loged/expense/expense";
         
     }

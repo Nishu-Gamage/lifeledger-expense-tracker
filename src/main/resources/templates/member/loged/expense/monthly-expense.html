@@ -35,17 +35,19 @@
 				    <tr>
 				        <th class="py-0">月</th>
 				        <th class="py-0 text-end">総収入</th>
-						<th class="py-0">
+						<th class="py-0 text-center">
+							メインカテゴリー<br>
 							<select id="mainCategoryFilter"
-							        class="form-select form-select-sm">
-							    <option value="">全て</option>
+							        class="py-0 text-center form-select form-select-sm">
+							    <option value="" class="text-center">全て</option>
 							</select>
 						</th>
 						
-						<th class="py-0">
+						<th class="py-0 text-center">
+							サブカテゴリー<br>
 							<select id="subCategoryFilter"
-							        class="form-select form-select-sm">
-							    <option value="">全て</option>
+							        class="py-0 text-center form-select form-select-sm">
+							    <option value="" class="text-center">全て</option>
 							</select>
 						</th>
 				        <th class="py-0 text-end">総出額</th>
@@ -53,9 +55,11 @@
 				    </tr>
 				</thead>
 				<tbody>
-				    <tr>
-				        <td class="py-0">1</td>
-				        <td class="py-0 text-center">test</td>
+   					<tr th:each="row : ${monthlyIncomeSummary}">
+        				<td class="py-0" th:text="${row.month}"></td>
+        				<td class="py-0 text-end"
+				            th:text="${#numbers.formatInteger(row.totalIncome != null ? row.totalIncome : 0, 1, 'COMMA')} + ' 円'">
+				        </td>
 				        <td class="py-0 text-center">test</td>
 				        <td class="py-0 text-end">test</td>
 				        <td class="py-0 text-end">test</td>
