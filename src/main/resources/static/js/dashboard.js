@@ -71,4 +71,27 @@ document.addEventListener("DOMContentLoaded", function () {
 		    });
 	}
 	
+	/* ------------------------------------
+	   EXPENSE TAB CONTROL
+	---------------------------------------*/
+	const params = new URLSearchParams(window.location.search);
+	    const tab = params.get("tab");
+
+	    let targetSelector = '[data-bs-target="#exp-home"]';
+
+	    if (tab === "monthly") {
+	        targetSelector = '[data-bs-target="#exp-menu1"]';
+	    } 
+	    else if (tab === "daily") {
+	        targetSelector = '[data-bs-target="#exp-menu2"]';
+	    }
+
+	    const trigger = document.querySelector(targetSelector);
+
+	    if (trigger) {
+
+	        const tabInstance = bootstrap.Tab.getOrCreateInstance(trigger);
+
+	        tabInstance.show();
+	    }
 });

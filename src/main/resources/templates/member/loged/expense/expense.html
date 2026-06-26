@@ -24,7 +24,7 @@
     <!-- NAV TABS -->
     <ul class="nav nav-tabs nav-fill border-0 shadow-sm dashboard-tabs" role="tablist">
 	    <li class="nav-item">
-	        <button class="nav-link active fw-semibold"
+	        <button class="nav-link fw-semibold"
 	                data-bs-toggle="tab" data-bs-target="#exp-home" type="button">
 	            今月の経費概要
 	        </button>
@@ -44,7 +44,7 @@
 	</ul>
 	
 	<div class="tab-content mt-2 dashboard-tab-content">
-	    <div id="exp-home" class="tab-pane fade show active">
+	    <div id="exp-home" class="tab-pane fade">
         	<div th:replace="member/loged/expense/summary-expense :: exp-home"></div>
 	    </div>	
 	    <div id="exp-menu1" class="tab-pane fade">
