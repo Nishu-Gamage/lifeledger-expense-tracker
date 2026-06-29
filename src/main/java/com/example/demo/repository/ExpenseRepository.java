@@ -104,4 +104,25 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     	        @Param("month") int month);
     
     
+	/* --------------------------------------------------
+	 *     	Get Montly expense
+	 * --------------------------------------------------*/
+   @Query("""
+            SELECT
+                MONTH(e.expenseDate),
+                COALESCE(SUM(e.amount),0)
+            FROM Expense e
+            WHERE e.user.id = :userId
+              AND YEAR(e.expenseDate) = :year
+              AND (:mainCategory IS NULL OR :mainCategory = '' OR e.mainCategory = :mainCategory)
+              AND (:subCategory IS NULL OR :subCategory = '' OR e.subCategory = :subCategory)
+            GROUP BY MONTH(e.expenseDate)
+            ORDER BY MONTH(e.expenseDate)
+        """)
+        List<Object[]> getMonthlyExpenseSummary(
+                Long userId,
+                Integer year,
+                String mainCategory,
+                String subCategory);
+ 
 }

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.IncomeCategoryDto;
 import com.example.demo.dto.IncomeDto;
+import com.example.demo.dto.MonthlySummaryDto;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.DashboardService;
@@ -116,8 +118,8 @@ public class HomeController {
 		                        "fullName",
 		                        user.getFullName());
 
-	                		Double totalExpense = expenseService.getTotalExpense(user);
-	
+			        		Double totalExpense = expenseService.getTotalExpense(user);
+			
 			                model.addAttribute(
 			                        "totalExpense",
 			                        totalExpense);
@@ -154,6 +156,9 @@ public class HomeController {
     public String expense(
             @RequestParam(required = false) Integer summaryYear,
             @RequestParam(required = false) Integer comparisonYear,
+            
+            @RequestParam(required = false) String mainCategory,
+            @RequestParam(required = false) String subCategory,
             
             @RequestParam(required = false) Integer month,
             @RequestParam(required = false) String tab,
@@ -232,11 +237,30 @@ public class HomeController {
 			                summaryYear,
 			                month));
 			
-            model.addAttribute(
-                    "monthlyIncomeSummary",
-                    incomeService.getMonthlyIncomeSummary(
-                            user,
-                            comparisonYear));
+	        model.addAttribute("mainCategory", mainCategory);
+	        model.addAttribute("subCategory", subCategory);
+			
+			List<MonthlySummaryDto> monthlySummary =
+			        incomeService.getMonthlyIncomeSummary(
+			                user,
+			                comparisonYear);
+
+			Map<Integer, Integer> expenseMap =
+			        expenseService.getMonthlyExpenseMap(
+			                user,
+			                comparisonYear,
+			                mainCategory,
+			                subCategory);
+
+			for (MonthlySummaryDto dto : monthlySummary) {
+
+			    dto.setTotalExpense(
+			            expenseMap.getOrDefault(dto.getMonth(), 0));
+			}
+
+			model.addAttribute(
+			        "monthlyIncomeSummary",
+			        monthlySummary);
 			
 	    }
         

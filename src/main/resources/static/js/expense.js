@@ -14,24 +14,31 @@ document.addEventListener("DOMContentLoaded", function () {
        LOAD MAIN CATEGORIES
     ========================= */
 
-    Object.keys(window.subcategories).forEach(main => {
+	const params = new URLSearchParams(window.location.search);
 
-        const option =
-            document.createElement("option");
+	const selectedMain = params.get("mainCategory") || "";
+	const selectedSub = params.get("subCategory") || "";
 
-        option.value = main;
-        option.textContent = main;
+	Object.keys(window.subcategories).forEach(main => {
 
-        mainSelect.appendChild(option);
-    });
+	    const option = document.createElement("option");
+
+	    option.value = main;
+	    option.textContent = main;
+
+	    if (main === selectedMain) {
+	        option.selected = true;
+	    }
+
+	    mainSelect.appendChild(option);
+	});
 
     /* =========================
        FUNCTION:
        LOAD SUB CATEGORIES
     ========================= */
 
-    function loadSubCategories(selectedMain = "") {
-
+	function loadSubCategories(selectedMain = "", selectedSub = "") {
         subSelect.innerHTML =
             '<option value="">全て</option>';
 
@@ -43,13 +50,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 .flat()
                 .forEach(sub => {
 
-                    const option =
-                        document.createElement("option");
+					const option = document.createElement("option");
 
-                    option.value = sub;
-                    option.textContent = sub;
+					option.value = sub;
+					option.textContent = sub;
 
-                    subSelect.appendChild(option);
+					if (sub === selectedSub) {
+					    option.selected = true;
+					}
+
+					subSelect.appendChild(option);
                 });
 
         } else {
@@ -57,13 +67,16 @@ document.addEventListener("DOMContentLoaded", function () {
             window.subcategories[selectedMain]
                 .forEach(sub => {
 
-                    const option =
-                        document.createElement("option");
+					const option = document.createElement("option");
 
-                    option.value = sub;
-                    option.textContent = sub;
+					option.value = sub;
+					option.textContent = sub;
 
-                    subSelect.appendChild(option);
+					if (sub === selectedSub) {
+					    option.selected = true;
+					}
+
+					subSelect.appendChild(option);
                 });
         }
     }
@@ -72,45 +85,44 @@ document.addEventListener("DOMContentLoaded", function () {
        INITIAL LOAD
     ========================= */
 
-    loadSubCategories();
+    loadSubCategories(selectedMain, selectedSub);
 
     /* =========================
        MAIN CATEGORY CHANGED
     ========================= */
+	
+	mainSelect.addEventListener("change", function () {
 
-    mainSelect.addEventListener(
-        "change",
-        function () {
+	    loadSubCategories(this.value, "");
+	    subSelect.value = "";
 
-            loadSubCategories(this.value);
-        }
-    );
+	    document.getElementById("filterForm").submit();
+	});
 
-    /* =========================
-       SUB CATEGORY CHANGED
-    ========================= */
 
-    subSelect.addEventListener(
-        "change",
-        function () {
+	/* =========================
+	   SUB CATEGORY CHANGED
+	========================= */	
+	subSelect.addEventListener("change", function () {
 
-            const selectedSub =
-                this.value;
+	    const selectedSub = this.value;
 
-            if (!selectedSub) {
-                mainSelect.value = "";
-                return;
-            }
+	    if (!selectedSub) {
+	        mainSelect.value = "";
+	    } else {
 
-            for (const [main, subs] of Object.entries(window.subcategories)) {
+	        for (const [main, subs] of Object.entries(window.subcategories)) {
 
-                if (subs.includes(selectedSub)) {
+	            if (subs.includes(selectedSub)) {
+										
+	                mainSelect.value = main;
+					
+	                break;
+	            }
+	        }
+	    }
 
-                    mainSelect.value = main;
-                    break;
-                }
-            }
-        }
-    );
-
+	    document.getElementById("filterForm").submit();
+	});
+	
 });

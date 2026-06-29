@@ -14,11 +14,11 @@
 			    <thead>
 			        <tr>
 			            <th colspan="6">
-			           		<form method="get">
+			           		<form method="get" id="filterForm" class="mb-0">
     							<input type="hidden" name="tab" value="monthly">
     							
-    							<select class="py-0 bg-primary text-white form-select text-center"
-							            name="comparisonYear"
+    							<select class="form-select form-select-sm bg-primary text-white text-center"
+    									name="comparisonYear"
 							            onchange="this.form.submit()">
 							
 								    <option th:each="y : ${years}"
@@ -34,36 +34,51 @@
 		        <thead>
 				    <tr>
 				        <th class="py-0">月</th>
-				        <th class="py-0 text-end">総収入</th>
+				        <th class="py-0 text-end   w-25">総収入</th>
 						<th class="py-0 text-center">
-							出額メインカテゴリー<br>
-							<select id="mainCategoryFilter"
-							        class="py-0 text-center form-select form-select-sm">
+							メインカテゴリー<br>
+							
+							<select form="filterForm"
+							        id="mainCategoryFilter"
+							        name="mainCategory">
+							        				                    					        
 							    <option value="" class="text-center">全て</option>
 							</select>
 						</th>
 						
 						<th class="py-0 text-center">
-							出額サブカテゴリー<br>
-							<select id="subCategoryFilter"
-							        class="py-0 text-center form-select form-select-sm">
+							サブカテゴリー<br>
+							
+							<select form="filterForm"
+							        id="subCategoryFilter"
+							        name="subCategory">
+							 				                     
 							    <option value="" class="text-center">全て</option>
 							</select>
 						</th>
-				        <th class="py-0 text-end">総出額</th>
-				        <th class="py-0 text-end">残高</th>
+				        <th class="py-0 text-end  w-25">総出額</th>
+				        <th class="py-0 text-end  w-25">残高</th>
 				    </tr>
 				</thead>
 				<tbody>
    					<tr th:each="row : ${monthlyIncomeSummary}">
         				<td class="py-0" th:text="${row.month}"></td>
-        				<td class="py-0 text-end"
+        				<td class="py-0 fs-6 text-end"
 				            th:text="${#numbers.formatInteger(row.totalIncome != null ? row.totalIncome : 0, 1, 'COMMA')} + ' 円'">
 				        </td>
-				        <td class="py-0 text-center">test</td>
-				        <td class="py-0 text-end">test</td>
-				        <td class="py-0 text-end">test</td>
-				        <td class="py-0 text-center" >categoru</td>
+				        <td class="py-0 text-center"
+						    th:text="${mainCategory != null and !#strings.isEmpty(mainCategory) ? mainCategory : '全て'}">
+						</td>
+						<td class="py-0 text-center"
+						    th:text="${subCategory != null and !#strings.isEmpty(subCategory) ? subCategory : '全て'}">
+						</td>
+					    <td class="py-0 text-end"
+					        th:text="${#numbers.formatInteger(row.totalExpense != null ? row.totalExpense : 0, 1, 'COMMA')} + ' 円'">
+					    </td>
+					    <td class="py-0 text-end"
+						    th:classappend="${((row.totalIncome != null ? row.totalIncome : 0) - (row.totalExpense != null ? row.totalExpense : 0)) < 0} ? ' text-danger' : ''"
+						    th:text="${#numbers.formatInteger((row.totalIncome != null ? row.totalIncome : 0) - (row.totalExpense != null ? row.totalExpense : 0), 1, 'COMMA')} + ' 円'">
+						</td>
 				    </tr>
 				</tbody>
 		    </table>

@@ -1,7 +1,10 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ExpenseCategoryDto;
 import com.example.demo.dto.ExpenseDto;
+import com.example.demo.dto.MonthlySummaryDto;
 import com.example.demo.entity.Expense;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ExpenseRepository;
@@ -170,6 +174,34 @@ public class ExpenseService {
 	    expense.setNote(dto.getNote());
 
 	    expenseRepository.save(expense);
+	}
+	
+	// GET TOTAL MONTHLY EXPENSE MAP
+	public Map<Integer, Integer> getMonthlyExpenseMap(
+	        User user,
+	        Integer year,
+	        String mainCategory,
+	        String subCategory) {
+
+	    List<Object[]> expenses =
+	            expenseRepository.getMonthlyExpenseSummary(
+	                    user.getId(),
+	                    year,
+	                    mainCategory,
+	                    subCategory);
+
+	    Map<Integer, Integer> expenseMap = new HashMap<>();
+
+	    for (Object[] row : expenses) {
+
+	        Integer month = (Integer) row[0];
+
+	        Integer totalExpense = ((Double) row[1]).intValue();
+
+	        expenseMap.put(month, totalExpense);
+	    }
+
+	    return expenseMap;
 	}
 	
 }
