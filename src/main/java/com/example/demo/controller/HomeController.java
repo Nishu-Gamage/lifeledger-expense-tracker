@@ -171,6 +171,10 @@ public class HomeController {
         int currentYear = Year.now().getValue();
         int currentMonth = LocalDate.now().getMonthValue();
         
+        // for daily expenses
+        LocalDate today = LocalDate.now();
+        LocalDate fromDate = today.withDayOfMonth(1);
+        
         if(summaryYear == null){
             summaryYear = currentYear;
         }        
@@ -186,6 +190,8 @@ public class HomeController {
 		model.addAttribute("selectedYear", summaryYear);
 		model.addAttribute("selectedMonth", month);
         model.addAttribute("comparisonYear", comparisonYear);
+        model.addAttribute("fromDate", fromDate);
+        model.addAttribute("toDate", today);
 		
 	    model.addAttribute(
 	            "years",
