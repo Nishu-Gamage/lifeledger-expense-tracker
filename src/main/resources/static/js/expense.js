@@ -1,24 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const mainSelect =
-        document.getElementById("mainCategoryFilter");
+	initCategoryDropdown(
+	    "mainCategoryFilter",
+	    "subCategoryFilter",
+	    "filterForm"
+	);
+	
+	initCategoryDropdown(
+	    "dailyMainCategoryFilter",
+	    "dailySubCategoryFilter",
+	    "dailyFilterForm"
+	);
 
-    const subSelect =
-        document.getElementById("subCategoryFilter");
+});
+	
+function initCategoryDropdown(mainId, subId, formId) {
+	
+	const mainSelect = document.getElementById(mainId)	;
+    const subSelect = document.getElementById(subId);
 
     if (!mainSelect || !subSelect || !window.subcategories) {
         return;
     }
-		
-    /* =========================
-       LOAD MAIN CATEGORIES
-    ========================= */
-
+	
 	const params = new URLSearchParams(window.location.search);
 
 	const selectedMain = params.get("mainCategory") || "";
 	const selectedSub = params.get("subCategory") || "";
-
+	
+    /* =========================
+       LOAD MAIN CATEGORIES
+    ========================= */	
+	mainSelect.innerHTML = '<option value="">全て</option>';
+	
 	Object.keys(window.subcategories).forEach(main => {
 
 	    const option = document.createElement("option");
@@ -39,46 +53,29 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================= */
 
 	function loadSubCategories(selectedMain = "", selectedSub = "") {
-        subSelect.innerHTML =
-            '<option value="">全て</option>';
+		
+        subSelect.innerHTML = '<option value="">全て</option>';
 
-        if (!selectedMain) {
-
-            // ALL SUB CATEGORIES
-
-            Object.values(window.subcategories)
-                .flat()
-                .forEach(sub => {
-
-					const option = document.createElement("option");
-
-					option.value = sub;
-					option.textContent = sub;
-
-					if (sub === selectedSub) {
-					    option.selected = true;
-					}
-
-					subSelect.appendChild(option);
-                });
-
-        } else {
-
-            window.subcategories[selectedMain]
-                .forEach(sub => {
-
-					const option = document.createElement("option");
-
-					option.value = sub;
-					option.textContent = sub;
-
-					if (sub === selectedSub) {
-					    option.selected = true;
-					}
-
-					subSelect.appendChild(option);
-                });
-        }
+		let list;
+		
+		if (!selectedMain) {
+		       list = Object.values(window.subcategories).flat();
+		} else {
+			   list = window.subcategories[selectedMain] || [];
+		}
+			   
+		list.forEach(sub => {
+		    const option = document.createElement("option");
+		
+		    option.value = sub;
+		    option.textContent = sub;
+		
+		    if (sub === selectedSub) {
+		        option.selected = true;
+		    }
+		
+		    subSelect.appendChild(option);	
+		});
     }
 
     /* =========================
@@ -96,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	    loadSubCategories(this.value, "");
 	    subSelect.value = "";
 
-	    document.getElementById("filterForm").submit();
+		document.getElementById(formId)?.submit();
 	});
 
 
@@ -122,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	        }
 	    }
 
-	    document.getElementById("filterForm").submit();
+	    document.getElementById("formId").submit();
 	});
 	
-});
+}
