@@ -10,11 +10,14 @@
 
     <!-- Search Area -->
     <div class="card shadow-sm">
-        <div class="card-body">
+        <div class="card-body">        	
+    	<form id="dailyFilterForm" method="get">
+    		<input type="hidden" name="tab" value="daily">
+    		
             <div class="row justify-content-center align-items-end">
                 <div class="col-2">
                     <label class="form-label fw-bold">開始日</label>
-                    <input type="date" class="form-control bg-primary text-white" th:value="${fromDate}">
+                    <input type="date" name="fromDate" class="form-control bg-primary text-white" th:value="${fromDate}">
                 </div>
 
                 <div class="col-auto text-center fs-4 pb-2">
@@ -23,28 +26,33 @@
 
                 <div class="col-md-2">
                     <label class="form-label fw-bold">終了日</label>
-                    <input type="date" class="form-control bg-primary text-white" th:value="${toDate}">
+                    <input type="date" name="toDate" class="form-control bg-primary text-white" th:value="${toDate}">
                 </div>
                 
                 <div class="col-md-2 ms-5">
                     <label class="form-label fw-bold">メインカテゴリー</label>
-					<select class="form-select" id="dailyMainCategoryFilter">
+					<select class="form-select"
+							name="dailyMainCategory"
+							id="dailyMainCategoryFilter">
 					  <option selected>全て</option>
 					</select>
                 </div>
                 
                 <div class="col-md-2">
                     <label class="form-label fw-bold">サブカテゴリー</label>
-					<select class="form-select" id="dailySubCategoryFilter">
+					<select class="form-select"
+							name="dailySubCategory"
+							id="dailySubCategoryFilter">
 					  <option selected>全て</option>
 					</select>
                 </div>
 
                 <div class="col text-center">
                     <button class="btn btn-primary px-4">検索</button>
-                    <button class="btn btn btn-danger px-4 ms-2">クリア</button>
+                    <button type="button" id="dailyClearBtn" class="btn btn btn-danger px-4 ms-2">クリア</button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
     

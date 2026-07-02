@@ -41,7 +41,7 @@
 							<select form="filterForm"
 									class="py-0"
 							        id="mainCategoryFilter"
-							        name="mainCategory">
+							        name="monthlyMainCategory">
 							        				                    					        
 							    <option value="" class="text-center py-0">全て</option>
 							</select>
@@ -53,7 +53,7 @@
 							<select form="filterForm"
 									class="py-0"
 							        id="subCategoryFilter"
-							        name="subCategory">
+							        name="monthlySubCategory">
 							 				                     
 							    <option value="" class="text-center py-0">全て</option>
 							</select>
@@ -69,10 +69,10 @@
 				            th:text="${#numbers.formatInteger(row.totalIncome != null ? row.totalIncome : 0, 1, 'COMMA')} + ' 円'">
 				        </td>
 				        <td class="py-0 text-center"
-						    th:text="${mainCategory != null and !#strings.isEmpty(mainCategory) ? mainCategory : '全て'}">
+						    th:text="${monthlyMainCategory != null and !#strings.isEmpty(monthlyMainCategory) ? monthlyMainCategory : '全て'}">
 						</td>
 						<td class="py-0 text-center"
-						    th:text="${subCategory != null and !#strings.isEmpty(subCategory) ? subCategory : '全て'}">
+						    th:text="${monthlySubCategory != null and !#strings.isEmpty(monthlySubCategory) ? monthlySubCategory : '全て'}">
 						</td>
 					    <td class="py-0 text-end"
 					        th:text="${#numbers.formatInteger(row.totalExpense != null ? row.totalExpense : 0, 1, 'COMMA')} + ' 円'">

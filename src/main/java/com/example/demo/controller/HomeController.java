@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -156,10 +157,21 @@ public class HomeController {
     public String expense(
             @RequestParam(required = false) Integer summaryYear,
             @RequestParam(required = false) Integer comparisonYear,
-            
-            @RequestParam(required = false) String mainCategory,
-            @RequestParam(required = false) String subCategory,
-            
+                        
+            @RequestParam(required = false) String monthlyMainCategory,
+            @RequestParam(required = false) String monthlySubCategory,
+
+            @RequestParam(required = false) String dailyMainCategory,
+            @RequestParam(required = false) String dailySubCategory,
+
+			@RequestParam(required = false)
+			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+			LocalDate fromDate,
+			
+			@RequestParam(required = false)
+			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+			LocalDate toDate,
+     
             @RequestParam(required = false) Integer month,
             @RequestParam(required = false) String tab,
             
@@ -173,7 +185,14 @@ public class HomeController {
         
         // for daily expenses
         LocalDate today = LocalDate.now();
-        LocalDate fromDate = today.withDayOfMonth(1);
+        
+		if (fromDate == null) {
+		    fromDate = today.withDayOfMonth(1);
+		}
+		
+		if (toDate == null) {
+		    toDate = today;
+		}
         
         if(summaryYear == null){
             summaryYear = currentYear;
@@ -191,7 +210,7 @@ public class HomeController {
 		model.addAttribute("selectedMonth", month);
         model.addAttribute("comparisonYear", comparisonYear);
         model.addAttribute("fromDate", fromDate);
-        model.addAttribute("toDate", today);
+        model.addAttribute("toDate", toDate);
 		
 	    model.addAttribute(
 	            "years",
@@ -243,8 +262,11 @@ public class HomeController {
 			                summaryYear,
 			                month));
 			
-	        model.addAttribute("mainCategory", mainCategory);
-	        model.addAttribute("subCategory", subCategory);
+	        model.addAttribute("dailyMainCategory", dailyMainCategory);
+	        model.addAttribute("dailySubCategory", dailySubCategory);
+	        
+	        model.addAttribute("monthlyMainCategory", monthlyMainCategory);
+	        model.addAttribute("monthlySubCategory", monthlySubCategory);
 			
 			List<MonthlySummaryDto> monthlySummary =
 			        incomeService.getMonthlyIncomeSummary(
@@ -255,8 +277,8 @@ public class HomeController {
 			        expenseService.getMonthlyExpenseMap(
 			                user,
 			                comparisonYear,
-			                mainCategory,
-			                subCategory);
+			                monthlyMainCategory,
+			                monthlySubCategory);
 
 			for (MonthlySummaryDto dto : monthlySummary) {
 

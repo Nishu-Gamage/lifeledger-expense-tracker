@@ -3,30 +3,35 @@ document.addEventListener("DOMContentLoaded", function () {
 	initCategoryDropdown(
 	    "mainCategoryFilter",
 	    "subCategoryFilter",
-	    "filterForm"
+	    "filterForm",
+	    "monthlyMainCategory",
+	    "monthlySubCategory"
 	);
 	
 	initCategoryDropdown(
 	    "dailyMainCategoryFilter",
 	    "dailySubCategoryFilter",
-	    "dailyFilterForm"
+	    "dailyFilterForm",
+	    "dailyMainCategory",
+	    "dailySubCategory"
 	);
 
 });
 	
-function initCategoryDropdown(mainId, subId, formId) {
+function initCategoryDropdown(mainId, subId, formId, mainParam, subParam) {
 	
-	const mainSelect = document.getElementById(mainId)	;
+	const mainSelect = document.getElementById(mainId);
     const subSelect = document.getElementById(subId);
+	const form = document.getElementById(formId);
 
-    if (!mainSelect || !subSelect || !window.subcategories) {
+    if (!mainSelect || !subSelect || !window.subcategories || !form) {
         return;
     }
 	
 	const params = new URLSearchParams(window.location.search);
 
-	const selectedMain = params.get("mainCategory") || "";
-	const selectedSub = params.get("subCategory") || "";
+	const selectedMain = params.get(mainParam) || "";
+	const selectedSub = params.get(subParam) || "";
 	
     /* =========================
        LOAD MAIN CATEGORIES
@@ -93,7 +98,7 @@ function initCategoryDropdown(mainId, subId, formId) {
 	    loadSubCategories(this.value, "");
 	    subSelect.value = "";
 
-		document.getElementById(formId)?.submit();
+		form.submit();
 	});
 
 
@@ -119,7 +124,42 @@ function initCategoryDropdown(mainId, subId, formId) {
 	        }
 	    }
 
-	    document.getElementById("formId").submit();
+		form.submit();
 	});
 	
+	/* =========================
+	   CLEAR BTN
+	========================= */	
+	function formatDate(date) {
+
+	    const year = date.getFullYear();
+	    const month = String(date.getMonth() + 1).padStart(2, "0");
+	    const day = String(date.getDate()).padStart(2, "0");
+
+	    return `${year}-${month}-${day}`;
+	}
+
+	const clearBtn = document.getElementById("dailyClearBtn");
+
+	if (clearBtn && formId === "dailyFilterForm") {
+
+	    clearBtn.addEventListener("click", function () {
+
+	        // reset categories
+	        mainSelect.value = "";
+	        loadSubCategories("", "");
+
+	        // reset dates
+	        const today = new Date();
+	        const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+	        const fromInput = form.elements["fromDate"];
+	        const toInput = form.elements["toDate"];
+
+	        if (fromInput && toInput) {
+	            fromInput.value = formatDate(firstDay);
+	            toInput.value = formatDate(today);
+	        }
+	    });
+	}
 }
