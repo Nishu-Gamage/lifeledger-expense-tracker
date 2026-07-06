@@ -105,9 +105,9 @@
 	            </thead>
 	            <tbody>
 	                <tr>
-	                    <td class="fs-4 py-2 fw-bold text-primary">
-	            			¥1,300
-	                    </td>
+	                    <td class="fs-4 py-2 fw-bold text-primary"
+						    th:text="${#numbers.formatDecimal(totalAmount,0,'COMMA',0,'POINT')}+ ' 円' ">
+						</td>
 	                </tr>
 	            </tbody>
 	        </table>

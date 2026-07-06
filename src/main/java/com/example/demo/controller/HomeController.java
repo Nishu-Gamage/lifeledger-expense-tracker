@@ -236,8 +236,11 @@ public class HomeController {
                     dailyMainCategory,
                     dailySubCategory
             );
+            
+            Double totalAmount = expenseService.getTotalDailyExpense(dailyExpenseList);
 
             model.addAttribute("dailyExpenseList", dailyExpenseList);
+            model.addAttribute("totalAmount", totalAmount);
                         
             // MONTHLY SUMMARY
 	        Integer totalExpense =
@@ -283,6 +286,9 @@ public class HomeController {
 	        model.addAttribute("monthlyMainCategory", monthlyMainCategory);
 	        model.addAttribute("monthlySubCategory", monthlySubCategory);
 			
+	        model.addAttribute("dailyExpenseList", dailyExpenseList);
+	        model.addAttribute("totalAmount", totalAmount);
+	        
 	        // MONTHLY TABLE DATA
 			List<MonthlySummaryDto> monthlySummary =
 			        incomeService.getMonthlyIncomeSummary(

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -236,4 +237,13 @@ public class ExpenseService {
 		}).collect(Collectors.toList());
 	}
 	
+	// TOTAl DAILY EXPENSES	
+	public Double getTotalDailyExpense(List<ExpenseDto> expenseList) {
+
+	    return expenseList.stream()
+	            .map(ExpenseDto::getAmount)
+	            .filter(Objects::nonNull)
+	            .reduce(0.0, Double::sum);
+	}
+
 }
