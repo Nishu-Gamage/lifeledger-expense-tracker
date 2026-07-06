@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -125,4 +126,24 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
                 String mainCategory,
                 String subCategory);
  
+
+	/* --------------------------------------------------
+	 *    Get User requested expense data 
+	 * --------------------------------------------------*/
+     @Query("""
+    		 SELECT e
+    		 FROM Expense e
+    		 WHERE e.user = :user
+    		 	AND e.expenseDate BETWEEN :fromDate AND :toDate
+    		 	AND (:mainCategory IS NULL OR :mainCategory = '' OR e.mainCategory = :mainCategory)
+    		 	AND (:subCategory IS NULL OR :subCategory = '' OR e.subCategory = :subCategory)
+    		 	ORDER BY e.expenseDate DESC, e.id DESC
+    		 	
+    		 """)   
+		List<Expense> findExpenses(
+     			@Param("user") User user,
+     			@Param("fromDate") LocalDate fromDate,
+     			@Param("toDate") LocalDate toDate,
+     			@Param("mainCategory") String mainCategory,
+     			@Param("subCategory") String subCategory);
 }

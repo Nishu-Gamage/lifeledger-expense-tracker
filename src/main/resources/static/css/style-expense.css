@@ -109,3 +109,17 @@
     white-space: nowrap;
     min-width: 70px;
 }
+
+
+/* daily table height manage */
+.table-scroll {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.table-scroll thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #f8f9fa;
+}

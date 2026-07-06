@@ -204,4 +204,36 @@ public class ExpenseService {
 	    return expenseMap;
 	}
 	
+	// GET REQUESTED DATA FROM USER
+	public List<ExpenseDto> getExpenseList(
+			User user,
+			LocalDate fromDate,
+			LocalDate toDate,
+			String mainCategory,
+			String subCategory){
+		
+		List<Expense> expenses = 
+				expenseRepository.findExpenses(
+						user,
+						fromDate,
+						toDate,
+						mainCategory,
+						subCategory);
+		
+		return expenses.stream().map(expense -> {
+			
+			ExpenseDto dto = new ExpenseDto();
+			
+			dto.setId(expense.getId());
+			dto.setExpenseDate(expense.getExpenseDate());
+			dto.setMainCategory(expense.getMainCategory());
+			dto.setSubCategory(expense.getSubCategory());
+			dto.setAmount(expense.getAmount());
+			dto.setNote(expense.getNote());
+			
+			return  dto;
+			
+		}).collect(Collectors.toList());
+	}
+	
 }

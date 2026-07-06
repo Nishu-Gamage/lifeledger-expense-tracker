@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.ExpenseCategoryDto;
+import com.example.demo.dto.ExpenseDto;
 import com.example.demo.dto.IncomeCategoryDto;
 import com.example.demo.dto.IncomeDto;
 import com.example.demo.dto.MonthlySummaryDto;
@@ -186,6 +187,7 @@ public class HomeController {
         // for daily expenses
         LocalDate today = LocalDate.now();
         
+        // DEFAULT VALUES
 		if (fromDate == null) {
 		    fromDate = today.withDayOfMonth(1);
 		}
@@ -218,6 +220,7 @@ public class HomeController {
 	                    .boxed()
 	                    .toList());
 
+	    // USER BLOCK
         if (authentication != null) {
 
             String email = authentication.getName();
@@ -225,6 +228,18 @@ public class HomeController {
             User user = userRepository.findByEmail(email)
                     .orElseThrow();
 
+            // DAILY EXPENSE LIST (FILTERED)           
+            List<ExpenseDto> dailyExpenseList = expenseService.getExpenseList(
+                    user,
+                    fromDate,
+                    toDate,
+                    dailyMainCategory,
+                    dailySubCategory
+            );
+
+            model.addAttribute("dailyExpenseList", dailyExpenseList);
+                        
+            // MONTHLY SUMMARY
 	        Integer totalExpense =
 	                expenseService.getTotalExpenseByYearAndMonth(
 	                        user,
@@ -268,6 +283,7 @@ public class HomeController {
 	        model.addAttribute("monthlyMainCategory", monthlyMainCategory);
 	        model.addAttribute("monthlySubCategory", monthlySubCategory);
 			
+	        // MONTHLY TABLE DATA
 			List<MonthlySummaryDto> monthlySummary =
 			        incomeService.getMonthlyIncomeSummary(
 			                user,

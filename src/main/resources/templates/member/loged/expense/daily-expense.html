@@ -34,7 +34,10 @@
 					<select class="form-select"
 							name="dailyMainCategory"
 							id="dailyMainCategoryFilter">
-					  <option selected>全て</option>
+					  <option value=""
+						  	th:selected="${dailyMainCategory == null or dailyMainCategory == ''}">
+						  	全て
+				  		</option>
 					</select>
                 </div>
                 
@@ -43,7 +46,7 @@
 					<select class="form-select"
 							name="dailySubCategory"
 							id="dailySubCategoryFilter">
-					  <option selected>全て</option>
+					  <option value="">全て</option>
 					</select>
                 </div>
 
@@ -58,6 +61,7 @@
     
     <div class="card shadow-sm mt-4">
         <div class="card-body p-0">
+        	<div class="table-scroll">
             <table class="table table-striped table-hover mb-0">
                 <thead class="table-light">
 	                <tr>
@@ -70,15 +74,24 @@
                 </thead>
 
                 <tbody>
-	                <tr>
-	                    <td class="py-0">2026/03/25</td>
-	                    <td class="py-0">Transport</td>
-	                    <td class="py-0">Train</td>
-	                    <td class="py-0 text-end">¥500</td>
-	                    <td class="py-0">JR Line</td>
-	                </tr>
+	                <tr th:each="expense : ${dailyExpenseList}">
+				        <td class="py-0" th:text="${expense.expenseDate}"></td>
+				        <td class="py-0" th:text="${expense.mainCategory}"></td>
+				        <td class="py-0" th:text="${expense.subCategory}"></td>
+				        <td class="py-0 text-end"
+				            th:text="${#numbers.formatDecimal(expense.amount,0,'COMMA',0,'POINT')} + ' 円' ">
+				        </td>
+				        <td class="py-0" th:text="${expense.note}"></td>
+				    </tr>
+	                
+				    <tr th:if="${#lists.isEmpty(dailyExpenseList)}">
+				        <td colspan="5" class="text-center">
+				            データがありません
+				        </td>
+				    </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 
