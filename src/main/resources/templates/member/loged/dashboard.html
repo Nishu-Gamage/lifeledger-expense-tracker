@@ -15,6 +15,7 @@
     <link rel="stylesheet" th:href="@{/css/style-header.css}">
     <link rel="stylesheet" th:href="@{/css/style-dashboard-tabs.css}">
     <link rel="stylesheet" th:href="@{/css/style-expense.css}">
+	<link rel="stylesheet" th:href="@{/css/style-mobile-dashboard.css}">
 </head>
 
 <body>
@@ -73,7 +74,7 @@
 </div>
 
 <!-- BUTTONS -->
-<div class="d-flex justify-content-center align-items-center gap-3 py-3">
+<div class="d-flex justify-content-center align-items-center gap-3 py-3 dashboard-buttons">
 
     <!-- ADD INCOME -->
     <div sec:authorize="hasRole('USER')">

@@ -1,0 +1,84 @@
+/* ==================================================
+   Mobile Devices (max-width: 768px)
+      
+   Supported screen sizes:
+	   - iPhone SE
+	   - iPhone 6 / 7 / 8
+	   - iPhone 6 / 7 / 8 Plus
+	   - iPhone X / XR / XS / 11 Pro
+	   - iPhone 12 / 13 / 14 / 15 / 16 (standard models)
+	   - Most Android phones
+	   - Small tablets in portrait mode
+   ================================================== */
+   
+@media (max-width: 768px) {
+
+	/* ====================
+   		　　Summary　Tab
+   ========================= */
+
+    /* Dashboard title */
+    h2{
+        font-size:24px;
+    }
+	
+    /* Buttons */
+    .dashboard-buttons{
+        flex-direction:column;
+    }
+	
+    .dashboard-buttons .btn{
+        width:100%;
+    }
+	
+    /* Tabs */
+    .dashboard-tabs .nav-link{
+        font-size:13px;
+        padding:10px 6px;
+    }
+	
+    /* Tables */
+    table th,
+    table td{
+        font-size:14px;
+    }
+	
+	/* month title */
+	.dashboard-month-title{
+        margin-top: 20px !important;
+    }
+    
+    
+	/* ====================
+   		　　Monthly　Tab
+   ========================= */
+    
+    /* Monthly table container */
+    .monthly-table-wrapper{
+        width:95%;
+    }
+	
+    /* Allow horizontal scrolling if needed */
+    .monthly-table{
+        overflow-x:auto;
+    }
+	
+    /* Reduce font size */
+    .monthly-table table{
+        font-size:14px;
+    }
+	
+    /* Reduce padding */
+    .monthly-table th,
+    .monthly-table td{
+        padding:6px;
+        white-space:nowrap;
+    }
+	
+    /* Year dropdown */
+    .monthly-table select{
+        font-size:14px;
+        padding:6px;
+    }
+    
+}
