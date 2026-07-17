@@ -8,13 +8,53 @@
 <body>
 
 <div th:fragment="exp-menu1">
+
+	<!-- Mobile View -->    
+    <div class="d-block d-lg-none mb-3">
+
+	    <form method="get" id="mobileFilterForm">
+	        <input type="hidden" name="tab" value="monthly">
+	
+	        <select class="form-select bg-primary text-white mb-2"
+	                name="comparisonYear"
+	                onchange="this.form.submit()">
+	
+	            <option th:each="y : ${years}"
+	                    th:value="${y}"
+	                    th:text="${y + '年'}"
+	                    th:selected="${y == comparisonYear}">
+	            </option>
+	
+	        </select>	
+	        <select id="mobileMainCategoryFilter"
+		            name="monthlyMainCategory"
+		            class="form-select mb-2"
+		            onchange="this.form.submit()">
+		            
+		        <option value="">全て</option>
+		
+		    </select>
+		    
+		    <select id="mobileSubCategoryFilter"
+		            name="monthlySubCategory"
+		            class="form-select"
+		            onchange="this.form.submit()">
+		
+		        <option value="">全て</option>
+		
+		    </select>
+	    </form>	
+	</div>
+	
+	
 	<div class="row justify-content-center">
-	    <div class="col-8">
-	        <table class="table table-striped custab">
+    	<div class="col-12 col-lg-8">
+        	<div class="table-responsive">
+            <table class="table table-striped custab">
 			    <thead>
-			        <tr>
-			            <th colspan="6">
-			           		<form method="get" id="filterForm" class="mb-0">
+			        <tr class="d-lg-none">
+			            <th colspan="4">
+			           		<form method="get" id="filterForm" class="mb-0 d-none d-lg-block">
     							<input type="hidden" name="tab" value="monthly">
     							
     							<select class="form-select form-select-sm bg-primary text-white text-center"
@@ -31,11 +71,10 @@
 							</form>
 			            </th>
 			        </tr>
-		        <thead>
 				    <tr>
-				        <th class="py-0">月</th>
-				        <th class="py-0 text-end   w-25">総収入</th>
-						<th class="py-0 text-center">
+				        <th class="py-0 month-col">月</th>
+				        <th class="py-0 text-end">総収入</th>
+						<th class="py-0 text-center d-none d-lg-table-cell">
 							メインカテゴリー<br>
 							
 							<select form="filterForm"
@@ -47,7 +86,7 @@
 							</select>
 						</th>
 						
-						<th class="py-0 text-center">
+						<th class="py-0 text-center d-none d-lg-table-cell">
 							サブカテゴリー<br>
 							
 							<select form="filterForm"
@@ -65,13 +104,13 @@
 				<tbody>
    					<tr th:each="row : ${monthlyIncomeSummary}">
         				<td class="py-0" th:text="${row.month}"></td>
-        				<td class="py-0 fs-6 text-end"
+        				<td class="py-0 income-value text-end"
 				            th:text="${#numbers.formatInteger(row.totalIncome != null ? row.totalIncome : 0, 1, 'COMMA')} + ' 円'">
 				        </td>
-				        <td class="py-0 text-center"
+				        <td class="py-0 text-center  d-none d-lg-table-cell"
 						    th:text="${monthlyMainCategory != null and !#strings.isEmpty(monthlyMainCategory) ? monthlyMainCategory : '全て'}">
 						</td>
-						<td class="py-0 text-center"
+						<td class="py-0 text-center  d-none d-lg-table-cell"
 						    th:text="${monthlySubCategory != null and !#strings.isEmpty(monthlySubCategory) ? monthlySubCategory : '全て'}">
 						</td>
 					    <td class="py-0 text-end"
@@ -84,6 +123,7 @@
 				    </tr>
 				</tbody>
 		    </table>
+		    </div>
 		</div>
     </div>
 </div>

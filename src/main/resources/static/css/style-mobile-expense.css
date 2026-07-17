@@ -1,0 +1,271 @@
+/* ==================================================
+   Mobile Devices (max-width: 768px)
+      
+   Supported screen sizes:
+	   - iPhone SE
+	   - iPhone 6 / 7 / 8
+	   - iPhone 6 / 7 / 8 Plus
+	   - iPhone X / XR / XS / 11 Pro
+	   - iPhone 12 / 13 / 14 / 15 / 16 (standard models)
+	   - Most Android phones
+	   - Small tablets in portrait mode
+   ================================================== */
+   
+/* ========================
+   	 Mobile & Tablet
+==========================*/
+
+@media (max-width: 991.98px) {
+		
+	/* Buttons */
+    .expense-dashboard-buttons{
+        flex-direction:column;
+    }
+	
+    .expense-dashboard-buttons .btn{
+        width:100%;
+    }
+	
+
+    .expense-summary-value {
+        font-size: 1.3rem;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    .table th,
+    .table td {
+        padding: 6px;
+    }
+
+    .summary-scroll {
+        max-height: 180px;
+        overflow-y: auto;
+    }
+
+    .btn-sm {
+        font-size: 11px;
+        padding: 2px 6px;
+    }
+
+    .dashboard-tab-content {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    
+    /*   Monthly page  */    
+    .table-responsive{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+	/* ===============================
+	   Monthly Expense Page - Mobile Only
+	================================== */
+		
+	.custab{
+        width:100% !important;
+        min-width:0 !important;
+    }
+
+    .table-responsive{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }    
+
+	/* ===============================
+	   Daily Expense Page - Mobile Only
+	================================== */
+	
+	#dailyFilterForm .row{
+	    display:block;
+	}
+	
+	#dailyFilterForm .col-2,
+	#dailyFilterForm .col-md-2,
+	#dailyFilterForm .col,
+	#dailyFilterForm .col-auto{
+	    width:100%;
+	    max-width:100%;
+	    margin:0 0 12px 0 !important;
+	    padding:0;
+	}
+	
+	#dailyFilterForm label{
+	    font-size:14px;
+	    font-weight:bold;
+	    margin-bottom:5px;
+	}
+	
+	#dailyFilterForm input,
+	#dailyFilterForm select{
+	    width:100%;
+	}
+	
+	#dailyFilterForm .btn{
+	    width:100%;
+	    margin-bottom:10px;
+	}
+	
+	#dailyClearBtn{
+	    margin-left:0 !important;
+	}
+	
+	/* Table */
+	/* Daily table - Mobile */
+	.table-scroll table{
+	    min-width: 620px;   
+	}
+	
+	.table-scroll th,
+	.table-scroll td{
+	    white-space: nowrap;
+	    font-size: 12px;
+	    padding: 10px 6px;  
+	    vertical-align: middle;
+	}
+	
+	/* Note column width අඩු කරන්න */
+	.table-scroll th:last-child,
+	.table-scroll td:last-child{
+	    width: 120px;
+	    max-width: 120px;
+	    white-space: normal;
+	    word-break: break-word;
+	}
+	
+    .table-scroll td{
+	    padding-top: 12px;
+	    padding-bottom: 12px;
+	}
+	
+	/* =====================================
+   	   expense-capture-individually.html
+	===================================== */
+	
+	#searchaddExModal .modal-dialog{
+	    margin:10px;
+	    max-width:100%;
+	}
+	
+	#searchaddExModal .modal-content{
+	    padding:15px !important;
+	}
+	
+	#searchaddExModal h2{
+	    font-size:1.3rem;
+	}
+	
+	#searchaddExModal .row:first-child{
+	    display:block;
+	}
+	
+	#searchaddExModal .row:first-child .col-9,
+	#searchaddExModal .row:first-child .col-3{
+	    width:100%;
+	    max-width:100%;
+	    text-align:center;
+	}
+	
+	#searchaddExModal .date-box{
+	    margin-top:10px;
+	}
+	
+	#searchaddExModal .input-group-lg>.form-control,
+	#searchaddExModal .input-group-lg>.input-group-text{
+	    font-size:1rem;
+	}
+	
+		#searchaddExModal .category-grid{
+	    display:grid;
+	    grid-template-columns:repeat(4,1fr);
+	    gap:6px;
+	}
+
+	#searchaddExModal .category-card{
+	    padding:6px 2px;
+	    font-size:10px;
+	    line-height:1.2;
+	    text-align:center;
+	}
+	
+	#searchaddExModal .expense-icon{
+	    width:28px;
+	    height:28px;
+	    margin-bottom:3px;
+	}
+	
+	/* =====================================
+	     expense-capture-list.html
+	====================================== */
+	
+	#searchAddListExModal .modal-dialog{
+	    margin:8px;
+	    max-width:100%;
+	}
+	
+	#searchAddListExModal .modal-content{
+	    padding:12px !important;
+	}
+	
+	#searchAddListExModal h2{
+	    font-size:1.2rem;
+	}
+	
+	/* Scrollable table */
+	.expense-table-wrapper{
+	    overflow-x:auto;
+	    -webkit-overflow-scrolling:touch;
+	}
+	
+	/* Keep table usable */
+	.expense-table-wrapper table{
+	    min-width:900px;
+	    font-size:12px;
+	}
+	
+	.expense-table-wrapper th,
+	.expense-table-wrapper td{
+	    padding:6px;
+	    white-space:nowrap;
+	    vertical-align:middle;
+	}
+	
+	/* Smaller controls */
+	.expense-table-wrapper input,
+	.expense-table-wrapper select{
+	    min-width:120px;
+	    font-size:12px;
+	}
+	
+	.expense-table-wrapper .list-amount{
+	    width:90px;
+	}
+	
+	.expense-table-wrapper input[name="note"]{
+	    min-width:160px;
+	}
+	
+	/* Delete button */
+	.delete-row{
+	    font-size:11px;
+	    padding:4px 8px;
+	}
+	
+	/* Bottom buttons */
+	.modal-buttons-sticky{
+	    flex-direction:column;
+	    gap:10px !important;
+	}
+	
+	.modal-buttons-sticky .btn{
+	    width:100%;
+	}
+	
+}

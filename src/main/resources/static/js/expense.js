@@ -9,6 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	);
 	
 	initCategoryDropdown(
+	    "mobileMainCategoryFilter",
+	    "mobileSubCategoryFilter",
+	    "mobileFilterForm",
+	    "monthlyMainCategory",
+	    "monthlySubCategory"
+	);
+	
+	initCategoryDropdown(
 	    "dailyMainCategoryFilter",
 	    "dailySubCategoryFilter",
 	    "dailyFilterForm",

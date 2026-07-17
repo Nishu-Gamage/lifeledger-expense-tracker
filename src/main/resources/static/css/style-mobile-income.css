@@ -1,0 +1,63 @@
+/* ==================================================
+   Mobile Devices (max-width: 768px)
+      
+   Supported screen sizes:
+	   - iPhone SE
+	   - iPhone 6 / 7 / 8
+	   - iPhone 6 / 7 / 8 Plus
+	   - iPhone X / XR / XS / 11 Pro
+	   - iPhone 12 / 13 / 14 / 15 / 16 (standard models)
+	   - Most Android phones
+	   - Small tablets in portrait mode
+   ================================================== */
+   
+ @media (max-width:768px){
+
+    /* Year Month Select */
+    .form-select{
+        width:100% !important;
+        margin-bottom:10px;
+    }
+
+    form .d-flex{
+        display:block !important;
+    }
+
+    /* Summary Tables */
+    .col-md-4{
+        margin-bottom:15px;
+    }
+
+    .ms-5{
+        margin-left:0 !important;
+    }
+
+    /* Card spacing */
+    .col-lg-3,
+    .col-lg-8{
+        margin-top:15px;
+    }
+
+    /* Tables */
+    table{
+        font-size:12px;
+    }
+
+    th,
+    td{
+        white-space:nowrap;
+        padding:6px;
+    }
+
+    /* Scroll instead of breaking */
+    .table-responsive{
+        overflow-x:auto;
+    }
+
+    /* Edit Button */
+    .incomeEditBtn{
+        padding:2px 5px;
+    	font-size:12px;
+    }
+
+}

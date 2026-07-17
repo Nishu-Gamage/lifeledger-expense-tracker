@@ -32,14 +32,14 @@
 	            <tbody>
 	                <tr>
 	                    <td class="fs-4 py-2 fw-bold text-primary"
-						    th:text="'¥ ' + ${#numbers.formatDecimal(totalIncome,1,'COMMA',0,'POINT')}">
+						    th:text="${#numbers.formatDecimal(totalIncome,1,'COMMA',0,'POINT') + ' 円'}">
 						</td>
-						<td class="fs-4 py-2 fw-bold text-primary"
-						    th:text="'¥ ' + ${#numbers.formatDecimal(totalExpense,1,'COMMA',0,'POINT')}">
+   						<td class="fs-4 py-2 fw-bold text-primary"
+    						th:text="${#numbers.formatDecimal(totalExpense,1,'COMMA',0,'POINT') + ' 円'}">
 						</td>
 	                    <td class="fs-4 py-2 fw-bold"
 	                     	th:classappend="${(totalIncome - totalExpense) <= 0} ? ' text-danger' : ' text-primary'"
-	                    	th:text="'¥ ' + ${#numbers.formatDecimal((totalIncome - totalExpense),1,'COMMA',0,'POINT')}">
+	                    	th:text="${#numbers.formatDecimal(totalIncome - totalExpense,1,'COMMA',0,'POINT') + ' 円'}">
 	                    </td>
 	                </tr>
 	            </tbody>	

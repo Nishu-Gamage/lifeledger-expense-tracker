@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				    </td>
 
 				    <td class="text-end align-middle fw-bold text-primary border">
-				        ¥ ${amount}
+				        ${amount}　円
 				    </td>
 
 				    <td class="align-middle text-center border">

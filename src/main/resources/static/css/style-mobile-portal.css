@@ -1,0 +1,67 @@
+/* ==================================================
+   Mobile Devices (max-width: 768px)
+      
+   Supported screen sizes:
+	   - iPhone SE
+	   - iPhone 6 / 7 / 8
+	   - iPhone 6 / 7 / 8 Plus
+	   - iPhone X / XR / XS / 11 Pro
+	   - iPhone 12 / 13 / 14 / 15 / 16 (standard models)
+	   - Most Android phones
+	   - Small tablets in portrait mode
+   ================================================== */
+ 
+ @media (max-width: 768px) {
+
+    /* Header */
+    .home-hero .d-flex.justify-content-between {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    /* Logo */
+    .home-hero h1.display-3 {
+        font-size: 2.4rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Login/Register buttons */
+    .home-hero .btn-lg {
+        width: 100%;
+        margin: 8px 0 !important;
+    }
+
+    /* Welcome text */
+    .home-hero .h4 {
+        display: block;
+        margin: 0 0 15px 0 !important;
+        font-size: 1.2rem;
+    }
+
+    /* Logout form */
+    .logout-form {
+        width: 100%;
+    }
+
+    .logout-form .btn {
+        width: 100%;
+    }
+
+    /* Main message */
+    .text-center h1 {
+        font-size: 1.5rem;
+        line-height: 1.6;
+    }
+
+    /* Hero spacing */
+    .hero-content {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    /* Modal */
+    .modal-dialog {
+        margin: 10px;
+    }
+
+}

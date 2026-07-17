@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		                </td>
 		
 		                <td class="p-1">
-		                    ¥ ${item.totalAmount.toLocaleString()}
+		                    ${item.totalAmount.toLocaleString()} 円
 		                </td>
 		            </tr>
 		        `;

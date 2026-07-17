@@ -62,7 +62,7 @@
 
 /* scroll only table area */
 .expense-table-wrapper{
-    max-height: 55vh;
+    max-height: 185px;
     overflow-y: auto;
 }
 

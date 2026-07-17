@@ -11,7 +11,7 @@
 
 	<!-- SELECT YEAR & MONTH -->
 	<form method="get" th:action="@{/expense}">
-	    <div class="d-flex align-items-center gap-1 mb-1">	
+	    <div class="d-flex align-items-sm-center gap-2 mb-1 flex-sm-row align-items-start">
 	        <select name="summaryYear"
 	                class="form-select form-select-sm w-auto border-success bg-primary text-white"
 	                onchange="this.form.submit()">
@@ -42,7 +42,7 @@
 		    <div class="row justify-content-center">
 
 			    <!-- Table 1 -->
-			    <div class="col-md-4">
+			    <div class="col-12 col-md-5">
 			        <table class="table table-striped table-bordered text-center">
                 		<thead class="table-warning sticky-top">
 			                <tr>
@@ -52,15 +52,15 @@
 			            <tbody>
 			                <tr>
 			                    <td class="fs-4 py-2 fw-bold text-primary"
-			                        th:text="'¥ ' + ${#numbers.formatInteger(totalExpense,0,'COMMA')}">
-			                    </td>
+								    th:text="${#numbers.formatInteger(totalExpense,0,'COMMA') + ' 円'}">
+								</td>
 			                </tr>
 			            </tbody>
 			        </table>
 			    </div>
 					
 			    <!-- Table 2 -->
-			    <div class="col-md-4 ms-5">
+			    <div class="col-12 col-md-5">
 			        <table class="table table-striped table-bordered text-center">
                 		<thead class="table-warning sticky-top">
 			                <tr>
@@ -88,7 +88,7 @@
 		            カテゴリー別費用概要
 		        </h5>
 		
-		        <div style="max-height: 200px; overflow-y: auto;">
+		        <div style="max-height: 170px; overflow-y: auto;">
 	            <table class="table table-bordered table-striped text-center mb-0">
 		                <thead class="table-warning sticky-top">
 		                    <tr>
@@ -100,7 +100,7 @@
 		                <tbody>
 		                    <tr th:each="item : ${expenseCategorySummary}">
 		                        <td th:text="${item.mainCategory}"></td>
-		                        <td th:text="${#numbers.formatInteger(item.totalAmount,0,'COMMA')}"></td>
+		                        <td th:text="${#numbers.formatInteger(item.totalAmount,0,'COMMA') + ' 円'}"></td>
 		                    </tr>
 		                    
 		                    <!-- NO DATA -->
@@ -124,7 +124,7 @@
 	            すべての支出情報
 	        </h5>
 
-	        <div style="max-height: 200px; overflow-y: auto;">
+	        <div style="max-height: 170px; overflow-y: auto;">
 	            <table class="table table-bordered table-striped text-center mb-0">
 	                <thead class="table-warning sticky-top">
 	                    <tr>
@@ -143,10 +143,10 @@
 		
 		                    <td class="py-1" th:text="${expense.expenseDate}"></td>		
 		                    <td class="py-1" th:text="${expense.mainCategory}"></td>		
-		                    <td class="py-1" th:text="${expense.subCategory}"></td>		
+		                    <td class="py-1" th:text="${expense.subCategory}"></td>
 		                    <td class="text-end py-1"
-		                        th:text="'¥ ' + ${#numbers.formatInteger(expense.amount,0,'COMMA')}">
-		                    </td>	
+							    th:text="|${#numbers.formatInteger(expense.amount,0,'COMMA')} 円|">
+							</td>
 		                    <td th:text="${expense.note}"></td>	
 							<td class="py-1">
 							    <button type="button"

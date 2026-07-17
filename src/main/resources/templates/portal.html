@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LifeLedger Expense Tracker</title>
 	<link rel="stylesheet" th:href="@{/css/style-portal.css}">
+<link rel="stylesheet" th:href="@{/css/style-mobile-portal.css}">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -32,7 +33,7 @@
 						<span class="mr-5 h4">ようこそ <span th:text="${fullName}"></span>様</span>
 						<!-- <span class="mr-5 h4">ようこそ <span sec:authentication="name"> 様</span></span> -->
 					
-					    <form th:action="@{/logout}" method="post" style="display:inline;">
+					    <form th:action="@{/logout}" method="post" class="logout-form">
 					        <button type="submit" class="btn btn-danger btn-lg">ログアウト</button>
 					    </form>					
 					</div>
